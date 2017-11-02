@@ -24,20 +24,28 @@ import com.zhy.autolayout.AutoLayoutActivity;
 
 public abstract class BaseActivity extends AutoLayoutActivity {
 
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 加载布局
         setContentView(getLayoutId());
         //设置状态栏和标题栏颜色一致
-        SteBoolarUtil.compat(this, getBoolarColors());
+        SteBoolarUtil.setWindowStatusBarColor(this,getBoolarColors());
     }
+
+
 
     // 子类实现这个方法 返回布局ID
     protected abstract int getLayoutId();
 
     // 子类实现这个方法 返回颜色ID
     protected abstract int getBoolarColors();
+
+
+
 
 
     // 子类 可以直接跳转Activity

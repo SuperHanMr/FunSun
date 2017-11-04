@@ -7,6 +7,8 @@ import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.request.LoggerInterceptor;
 import com.fengxun.funsun.utils.SPUtils;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheEntity;
+import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.model.HttpHeaders;
 
 /**
@@ -20,28 +22,30 @@ import com.lzy.okgo.model.HttpHeaders;
 public class FunSunAPP extends Application {
 
     private static Context context;
+    private static boolean  isLogin;
+
     public static Context getInstance(){
         return  context;
+    }
+
+    public static boolean getIsLogin(){
+        return false;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = this;
-        OkGo.init(this);
+        OkGo.getInstance().init(this);
         HttpHeaders headers = new HttpHeaders();
         headers.put("Accept","application/json");
+        OkGo.getInstance()
+                .setCacheMode(CacheMode.IF_NONE_CACHE_REQUEST)
+                .setRetryCount(3)
+                .addCommonHeaders(headers)
+                .addInterceptor(new LoggerInterceptor());
 
-        switch (SPUtils.getInt(KEY.KEY_RECORD)){
-            case 1:
-                headers.put("X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN));  // 请求头 匿名用户Token
-                break;
-            case 2:
-                headers.put("X-Fo-Access-Token",SPUtils.getString(KEY.KEY_USERTOKEN)); // 请求头UserToken
-                break;
-        }
 
-        OkGo.getInstance().addCommonHeaders(headers).addInterceptor(new LoggerInterceptor());
        // CacheMode.IF_NONE_CACHE_REQUEST;// 如果缓存不在 再请求网络
     }
 

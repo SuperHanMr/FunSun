@@ -1,8 +1,13 @@
 package com.fengxun.funsun.view.base;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fengxun.funsun.R;
@@ -25,7 +30,11 @@ import com.zhy.autolayout.AutoLayoutActivity;
 public abstract class BaseActivity extends AutoLayoutActivity {
 
 
-
+    private Toolbar mToolbar;
+    private ImageView barLeftIcon;
+    private TextView barLeftTv;
+    private ImageView barRightIcon;
+    private TextView barRightTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,18 +43,63 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         setContentView(getLayoutId());
         //设置状态栏和标题栏颜色一致
         SteBoolarUtil.setWindowStatusBarColor(this,getBoolarColors());
+        initView();
     }
 
 
 
-    // 子类实现这个方法 返回布局ID
+    // 抽取ToolBar
+    private void initView() {
+        mToolbar = (Toolbar) findViewById(R.id.tooblar);
+        barLeftIcon = (ImageView) findViewById(R.id.tooblar_left_icon);
+        barLeftTv = (TextView) findViewById(R.id.tooblar_left_text);
+        barRightIcon = (ImageView) findViewById(R.id.tooblar_right_icon);
+        barRightTv = (TextView) findViewById(R.id.tooblar_right_text);
+    }
+
+
+    /**
+     * @param leftTv 左边设置文字
+     */
+    public void setBarLeftTv(String leftTv){
+        barLeftTv.setText(leftTv);
+    }
+
+
+    /**
+     * @return 左边的ICON
+     */
+    public void setBarLeftIcon(boolean is){
+        if (is){
+            barLeftIcon.setImageResource(View.VISIBLE);
+        }
+    }
+
+
+    /**
+     * @param rightTv 右边设置的文字
+     */
+    public void setBarRightTv(String rightTv){
+        barRightTv.setText(rightTv);
+    }
+
+    /**
+     * @return 右边的ICON
+     */
+    public void setBarRightIcon(boolean is){
+        barRightIcon.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * @return 布局ID
+     */
     protected abstract int getLayoutId();
 
-    // 子类实现这个方法 返回颜色ID
+
+    /**
+     * @return 状态栏颜色
+     */
     protected abstract int getBoolarColors();
-
-
-
 
 
     // 子类 可以直接跳转Activity

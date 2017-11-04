@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorBooblar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/tooblar_item"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/shape_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_marginTop="260px"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/funsun_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/login_btn_login"
+            android:text="登录"
+            android:layout_marginTop="230px"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_login_border"
+            android:layout_width="450px"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/login_tv_registration"
+            android:layout_gravity="center_horizontal"
+            android:text="注册账号"
+            android:layout_marginTop="60px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

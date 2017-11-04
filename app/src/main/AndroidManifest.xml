@@ -10,14 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <!--标注尺寸 达到屏幕适配-->
         <meta-data android:name="design_width" android:value="750">
         </meta-data>
         <meta-data android:name="design_height" android:value="1334">
         </meta-data>
-
-        <activity android:name=".view.activity.LoginActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -18,8 +18,6 @@ import android.view.WindowManager;
  */
 
 public class SteBoolarUtil {
-
-
     public static void setWindowStatusBarColor(Activity activity, int colorResId) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -9,11 +9,12 @@ package com.fengxun.funsun.model;
 
 public class KEY {
 
+    // 记录用户是否第一次使用APP
+    public static final String KEY_TIME = "time";
     // 记录用户是否登录过
     public static final String KEY_ISLOGIN = "islogin";
-
     //记录用户的token是匿名的还是注册后
-    public static final String KEY_RECORD = "record";
+//    public static final String KEY_RECORD = "record";
 
     // 保存用户基本信息
     public static final String KEY_USERSCHOOL = "userschool";

@@ -7,4 +7,8 @@
     <color name="colorGlobal">#FFEE1E</color>
     <color name="colorBooblar">#9A2DD4</color>
     <color name="colorbWhite">#fff</color>
+    <color name="colorbBlack">#000</color>
+    <color name="colorbTransparence">#0000</color>
+    <color name="colorbGary">#f8f8f8</color>
+    <color name="colorbBlue">#5E3AFF</color>
 </resources>

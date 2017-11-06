@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fengxun.funsun.R;
@@ -25,7 +26,7 @@ import com.fengxun.funsun.R;
 public abstract class BaseFragment extends Fragment {
 
     private Toolbar mToolbar;
-    private ImageView barLeftIcon;
+    private RelativeLayout barLeftIcon;
     private TextView barLeftTv;
     private ImageView barRightIcon;
     private TextView barRightTv;
@@ -35,7 +36,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(),container,false);
         mToolbar = (Toolbar) view.findViewById(R.id.tooblar);
-        barLeftIcon = (ImageView) view.findViewById(R.id.tooblar_left_icon);
+        barLeftIcon = (RelativeLayout) view.findViewById(R.id.tooblar_left_icon);
         barLeftTv = (TextView) view.findViewById(R.id.tooblar_left_text);
         barRightIcon = (ImageView) view.findViewById(R.id.tooblar_right_icon);
         barRightTv = (TextView) view.findViewById(R.id.tooblar_right_text);

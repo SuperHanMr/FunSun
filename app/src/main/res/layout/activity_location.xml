@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorBooblar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/tooblar_item"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingRight="40px"
+        android:paddingLeft="40px"
+        android:background="@drawable/shape_border"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/ac_location_refresh"
+            android:layout_marginTop="50px"
+            android:gravity="center"
+            android:background="@drawable/shape_login_borde"
+            android:layout_width="match_parent"
+            android:layout_height="110px">
+
+            <TextView
+                android:drawableLeft="@drawable/refresh_icon"
+                android:id="@+id/tv_refrsh"
+                android:textColor="@color/colorBooblar"
+                android:textSize="35px"
+                android:text="重新定位"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ac_location_recyclerview"
+            android:layout_marginTop="40px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

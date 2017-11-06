@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
 
     private Toolbar mToolbar;
-    private ImageView barLeftIcon;
+    private RelativeLayout barLeftIcon;
     private TextView barLeftTv;
     private ImageView barRightIcon;
     private TextView barRightTv;
@@ -43,19 +44,14 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         setContentView(getLayoutId());
         //设置状态栏和标题栏颜色一致
         SteBoolarUtil.setWindowStatusBarColor(this,getBoolarColors());
-        initView();
-    }
-
-
-
-    // 抽取ToolBar
-    private void initView() {
         mToolbar = (Toolbar) findViewById(R.id.tooblar);
-        barLeftIcon = (ImageView) findViewById(R.id.tooblar_left_icon);
+        barLeftIcon = (RelativeLayout) findViewById(R.id.tooblar_left_icon);
         barLeftTv = (TextView) findViewById(R.id.tooblar_left_text);
         barRightIcon = (ImageView) findViewById(R.id.tooblar_right_icon);
         barRightTv = (TextView) findViewById(R.id.tooblar_right_text);
+        initView();
     }
+
 
 
     /**
@@ -71,10 +67,19 @@ public abstract class BaseActivity extends AutoLayoutActivity {
      */
     public void setBarLeftIcon(boolean is){
         if (is){
-            barLeftIcon.setImageResource(View.VISIBLE);
+            barLeftIcon.setVisibility(View.VISIBLE);
         }
     }
 
+
+    private void initView() {
+        barLeftIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 
     /**
      * @param rightTv 右边设置的文字
@@ -103,11 +108,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
 
     // 子类 可以直接跳转Activity
-    public void openActivity(Class<?> targetActivityClass, Bundle bundle) {
+    public void openActivity(Class<?> targetActivityClass) {
         Intent intent = new Intent(this, targetActivityClass);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
         startActivity(intent);
     }
 

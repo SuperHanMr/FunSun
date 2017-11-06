@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.view.activity.LoginActivity;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.base.FunSunResponseBean;
 import com.google.gson.Gson;
@@ -35,8 +37,6 @@ public class LoginFragment extends BaseFragment {
 
 
     Unbinder unbinder;
-
-    private HttpParams params = new HttpParams();
 
     @Override
     protected int getLayoutId() {
@@ -62,7 +62,7 @@ public class LoginFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.login_btn_login:
                 LogUtils.d("登录");
-                LogiReuset();
+                getActivity().startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
             case R.id.login_tv_registration:
                 LogUtils.d("注册");
@@ -70,21 +70,6 @@ public class LoginFragment extends BaseFragment {
         }
     }
 
-    /**
-     * 登录 网络请求
-     */
-    private void LogiReuset() {
-        params.put("account","17710558669");
-        params.put("password","12345678");
-        NetworkReuset.getInstance().PostReuset(RequestUrl.LOGIN, params, new onCallBack<LoginBean>(this) {
-
-            @Override
-            public void onSucceed(LoginBean loginBean, Call call, String string) {
-               LogUtils.d(loginBean.getData().getUser_info().getNick());
-            }
-        });
-
-    }
 
     @Override
     public void onDestroyView() {

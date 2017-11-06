@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorbWhite"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@drawable/shape_login_borde"
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+        <TextView
+            android:textColor="@color/colorbBlack"
+            android:layout_marginLeft="20px"
+            android:layout_gravity="center_vertical"
+            android:textSize="35px"
+            android:text="+86"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_phone"
+            android:padding="20px"
+            android:layout_weight="1"
+            android:textSize="35px"
+            android:hint="手机号"
+            android:background="@color/colorbTransparence"
+            android:layout_width="100px"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/btn_validation_code"
+            android:background="@drawable/shape_forget_code_border"
+            android:text="验证"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20px"
+            android:layout_width="120px"
+            android:layout_height="90px" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/ed_code"
+        android:padding="20px"
+        android:layout_marginTop="40px"
+        android:hint="验证码"
+        android:textSize="35px"
+        android:background="@drawable/shape_login_borde"
+        android:layout_width="match_parent"
+        android:layout_height="100px" />
+
+    <EditText
+        android:id="@+id/ed_password"
+        android:padding="20px"
+        android:layout_marginTop="40px"
+        android:hint="设置密码"
+        android:textSize="35px"
+        android:background="@drawable/shape_login_borde"
+        android:layout_width="match_parent"
+        android:layout_height="100px" />
+
+</LinearLayout>

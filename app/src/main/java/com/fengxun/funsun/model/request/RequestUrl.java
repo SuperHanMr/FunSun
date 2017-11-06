@@ -10,6 +10,9 @@ package com.fengxun.funsun.model.request;
 public class RequestUrl {
 
 //  请求接口
-    public static final String HTTP = "http://api.example.com/api-name/v1/";
+    public static final String HTTP = "http://api.funsun.cn";
+
+//  登录
+    public static final String LOGIN = HTTP+"/auth/v1/login/";
 
 }

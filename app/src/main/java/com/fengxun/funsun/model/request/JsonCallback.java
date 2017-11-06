@@ -1,6 +1,6 @@
 package com.fengxun.funsun.model.request;
-
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.view.base.FunSunResponseBean;
 import com.google.gson.Gson;
 
 import java.lang.reflect.ParameterizedType;
@@ -17,6 +17,11 @@ public abstract class JsonCallback<T> extends com.lzy.okgo.callback.AbsCallback<
     Gson gson = new Gson();
     private String string;
 
+    /**
+     * @param response
+     * @return
+     * @throws Exception
+     */
     @Override
     public T convertSuccess(Response response) throws Exception {
         LogUtils.d("--------aaaaaaa---------响应了");
@@ -35,21 +40,6 @@ public abstract class JsonCallback<T> extends com.lzy.okgo.callback.AbsCallback<
 //        JsonReader jsonReader = new JsonReader(response.body().charStream());
         string = response.body().string();
         LogUtils.d(string);
-        if (response.code()==949){
-            onreSponse401();
-        }else {
-
-
-//            BmResponseBean bmResponseBean = gson.fromJson(string, BmResponseBean.class);
-//            String result = bmResponseBean.getResult();
-//            if (result.equals(keyMap.result_fail)) {
-//                onFaild(bmResponseBean.getError_description());
-//            }
-//            LogUtil.show("-------------------string - " + string);
-            //有数据类型，表示有data
-
-
-        }
         T data = gson.fromJson(string, type);
         response.close();
         return data;

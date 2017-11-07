@@ -20,7 +20,7 @@
 
 
         <EditText
-
+            android:singleLine="true"
             android:id="@+id/ac_registration_name"
             android:padding="20px"
             android:layout_marginTop="180px"
@@ -42,7 +42,6 @@
 
             android:text="男"
             android:layout_marginRight="40px"
-            android:checked="true"
             android:background="@drawable/selector_btn_gender"
             android:id="@+id/ac_registration_rb1"
             style="@style/gender_rb_style"
@@ -95,6 +94,7 @@
             android:layout_height="wrap_content">
 
             <CheckBox
+                android:id="@+id/ac_registration_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -114,6 +114,7 @@
             android:layout_height="match_parent">
 
             <Button
+                android:enabled="false"
                 android:id="@+id/ac_registration_btn"
                 android:textColor="#5000"
                 android:text="下一步"

@@ -14,6 +14,7 @@ import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.view.activity.LoginActivity;
+import com.fengxun.funsun.view.activity.RegistrationActivity;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.base.FunSunResponseBean;
 import com.google.gson.Gson;
@@ -65,7 +66,7 @@ public class LoginFragment extends BaseFragment {
                 getActivity().startActivity(new Intent(getContext(), LoginActivity.class));
                 break;
             case R.id.login_tv_registration:
-                LogUtils.d("注册");
+                getActivity().startActivity(new Intent(getContext(), RegistrationActivity.class));
                 break;
         }
     }

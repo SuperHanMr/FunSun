@@ -52,7 +52,6 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         fragments.add(FunSunAPP.getIsLogin()?new MeFragment(): new LoginFragment());
         mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
         rgTab.setOnCheckedChangeListener(this);
-
     }
 
 

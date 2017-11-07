@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bg_round_white"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="45px"
+    android:layout_marginRight="45px"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/superhan_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="12dp"
+        android:layout_marginTop="24px"
+        android:text="提示"
+        android:textSize="16sp"
+        android:textColor="@color/colorbBlack"/>
+    <TextView
+        android:id="@+id/superhan_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:lineSpacingExtra="3dp"
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="40px"
+        android:text="提示说明"
+        android:textSize="14sp"
+        android:textColor="@color/font_common_1"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/commom_background"/>
+
+   <com.zhy.autolayout.AutoRelativeLayout
+       android:id="@+id/superhan"
+       android:layout_width="match_parent"
+       android:layout_height="100px">
+       <TextView
+           android:textColor="@color/colorbBlue"
+           android:textSize="16sp"
+           android:text="确定"
+           android:layout_centerInParent="true"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+   </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

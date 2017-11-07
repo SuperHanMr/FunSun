@@ -40,7 +40,7 @@ public class FunSunAPP extends Application {
         HttpHeaders headers = new HttpHeaders();
         headers.put("Accept","application/json");
         OkGo.getInstance()
-                .setCacheMode(CacheMode.IF_NONE_CACHE_REQUEST)
+                .setCacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)
                 .setRetryCount(3)
                 .addCommonHeaders(headers)
                 .addInterceptor(new LoggerInterceptor());

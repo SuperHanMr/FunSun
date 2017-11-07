@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.listener.OnListenerLocation;
 import com.fengxun.funsun.view.base.BaseActivity;
 
 import butterknife.BindView;
@@ -19,9 +20,9 @@ import butterknife.OnClick;
 
 public class LocationActivity extends BaseActivity {
 
-
     @BindView(R.id.ac_location_recyclerview)
     RecyclerView acLocationRecyclerview;
+    private OnListenerLocation listenerLocation;
 
     @Override
     protected int getLayoutId() {
@@ -38,6 +39,7 @@ public class LocationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
         setBarLeftIcon(true);
+        listenerLocation = (OnListenerLocation) getIntent().getSerializableExtra("OnListenerLocation");
     }
 
     /**
@@ -45,6 +47,7 @@ public class LocationActivity extends BaseActivity {
      */
     @OnClick(R.id.ac_location_refresh)
     public void onViewClicked() {
-
+       listenerLocation.printText("河南大学");
     }
+
 }

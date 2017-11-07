@@ -11,4 +11,6 @@
     <color name="colorbTransparence">#0000</color>
     <color name="colorbGary">#f8f8f8</color>
     <color name="colorbBlue">#5E3AFF</color>
+    <color name="commom_background">#f3f3f3</color>
+    <color name="font_common_1">#424242</color>
 </resources>

@@ -19,12 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
+            android:layout_marginRight="150px"
+            android:layout_marginLeft="150px"
             android:id="@+id/login_btn_login"
             android:text="登录"
             android:layout_marginTop="230px"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/shape_login_border"
-            android:layout_width="450px"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/login_tv_registration"

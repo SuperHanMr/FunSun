@@ -23,6 +23,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
+
             android:id="@+id/ac_login_phone"
             android:padding="20px"
             android:layout_marginTop="60px"
@@ -41,6 +42,7 @@
             android:layout_height="110px">
 
             <EditText
+                android:inputType="textPassword"
                 android:textSize="35px"
                 android:id="@+id/ac_login_password"
                 android:padding="20px"
@@ -51,7 +53,7 @@
                 android:layout_height="match_parent" />
 
             <TextView
-                android:textSize="35px"
+                android:textSize="30px"
                 android:id="@+id/ac_login_forgetpassword"
                 android:layout_marginRight="15px"
                 android:text="忘记密码?"

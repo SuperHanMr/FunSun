@@ -13,15 +13,18 @@ public class KEY {
     public static final String KEY_TIME = "time";
     // 记录用户是否登录过
     public static final String KEY_ISLOGIN = "islogin";
-    //记录用户的token是匿名的还是注册后
-//    public static final String KEY_RECORD = "record";
+
+    // 刷新token
+    public static final String KEY_REFRESHTOKEN = "refreshtoken";
 
     // 保存用户基本信息
     public static final String KEY_USERSCHOOL = "userschool";
+    public static final String KEY_UNIVERSITY = "university";
     public static final String KEY_USERHEAD = "userhead";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_USERGENDER = "usergender";
     public static final String KEY_USERFUNSUNNUM = "funsunnum";
     public static final String KEY_USERTOKEN = "usertoken";
+
 
 }

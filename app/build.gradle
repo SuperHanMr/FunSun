@@ -43,6 +43,10 @@ dependencies {
     //okGo联网框架
     compile 'com.lzy.net:okgo:2.1.4'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+//C:\Java\jdk1.7.0_80\bin\keytool -v -list -keystore keystore C:\Users\韩永辉\.android\debug.keystore
+
+
+//keytool -v -list -keystore keystore D:\Myandroid_studio\FunSun\keystore.jks
 
     // 图片加载框架
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -50,4 +54,8 @@ dependencies {
     // EventBus事件
     compile 'org.greenrobot:eventbus:3.0.0'
 
+    // 高德地图 搜索
+    compile 'com.amap.api:search:latest.integration'
+    // 高德地图 定位
+    compile 'com.amap.api:location:latest.integration'
 }

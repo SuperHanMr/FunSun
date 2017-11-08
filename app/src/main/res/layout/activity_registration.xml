@@ -103,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/ac_registration_protocol"
                 android:text="“用户协议和隐私条款”"
                 android:textColor="@color/colorBooblar"
                 android:layout_width="wrap_content"

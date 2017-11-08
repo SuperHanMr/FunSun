@@ -57,6 +57,7 @@ public abstract class JsonCallback<T> extends com.lzy.okgo.callback.AbsCallback<
     public void onSuccess(T t, Call call, Response response) {
         onSucceed(t,call,string);
     }
+
     public abstract void onSucceed(T t, Call call, String string);
 
     @Override

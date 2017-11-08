@@ -19,8 +19,6 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.bean.CodeBean;
 import com.fengxun.funsun.model.bean.RegistrationUserBean;
-import com.fengxun.funsun.model.listener.InterfaceProxy;
-import com.fengxun.funsun.model.listener.OnListenerLocation;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
@@ -75,6 +73,9 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
     private String school = "";
     public static final String USERINFO = "userinfo";
     private RegistrationUserBean bean;
+
+
+
 
 
     @Override
@@ -145,7 +146,7 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
     /**
      * @param view
      */
-    @OnClick({R.id.ac_registration_btn, R.id.ac_registration_paizaho, R.id.ac_registration_time, R.id.ac_registration_location})
+    @OnClick({R.id.ac_registration_btn, R.id.ac_registration_paizaho, R.id.ac_registration_time, R.id.ac_registration_location,R.id.ac_registration_protocol})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ac_registration_btn:
@@ -164,6 +165,9 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
             case R.id.ac_registration_time:
                 LogUtils.d("选择入校时间");
                 selectorTime();
+                break;
+            case R.id.ac_registration_protocol:
+                openActivity(FunSunProtocol.class);
                 break;
         }
     }
@@ -213,7 +217,6 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
             @Override
             public void onTimeSelect(Date date, View v) {
                 endDate.setTime(date);
-
                 //year 获取入学时间
                 year = String.valueOf(endDate.get(Calendar.YEAR));
                 acRegistrationTime.setText(year);
@@ -240,18 +243,21 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
         timePickeView.show();
     }
 
-    // 使用动态代理 传入序列化接口 接口回调 用户选择的学校地点
+    //
     private void getLocation() {
         Intent intent = new Intent(this, LocationActivity.class);
-        intent.putExtra("OnListenerLocation", InterfaceProxy.newProxy(OnListenerLocation.class, new OnListenerLocation() {
-            @Override
-            public void printText(String text) {
-                acRegistrationLocation.setText(text);
-                school = text;
-                isUserRegistration();
-            }
-        }));
-        startActivity(intent);
+        // startActivityForResult跳转Activity 获得回传数据
+        startActivityForResult(intent,1000);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1000&&resultCode==1001){
+            String school = data.getStringExtra("school");
+            this.school = school;
+            acRegistrationLocation.setText(school);
+        }
     }
 
     private void isUserRegistration() {

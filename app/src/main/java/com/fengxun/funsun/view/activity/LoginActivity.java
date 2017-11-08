@@ -14,6 +14,7 @@ import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.views.SuperHanDialog;
+import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.lzy.okgo.model.HttpParams;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,11 +85,11 @@ public class LoginActivity extends BaseActivity {
         params.put("account",phone);
         params.put("password",password);
         NetworkReuset.getInstance().PostReuset(RequestUrl.LOGIN, params, new onCallBack<LoginBean>(this) {
-
             @Override
             public void onSucceed(LoginBean loginBean, Call call, String string) {
                 if (loginBean.getCode()!=400){
                     //保用户信息持久化
+                    new SuperHanDialog(LoginActivity.this,R.style.dialog,"登录成功").show();
                     SPUtils.putBoolean(KEY.KEY_ISLOGIN,true);
                     SPUtils.putString(KEY.KEY_USERTOKEN,loginBean.getData().getAccess_token());
                     SPUtils.putString(KEY.KEY_REFRESHTOKEN,loginBean.getData().getRefresh_token());
@@ -98,6 +99,7 @@ public class LoginActivity extends BaseActivity {
                     SPUtils.putString(KEY.KEY_USERHEAD,loginBean.getData().getUser_info().getAvatar());
                     SPUtils.putString(KEY.KEY_USERFUNSUNNUM,loginBean.getData().getUser_info().getFunsun_id());
                     SPUtils.putString(KEY.KEY_USERGENDER,loginBean.getData().getUser_info().getSex()==1?"男":"女");
+
                 }else {
                     new SuperHanDialog(LoginActivity.this,R.style.dialog,loginBean.getMsg()).show();
                 }

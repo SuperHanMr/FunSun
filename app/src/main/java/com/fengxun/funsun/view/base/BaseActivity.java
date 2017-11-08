@@ -1,5 +1,7 @@
 package com.fengxun.funsun.view.base;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,8 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fengxun.funsun.FunSunAPP;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.utils.SteBoolarUtil;
+import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
@@ -38,6 +42,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     private TextView barLeftTv;
     private ImageView barRightIcon;
     private TextView barRightTv;
+    private SuperHanLoginDiglog diglog;
+    private TextView tvTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         barLeftTv = (TextView) findViewById(R.id.tooblar_left_text);
         barRightIcon = (ImageView) findViewById(R.id.tooblar_right_icon);
         barRightTv = (TextView) findViewById(R.id.tooblar_right_text);
+        tvTitle = (TextView) findViewById(R.id.tooblar_title_tv);
         initView();
     }
 
@@ -64,6 +71,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     }
 
 
+
+
     /**
      * @return 左边的ICON
      */
@@ -73,6 +82,9 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         }
     }
 
+    public void setTvTitle(String title){
+        tvTitle.setText(title);
+    }
 
     private void initView() {
         barLeftIcon.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +120,13 @@ public abstract class BaseActivity extends AutoLayoutActivity {
      */
     protected abstract int getBoolarColors();
 
+
+    public SuperHanLoginDiglog diaLogin(Context context){
+        if (diglog==null){
+            diglog = new SuperHanLoginDiglog(context);
+        }
+        return diglog;
+    }
 
     // 子类 可以直接跳转Activity
     public void openActivity(Class<?> targetActivityClass) {

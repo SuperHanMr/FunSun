@@ -6,7 +6,6 @@
     android:layout_marginLeft="45px"
     android:layout_marginRight="45px"
     android:layout_height="wrap_content">
-
     <TextView
         android:id="@+id/superhan_title"
         android:layout_width="match_parent"
@@ -34,11 +33,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/commom_background"/>
-
    <com.zhy.autolayout.AutoRelativeLayout
        android:id="@+id/superhan"
        android:layout_width="match_parent"
        android:layout_height="100px">
+
        <TextView
            android:textColor="@color/colorbBlue"
            android:textSize="16sp"

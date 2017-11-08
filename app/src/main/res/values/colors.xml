@@ -13,4 +13,7 @@
     <color name="colorbBlue">#5E3AFF</color>
     <color name="commom_background">#f3f3f3</color>
     <color name="font_common_1">#424242</color>
+    <color name="colorbText">#333333</color>
+    <color name="colorbTextGary">#cccccc</color>
+
 </resources>

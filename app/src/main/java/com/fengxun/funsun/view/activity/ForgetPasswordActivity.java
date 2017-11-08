@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -90,13 +91,25 @@ public class ForgetPasswordActivity extends BaseActivity {
         NetworkReuset.getInstance().PostReuset(RequestUrl.FOGETPASSWORD, params, new onCallBack<CodeBean>(this) {
             @Override
             public void onSucceed(CodeBean codeBean, Call call, String string) {
-                isCode(codeBean);
+                if (codeBean.getCode()==200){
+                    new SuperHanDialog(ForgetPasswordActivity.this, codeBean.getMsg(), true, new SuperHanDialog.onCloseListener() {
+                        @Override
+                        public void onClick(Dialog dialog) {
+                            openActivity(LoginActivity.class);
+                            dialog.dismiss();
+                            finish();
+                        }
+                    }).show();
+                }else {
+                    new SuperHanDialog(ForgetPasswordActivity.this,codeBean.getMsg()).show();
+                }
             }
         });
     }
 
 
     private void getverifyCode() {
+
         phone = acForgetEdPhone.getText().toString().trim();
         if (!InspectionPhoneUtils.validateUserName(phone)){
             new SuperHanDialog(this,"手机号格式不正确").show();
@@ -109,21 +122,13 @@ public class ForgetPasswordActivity extends BaseActivity {
         NetworkReuset.getInstance().PostReuset(RequestUrl.CODE, params, new onCallBack<CodeBean>(this) {
             @Override
             public void onSucceed(CodeBean codeBean, Call call, String string) {
-               isCode(codeBean);
+                if (codeBean.getCode()==200){
+                    new SuperHanDialog(ForgetPasswordActivity.this,codeBean.getMsg()).show();
+                }else {
+                    new SuperHanDialog(ForgetPasswordActivity.this,codeBean.getMsg()).show();
+                }
             }
         });
     }
-
-    private void isCode(CodeBean codeBean){
-        if (codeBean.getCode()==200){
-            new SuperHanDialog(this,"修改成功").show();
-            openActivity(LocationActivity.class);
-        }else {
-            new SuperHanDialog(this,codeBean.getMsg()).show();
-        }
-    }
-
-
-
 
 }

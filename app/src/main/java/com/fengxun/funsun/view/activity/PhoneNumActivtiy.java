@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -82,6 +83,7 @@ public class PhoneNumActivtiy extends BaseActivity {
      */
     private void registrationUser() {
 
+        params.clear();
         String phone = acPhoneEdPhone.getText().toString().trim();
         if (!InspectionPhoneUtils.validateUserName(phone)) {
             new SuperHanDialog(this,"手机号格式不正确").show();
@@ -113,7 +115,7 @@ public class PhoneNumActivtiy extends BaseActivity {
         NetworkReuset.getInstance().PostReuset(RequestUrl.REGISTRATION, params, new onCallBack<CodeBean>(this) {
             @Override
             public void onSucceed(CodeBean codeBean, Call call, String string) {
-                isCode(codeBean);
+                isCode(codeBean,true);
             }
         });
 
@@ -125,22 +127,34 @@ public class PhoneNumActivtiy extends BaseActivity {
             new SuperHanDialog(this,"手机号格式不正确").show();
             return;
         }
-
         CountDownTimerUtils countDownTimer = new CountDownTimerUtils(acPhoneBtnValidationCode, 60000, 1000);
         countDownTimer.start();
         params.put("phone_number",phone);
         params.put("code_type","register");
         NetworkReuset.getInstance().PostReuset(RequestUrl.CODE, params, new onCallBack<CodeBean>(this) {
             @Override
-            public void onSucceed(CodeBean codeBean, Call call, String string) {
-                isCode(codeBean);
+            public void onSucceed(CodeBean codeBean, Call call, String string)
+            {
+                isCode(codeBean,false);
             }
+
         });
     }
 
-    private void isCode(CodeBean codeBean){
+    private void isCode(CodeBean codeBean,boolean is){
         if (codeBean.getCode()==200){
             // TODO: 注册成功 跳转我的个人页面
+            if(is){
+                new SuperHanDialog(this, codeBean.getMsg(), true, new SuperHanDialog.onCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog) {
+                        openActivity(LoginActivity.class);
+                        dialog.dismiss();
+                    }
+                }).show();
+            }else {
+                new SuperHanDialog(this,codeBean.getMsg()).show();
+            }
         }else {
             new SuperHanDialog(this,codeBean.getMsg()).show();
         }

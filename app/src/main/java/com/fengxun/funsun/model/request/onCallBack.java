@@ -7,9 +7,13 @@ import android.support.v4.app.Fragment;
 
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.ToastUtil;
+import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.base.BaseFragment;
 
 import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by BM-WGX on 2017/3/17.
@@ -22,6 +26,8 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
     public Activity getActivity() {
         return activity;
     }
+
+
 
     public onCallBack(Activity mActivity) {
         super();
@@ -44,6 +50,38 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
     }
 
     @Override
+    public void onSuccess(T t, Call call, Response response) {
+        super.onSuccess(t, call, response);
+        if (fragment!=null){
+            //((BaseFragment)fragment).endNetworkData();
+            fragment = null;
+            return;
+        }
+        if (activity!=null){
+            ((BaseActivity)activity).diaLogin(activity).dismiss();
+            activity = null;
+        }
+    }
+
+    public abstract void onSucceed(T t, Call call, String string);
+
+    // 网络请求失败
+    @Override
+    public void onError(Call call, Response response, Exception e) {
+        super.onError(call, response, e);
+        if (fragment!=null){
+            //((BaseFragment)fragment).endNetworkData();
+            fragment = null;
+            return;
+        }
+        if (activity!=null){
+
+            ((BaseActivity)activity).diaLogin(activity).dismiss();
+            activity = null;
+        }
+    }
+
+    @Override
     public void onAfter(T t, Exception e) {
         super.onAfter(t, e);
         if (fragment!=null){
@@ -52,7 +90,7 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
             return;
         }
         if (activity!=null){
-            //((BaseActivity)activity).endNetworkData();
+           ((BaseActivity)activity).diaLogin(activity).show();
             activity = null;
         }
 

@@ -28,6 +28,8 @@ public class SuperHanDialog extends Dialog implements View.OnClickListener {
     private RelativeLayout tv;
     private TextView tvConent;
     private onCloseListener listener;
+    private boolean isListener;
+
 
     public SuperHanDialog(@NonNull Context context) {
         super(context);
@@ -39,6 +41,14 @@ public class SuperHanDialog extends Dialog implements View.OnClickListener {
         this.mContext = context;
         this.mag = mag;
 
+    }
+
+    public SuperHanDialog(Context context, String mag,boolean isListener,onCloseListener listener){
+        super(context, R.style.dialog);
+        this.mContext = context;
+        this.mag = mag;
+        this.isListener = isListener;
+        this.listener = listener;
     }
 
 
@@ -79,13 +89,17 @@ public class SuperHanDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.superhan:
-                dismiss();
+                if (isListener){
+                    listener.onClick(this);
+                }else {
+                    dismiss();
+                }
                 break;
         }
     }
 
     public interface onCloseListener{
-        void onClick(Dialog dialog, boolean confirm);
+        void onClick(Dialog dialog);
     }
 
 }

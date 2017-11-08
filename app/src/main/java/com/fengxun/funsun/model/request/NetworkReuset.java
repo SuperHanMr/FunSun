@@ -40,14 +40,14 @@ public class NetworkReuset {
     }
 
     /**
-     * @param url
-     * @param jsonCallback
+     * @param url 请求地址
+     * @param onCallBack 回调
      */
-//    public void GetReuset(String url,JsonCallback jsonCallback){
-//        OkGo.post(url)
-//                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
-//                .execute(jsonCallback);
-//    }
+    public void GetReuset(String url,onCallBack onCallBack ){
+        OkGo.get(url)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(onCallBack);
+    }
 
 
 }

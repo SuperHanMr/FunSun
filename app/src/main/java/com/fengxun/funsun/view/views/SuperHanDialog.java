@@ -19,6 +19,24 @@ import com.fengxun.funsun.model.request.onCallBack;
  * 程序员：韩永辉
  * 创建日期：on 2017/11/7.
  * Holle Android
+ *
+ // ┏┓　　　┏┓
+ // ┏┛┻━━━┛┻┓
+ // ┃　　　　　　　┃ 　
+ // ┃　　　━　　　┃
+ // ┃　┳┛　┗┳　┃
+ // ┃　　　　　　　┃
+ // ┃　　　┻　　　┃
+ // ┃　　　　　　　┃
+ // ┗━┓　　　┏━┛
+ // ┃　　　┃ 神兽保佑　　　　　　　　
+ // ┃　　　┃ 代码无BUG！
+ // ┃　　　┗━━━┓
+ // ┃　　　　　　　┣┓
+ // ┃　　　　　　　┏┛
+ // ┗┓┓┏━┳┓┏┛
+ // ┃┫┫　┃┫┫
+ // ┗┻┛　┗┻┛
  */
 
 public class SuperHanDialog extends Dialog implements View.OnClickListener {
@@ -101,5 +119,6 @@ public class SuperHanDialog extends Dialog implements View.OnClickListener {
     public interface onCloseListener{
         void onClick(Dialog dialog);
     }
+
 
 }

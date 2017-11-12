@@ -4,11 +4,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import com.fengxun.funsun.FunSunAPP;
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SteBoolarUtil;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.zhy.autolayout.AutoLayoutActivity;
@@ -38,12 +42,13 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
 
     private Toolbar mToolbar;
-    private RelativeLayout barLeftIcon;
+    public RelativeLayout barLeftIcon;
     private TextView barLeftTv;
     private ImageView barRightIcon;
     private TextView barRightTv;
     private SuperHanLoginDiglog diglog;
     private TextView tvTitle;
+    public ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +63,8 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         barRightIcon = (ImageView) findViewById(R.id.tooblar_right_icon);
         barRightTv = (TextView) findViewById(R.id.tooblar_right_text);
         tvTitle = (TextView) findViewById(R.id.tooblar_title_tv);
+        imageView = (ImageView) findViewById(R.id.tooblar_iv_left_icon);
+        mToolbar.setBackgroundResource(getBoolarColors());
         initView();
     }
 
@@ -77,12 +84,20 @@ public abstract class BaseActivity extends AutoLayoutActivity {
      * @return 左边的ICON
      */
     public void setBarLeftIcon(boolean is){
-        if (is){
-            barLeftIcon.setVisibility(View.VISIBLE);
-        }
+        barLeftIcon.setVisibility(View.VISIBLE);
     }
 
+    public void setBarLeftIcon(boolean is,int res){
+        imageView.setImageResource(res);
+        barLeftIcon.setVisibility(View.VISIBLE);
+    }
+
+
     public void setTvTitle(String title){
+        tvTitle.setText(title);
+    }
+    public void setTvTitle(String title,int res){
+        tvTitle.setTextColor(res);
         tvTitle.setText(title);
     }
 
@@ -152,5 +167,19 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         }
         return super.onTouchEvent(event);
     }
+
+
+    /*
+    修改状态栏字体颜色
+     */
+    public void setStatusBarTextColocr(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(android.R.color.white));
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
 
 }

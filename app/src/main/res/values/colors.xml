@@ -3,7 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="colorbTime">#F00</color>
     <color name="colorGlobal">#FFEE1E</color>
     <color name="colorBooblar">#9A2DD4</color>
     <color name="colorbWhite">#fff</color>
@@ -15,5 +15,6 @@
     <color name="font_common_1">#424242</color>
     <color name="colorbText">#333333</color>
     <color name="colorbTextGary">#cccccc</color>
+    <color name="colorbMessageText">#606060</color>
 
 </resources>

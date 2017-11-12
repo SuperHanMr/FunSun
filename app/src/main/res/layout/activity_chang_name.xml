@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorbWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/tooblar_item"/>
+
+    <View
+        android:background="@color/colorbTextGary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingRight="30px"
+        android:paddingLeft="30px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:hint="请输入新昵称"
+            android:id="@+id/ac_chang_xin_name"
+            android:layout_marginTop="20px"
+            android:paddingLeft="30px"
+            android:background="@drawable/shape_login_borde"
+            android:layout_width="match_parent"
+            android:layout_height="100px" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/ac_chang_name_btn"
+                android:textColor="@color/colorbText"
+                android:text="完成"
+                android:background="@drawable/shape_login_btn_border"
+                android:layout_marginBottom="60px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="100px" />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

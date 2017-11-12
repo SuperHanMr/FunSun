@@ -27,7 +27,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
 
-
     <application
         android:name=".FunSunAPP"
         android:allowBackup="true"
@@ -46,7 +45,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="19d463b496b38ab65968c081b58b92d3"/>
         <!--注册Activity-->
-        <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask">
+        <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -58,6 +57,13 @@
         <activity android:name=".view.activity.PhoneNumActivtiy"/>
         <activity android:name=".view.activity.LocationActivity"/>
         <activity android:name=".view.activity.FunSunProtocol"/>
+        <activity android:name=".view.activity.QuotationsActivity"/>
+        <activity android:name=".view.activity.SttingActivity"/>
+        <activity android:name=".view.activity.ChangePasswordActivity"/>
+        <activity android:name=".view.activity.ChangeNameActivity"/>
+        <activity android:name=".view.activity.ChangeNumActivity"/>
+        <activity android:name=".view.activity.CommentariesPromtingActivity" />
+        <activity android:name=".view.activity.ToViewPromtingActivity"/>
         <!--注册服务-->
         <service android:name="com.amap.api.location.APSService"></service>
 

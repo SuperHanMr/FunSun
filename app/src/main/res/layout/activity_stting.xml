@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorBooblar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/tooblar_item"/>
+
+    <com.fengxun.funsun.view.views.MyScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:paddingRight="5px"
+            android:paddingTop="30px"
+            android:orientation="vertical"
+            android:paddingLeft="40px"
+            android:background="@drawable/shape_border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_marginTop="20px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="学校"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ac_stting_iv_school"
+                    android:layout_marginRight="140px"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/paizhao_icon"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="55px"
+                    android:layout_height="55px" />
+
+                <TextView
+                    android:id="@+id/ac_stting_tv_school"
+                    android:text="河南大学"
+                    android:layout_marginRight="20px"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_head"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="头像"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ac_stting_iv_head"
+                        android:layout_marginRight="50px"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/paizhao_icon"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="55px"
+                        android:layout_height="55px" />
+
+                    <ImageView
+                        android:src="@drawable/my_right_icons"
+                        android:layout_marginRight="20px"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_name"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="昵称"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginRight="15px"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/ac_stting_tv_name"
+                        android:textSize="25px"
+                        android:textColor="@color/colorbText"
+                        android:text="瀚哥哥"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/my_right_icons"
+                        android:layout_marginRight="20px"
+                        android:layout_toRightOf="@+id/ac_stting_tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_xingbie"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="性别"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ac_stting_tv_xingbie"
+                        android:textSize="25px"
+                        android:textColor="@color/colorbText"
+                        android:text="男"
+                        android:layout_marginRight="15px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/my_right_icons"
+                        android:layout_marginRight="20px"
+                        android:layout_toRightOf="@+id/ac_stting_tv_xingbie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_num"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="FunSun号"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginRight="15px"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/ac_stting_tv_funsun"
+                        android:textSize="25px"
+                        android:textColor="@color/colorbText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/my_right_icons"
+                        android:layout_marginRight="20px"
+                        android:layout_toRightOf="@+id/ac_stting_tv_funsun"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_password"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="密码"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:layout_marginRight="20px"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/my_right_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_heimingdan"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="黑名单"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:layout_marginRight="20px"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/my_right_icons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+
+            <RelativeLayout
+                android:id="@+id/ac_stting_rl_huancun"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/colorbText"
+                    android:textSize="@dimen/stting_text"
+                    android:text="清除缓存"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:textColor="@color/colorbText"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text="0 M"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView" />
+            </RelativeLayout>
+
+            <View
+                android:background="@color/commom_background"
+                android:layout_marginTop="30px"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:textColor="@color/colorbText"
+                    android:id="@+id/ac_stting_btn"
+                    android:text="退出登录"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30px"
+                    android:background="@drawable/shape_login_btn_border"
+                    android:layout_width="match_parent"
+                    android:layout_height="100px" />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </com.fengxun.funsun.view.views.MyScrollView>
+
+</LinearLayout>

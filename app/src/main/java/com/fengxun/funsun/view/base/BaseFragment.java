@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fengxun.funsun.R;
+
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * 程序员：韩永辉
@@ -30,6 +34,14 @@ public abstract class BaseFragment extends Fragment {
     private TextView barLeftTv;
     private ImageView barRightIcon;
     private TextView barRightTv;
+    private Unbinder bind;
+
+    //是否可见
+    protected boolean isVisble;
+    // 标志位，标志Fragment已经初始化完成。
+    public boolean isPrepared = false;
+
+
 
     @Nullable
     @Override
@@ -40,8 +52,14 @@ public abstract class BaseFragment extends Fragment {
         barLeftTv = (TextView) view.findViewById(R.id.tooblar_left_text);
         barRightIcon = (ImageView) view.findViewById(R.id.tooblar_right_icon);
         barRightTv = (TextView) view.findViewById(R.id.tooblar_right_text);
-        initView();
+        bind = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
     }
 
     protected abstract void initView();
@@ -52,4 +70,28 @@ public abstract class BaseFragment extends Fragment {
     public void setBarLeftTv(String string){
         barLeftTv.setText(string);
     }
+
+
+    /**
+     * 实现Fragment数据的缓加载
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            isVisble = true;
+            /*
+            不可见的时候调用
+             */
+            NetworkData();
+        } else {
+            isVisble = false;
+        }
+    }
+
+    public void NetworkData(){
+
+    }
+
 }

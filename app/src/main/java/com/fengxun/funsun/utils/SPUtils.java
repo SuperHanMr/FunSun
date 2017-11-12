@@ -12,6 +12,7 @@ import com.fengxun.funsun.FunSunAPP;
 public class SPUtils {
     private static SharedPreferences mSharedPreferences;
 
+
     private Context context;
     private static synchronized SharedPreferences getPreferneces() {
         if (mSharedPreferences == null) {

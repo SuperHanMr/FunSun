@@ -4,9 +4,7 @@
     android:background="@color/colorBooblar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <include layout="@layout/tooblar_item"/>
-
     <RelativeLayout
         android:background="@drawable/shape_border"
         android:layout_width="match_parent"

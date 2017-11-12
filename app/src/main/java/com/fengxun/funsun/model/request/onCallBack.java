@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.ToastUtil;
+import com.fengxun.funsun.view.activity.MainActivity;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.base.BaseFragment;
 
@@ -53,13 +54,20 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
     public void onSuccess(T t, Call call, Response response) {
         super.onSuccess(t, call, response);
         if (fragment!=null){
-            //((BaseFragment)fragment).endNetworkData();
+//            ((BaseFragment)fragment).endNetworkData();
             fragment = null;
             return;
         }
+
         if (activity!=null){
-            ((BaseActivity)activity).diaLogin(activity).dismiss();
-            activity = null;
+            try{
+                ((BaseActivity)activity).diaLogin(activity).dismiss();
+                activity = null;
+            }catch (Exception e1){
+                ((MainActivity)activity).diaLogin(activity).dismiss();
+                activity = null;
+                LogUtils.e(e1.toString());
+            }
         }
     }
 
@@ -75,9 +83,14 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
             return;
         }
         if (activity!=null){
-
-            ((BaseActivity)activity).diaLogin(activity).dismiss();
-            activity = null;
+            try{
+                ((BaseActivity)activity).diaLogin(activity).dismiss();
+                activity = null;
+            }catch (Exception e1){
+                ((MainActivity)activity).diaLogin(activity).dismiss();
+                activity = null;
+                LogUtils.e(e1.toString());
+            }
         }
     }
 
@@ -89,9 +102,16 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
             fragment = null;
             return;
         }
+
         if (activity!=null){
-           ((BaseActivity)activity).diaLogin(activity).show();
-            activity = null;
+            try{
+                ((BaseActivity)activity).diaLogin(activity).show();
+                    activity = null;
+            }catch (Exception e1){
+                ((MainActivity)activity).diaLogin(activity).show();
+                activity = null;
+                LogUtils.e(e1.toString());
+            }
         }
 
     }

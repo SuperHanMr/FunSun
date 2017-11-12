@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="40px"
+    android:id="@+id/toviewtariespromting_rl_item"
+    android:background="@color/colorbWhite"
+    android:paddingLeft="40px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/toviewtariespromting_item_head"
+        android:src="@drawable/pinglun_message"
+        android:layout_width="100px"
+        android:layout_height="100px" />
+
+    <LinearLayout
+        android:paddingLeft="20px"
+        android:orientation="vertical"
+        android:layout_marginTop="10px"
+        android:layout_toRightOf="@+id/toviewtariespromting_item_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/toviewtariespromting_tv_school"
+                android:textColor="@color/colorbBlack"
+                android:textSize="35px"
+                android:text="清华大学"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/toviewtariespromting_tv_time"
+                android:textColor="@color/colorbTextGary"
+                android:textSize="30px"
+                android:layout_marginRight="20px"
+                android:layout_alignParentRight="true"
+                android:text="昨天15：36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="5px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/toviewtariespromting_tv_name"
+                android:textColor="@color/colorbMessageText"
+                android:text="瀚哥哥"
+                android:layout_marginLeft="3px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/toviewtariespromting_tv_labelling_1"
+                android:paddingBottom="3px"
+                android:paddingTop="3px"
+                android:paddingRight="12px"
+                android:paddingLeft="12px"
+                android:background="@drawable/text_zise_bored"
+                android:text="校友"
+                android:textColor="@color/colorbWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/toviewtariespromting_tv_labelling_2"
+                android:textColor="@color/colorbWhite"
+                android:layout_marginLeft="10px"
+                android:background="@drawable/text_huangse_bored"
+                android:paddingBottom="3px"
+                android:paddingTop="3px"
+                android:paddingRight="12px"
+                android:paddingLeft="12px"
+                android:text="经常瞄你"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_marginTop="20px"
+            android:background="@color/commom_background"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </LinearLayout>
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

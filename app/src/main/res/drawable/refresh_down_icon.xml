@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/ren_1"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_2"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_3"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_4"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_5"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/ren_6"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_7"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_8"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_9"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_10"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_11"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_12"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_13"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_14"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_15"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_16"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_17"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_18"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_19"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/ren_20"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_21"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_22"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_23"
+        android:duration="10" />
+    <item
+        android:drawable="@drawable/ren_24"
+        android:duration="10" />
+
+    <item
+        android:drawable="@drawable/ren_25"
+        android:duration="10" />
+
+</animation-list>

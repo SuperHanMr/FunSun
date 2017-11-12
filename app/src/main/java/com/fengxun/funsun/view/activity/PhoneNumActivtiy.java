@@ -120,7 +120,7 @@ public class PhoneNumActivtiy extends BaseActivity {
         });
 
     }
-
+//
     private void getverifyCode() {
         String phone = acPhoneEdPhone.getText().toString().trim();
         if (!InspectionPhoneUtils.validateUserName(phone)) {

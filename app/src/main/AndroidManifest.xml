@@ -64,6 +64,7 @@
         <activity android:name=".view.activity.ChangeNumActivity"/>
         <activity android:name=".view.activity.CommentariesPromtingActivity" />
         <activity android:name=".view.activity.ToViewPromtingActivity"/>
+        <activity android:name=".view.activity.CommentPromtingParticuarsActivity"/>
         <!--注册服务-->
         <service android:name="com.amap.api.location.APSService"></service>
 

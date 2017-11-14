@@ -27,9 +27,9 @@ public class MeMessaegAdapter  extends RecyclerView.Adapter<MeMessaegAdapter.Mes
 
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MessageViewHolder holder = new MessageViewHolder(LayoutInflater.from(context).inflate(R.layout.item_system_message_recyclercview,parent,false));
+//        MessageViewHolder holder = new MessageViewHolder(LayoutInflater.from(context).inflate(R.layout.item_system_message_recyclercview,parent,false));
 
-        return holder;
+        return null;
     }
 
     @Override

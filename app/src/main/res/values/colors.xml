@@ -17,4 +17,8 @@
     <color name="colorbTextGary">#cccccc</color>
     <color name="colorbMessageText">#606060</color>
 
+    <color name="colorbSystemRed">#FF2E67</color>
+    <color name="colorbPinglun">#0DCCB0</color>
+    <color name="colorToview">#F6A224</color>
+
 </resources>

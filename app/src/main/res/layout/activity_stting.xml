@@ -231,6 +231,7 @@
                         android:layout_height="wrap_content" />
 
                     <ImageView
+                        android:id="@+id/ac_stting_iv_funsun_back"
                         android:layout_centerVertical="true"
                         android:src="@drawable/my_right_icons"
                         android:layout_marginRight="20px"
@@ -323,12 +324,13 @@
                     android:text="清除缓存"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textView"
+                    android:layout_alignTop="@+id/ac_stting_tv_huancun"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true" />
 
 
                 <TextView
+
                     android:layout_marginRight="20px"
                     android:textColor="@color/colorbText"
                     android:layout_centerVertical="true"
@@ -336,7 +338,7 @@
                     android:text="0 M"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView" />
+                    android:id="@+id/ac_stting_tv_huancun" />
             </RelativeLayout>
 
             <View

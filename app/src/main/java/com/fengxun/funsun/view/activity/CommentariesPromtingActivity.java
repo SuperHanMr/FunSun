@@ -68,7 +68,6 @@ public class CommentariesPromtingActivity extends BaseActivity {
         adapter = new CommentariesPromtingAdapter(this);
         commentariesRecyckerview.setAdapter(adapter);
 
-
         NetworkReuset.getInstance().GetReuset(RequestUrl.COMMENTPROMTING, new onCallBack<CommentPromtingBean>(this) {
             @Override
             public void onSucceed(CommentPromtingBean commentPromtingBean, Call call, String string) {

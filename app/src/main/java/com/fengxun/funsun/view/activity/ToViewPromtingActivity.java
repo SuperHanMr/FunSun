@@ -5,11 +5,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.bean.ToViewListBean;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.view.adapter.ToViewPromitngAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,15 +52,18 @@ public class ToViewPromtingActivity extends BaseActivity {
     }
 
     private void initViews() {
-        ToViewPromitngAdapter adapter = new ToViewPromitngAdapter(this);
+        final ToViewPromitngAdapter adapter = new ToViewPromitngAdapter(this);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         toviewPromtingRecyclerview.setLayoutManager(manager);
         toviewPromtingRecyclerview.setAdapter(adapter);
 
-        NetworkReuset.getInstance().GetReuset(RequestUrl.TOVIEWPROMTING, new onCallBack(this) {
+        NetworkReuset.getInstance().GetReuset(RequestUrl.TOVIEWPROMTING, new onCallBack<ToViewListBean>(this) {
             @Override
-            public void onSucceed(Object o, Call call, String string) {
+            public void onSucceed(ToViewListBean toViewListBean, Call call, String string) {
+                ToViewListBean.DataBeanX data = toViewListBean.getData();
+                List<ToViewListBean.DataBeanX.DataBean> mList = data.getData();
+                adapter.setData(mList);
 
             }
         });

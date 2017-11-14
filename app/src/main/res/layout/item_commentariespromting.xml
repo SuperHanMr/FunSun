@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/commentariespromting_item_head"
         android:src="@drawable/pinglun_message"
@@ -53,7 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+
             <TextView
+                android:visibility="gone"
                 android:textColor="@color/colorbWhite"
                 android:id="@+id/commentariespromting_tv_type"
                 android:paddingLeft="12px"
@@ -87,6 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
             <TextView
+                android:singleLine="true"
+                android:lines="1"
                 android:id="@+id/commentariespromting_tv_massage"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/commentariespromting_mge_ivon"
@@ -98,7 +103,7 @@
 
 
         <View
-            android:layout_marginTop="0px"
+            android:layout_marginTop="15px"
             android:background="@color/commom_background"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>

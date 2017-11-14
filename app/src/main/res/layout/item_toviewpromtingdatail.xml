@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="25px"
+    android:paddingLeft="30px"
+    android:paddingRight="30px"
+    android:paddingBottom="30px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/item_toviewpromtingdatail_tv_time"
+        android:layout_gravity="center_horizontal"
+        android:text="多少多少时间前"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100px"
+            android:id="@+id/item_toviewpromtingdatail_iv_head"
+            android:src="@drawable/pinglun_message"
+            android:layout_height="100px" />
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="10px"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/item_toviewpromtingdatail_iv_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item_toviewpromtingdatail_tv_school_name"
+                android:textColor="@color/colorbText"
+                android:textSize="33px"
+                android:text="北京电影学院"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/item_toviewpromtingdatail_tv_name"
+                android:textColor="@color/colorbMessageText"
+                android:textSize="25px"
+                android:text="瀚哥哥"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:padding="30px"
+            android:background="@drawable/message_qipao"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="50px"
+                android:textColor="@color/colorbText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我在这里偷偷瞄了你一下"
+                />
+
+            <RelativeLayout
+                android:background="@drawable/shape_login_borde"
+                android:padding="30px"
+                android:layout_marginTop="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/item_toviewpromtingdatail_iv_context"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgs_bj"
+                    android:layout_width="70px"
+                    android:layout_height="70px" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="15px"
+                    android:layout_toRightOf="@+id/item_toviewpromtingdatail_iv_context"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我是标题，超过两行不显示内"
+                        android:textColor="@color/colorbText"
+                        android:textSize="28px" />
+
+                    <TextView
+                        android:layout_marginTop="2px"
+                        android:textColor="@color/colorbTextGary"
+                        android:singleLine="true"
+                        android:lines="1"
+                        android:text="我是内容，标题超过两行我就不显示我玩"
+                        android:textSize="25px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </com.zhy.autolayout.AutoLinearLayout>>
+
+
+
+
+        </com.zhy.autolayout.AutoLinearLayout>>
+
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

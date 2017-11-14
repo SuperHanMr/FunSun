@@ -66,7 +66,7 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
             }catch (Exception e1){
                 ((MainActivity)activity).diaLogin(activity).dismiss();
                 activity = null;
-                LogUtils.e(e1.toString());
+                LogUtils.e(e1.toString()+"----->");
             }
         }
     }

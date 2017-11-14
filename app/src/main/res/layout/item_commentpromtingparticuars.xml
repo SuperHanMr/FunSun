@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="25px"
+    android:paddingLeft="30px"
+    android:paddingRight="30px"
+    android:paddingBottom="30px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/item_commentariespomting_time"
+        android:layout_gravity="center_horizontal"
+        android:text="多少多少时间前"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100px"
+            android:id="@+id/item_commentariespomting_head"
+            android:src="@drawable/pinglun_message"
+            android:layout_height="100px" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="10px"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/item_commentariespomting_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item_commentariespomting_schol_name"
+                android:textColor="@color/colorbText"
+                android:textSize="33px"
+                android:text="北京电影学院"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/item_commentariespomting_pinglun_user"
+                android:textColor="@color/colorbMessageText"
+                android:textSize="25px"
+                android:text="瀚哥哥"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginTop="10px"
+            android:padding="30px"
+            android:background="@drawable/message_qipao"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="50px"
+                android:id="@+id/item_commentariespomting_context"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textColor="@color/colorbText"
+                android:textSize="28px" />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_marginTop="20px"
+                android:padding="20px"
+                android:background="@drawable/shape_login_borde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/item_commentariespomting_user_head"
+                    android:src="@drawable/pinglun_message"
+                    android:layout_width="40px"
+                    android:layout_height="40px" />
+
+                <TextView
+                    android:textColor="@color/colorbText"
+                    android:layout_alignBottom="@+id/item_commentariespomting_user_head"
+                    android:textSize="25px"
+                    android:text="666"
+                    android:layout_toRightOf="@+id/item_commentariespomting_user_head"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="8px"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:textSize="25px"
+                    android:textColor="@color/colorbText"
+                    android:singleLine="true"
+                    android:lines="1"
+                    android:text="大家打开就哦啊大啊水水的asdasdasd啊实打实大苏打撒旦"
+                    android:layout_marginTop="10px"
+                    android:layout_below="@+id/item_commentariespomting_user_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        </com.zhy.autolayout.AutoLinearLayout>>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

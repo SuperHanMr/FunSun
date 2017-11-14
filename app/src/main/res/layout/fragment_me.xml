@@ -27,12 +27,15 @@
                 android:layout_marginBottom="10px">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/fragment_me_iv_head"
                     android:layout_width="140px"
                     android:layout_height="140px"
                     android:layout_marginBottom="20px"
                     android:layout_marginLeft="45px"
-                    android:layout_marginTop="100px"
+                    app:civ_border_width="1dp"
+                    android:layout_marginTop="60px"
+                    app:civ_border_color="#fff"
                     android:src="@drawable/pinglun_message" />
 
 
@@ -58,6 +61,7 @@
                             android:textSize="13pt" />
 
                         <ImageView
+                            android:layout_marginTop="2px"
                             android:id="@+id/fragment_me_iv_age"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -65,7 +69,6 @@
                             android:layout_marginLeft="30px"
                             android:layout_toRightOf="@+id/fragment_me_tv_name"
                             android:src="@drawable/male_h" />
-
                     </RelativeLayout>
 
                     <TextView
@@ -73,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5px"
-                        android:background="@drawable/text_bored"
+                        android:background="@drawable/text_zise_bored"
                         android:paddingBottom="5px"
                         android:paddingLeft="20px"
                         android:paddingRight="20px"
@@ -84,12 +87,13 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:layout_marginRight="20px"
                     android:id="@+id/fragment_me_iv_stting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="30px"
-                    android:padding="10px"
+                    android:layout_marginTop="5px"
+                    android:padding="20px"
                     android:src="@drawable/stting_icon" />
 
                 <RelativeLayout
@@ -101,8 +105,8 @@
                     <View
                         android:id="@+id/fragment_me_view_line"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorbWhite" />
+                        android:layout_height="1px"
+                        android:background="@color/commom_background" />
 
                     <LinearLayout
                         android:layout_marginBottom="20px"
@@ -191,20 +195,238 @@
 
             </com.zhy.autolayout.AutoRelativeLayout>
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_border"
                 android:orientation="vertical"
               >
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/fragment_me_recycler"
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:paddingTop="35px"
+                    android:id="@+id/fragment_me_rl_system"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="45px"
+                        android:layout_width="100px"
+                        android:src="@drawable/system_message"
+                        android:id="@+id/item_system_message_head"
+                        android:layout_height="100px" />
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="0px"
+                        android:layout_toRightOf="@id/item_system_message_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_marginTop="5px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/item_system_message_name"
+                                android:textColor="@color/colorbSystemRed"
+                                android:text="系统提示"
+                                android:textSize="33px"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <!-- TODO： 提示小红点 -->
+                            <ImageView
+                                android:id="@+id/item_system_message_tishi"
+                                android:layout_toRightOf="@id/item_system_message_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/item_system_message_time"
+                                android:textColor="@color/colorbMessageText"
+                                android:layout_centerVertical="true"
+                                android:textSize="28px"
+                                android:layout_marginRight="20px"
+                                android:layout_alignParentRight="true"
+                                android:text=""
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <TextView
+                            android:layout_marginTop="10px"
+                            android:id="@+id/item_system_message"
+                            android:text="暂时没有系统提示"
+                            android:textColor="@color/colorbMessageText"
+                            android:textSize="28px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_below="@+id/item_system_message_head"
+                        android:layout_marginTop="30px"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/commom_background"/>
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/fragment_me_rl_pinglun"
+                    android:paddingTop="35px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="45px"
+                        android:layout_width="100px"
+                        android:src="@drawable/pinglun_message"
+                        android:id="@+id/item_pinglun_message_head"
+                        android:layout_height="100px" />
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="0px"
+                        android:layout_toRightOf="@id/item_pinglun_message_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <RelativeLayout
+                            android:layout_marginTop="5px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/item_pinglun_message_head_message_name"
+                                android:textColor="@color/colorbPinglun"
+                                android:text="评论提示"
+                                android:textSize="33px"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <!-- TODO： 提示小红点 -->
+                            <ImageView
+                                android:id="@+id/item_pinglun_message_tishi"
+                                android:layout_toRightOf="@id/item_pinglun_message_head_message_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/item_pinglun_message_time"
+                                android:textColor="@color/colorbMessageText"
+                                android:layout_centerVertical="true"
+                                android:textSize="28px"
+                                android:layout_marginRight="20px"
+                                android:layout_alignParentRight="true"
+                                android:text=""
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_marginTop="10px"
+                            android:id="@+id/item_pinglun_message"
+                            android:text="暂时没有评论提示"
+                            android:textColor="@color/colorbMessageText"
+                            android:textSize="28px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_below="@+id/item_pinglun_message_head"
+                        android:layout_marginTop="30px"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/commom_background"/>
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/fragment_me_rl_toview"
+                    android:paddingTop="35px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginLeft="45px"
+                        android:layout_width="100px"
+                        android:src="@drawable/tishi_message"
+                        android:id="@+id/item_toview_message_head"
+                        android:layout_height="100px" />
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10px"
+                        android:layout_toRightOf="@id/item_toview_message_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <RelativeLayout
+                            android:layout_marginTop="5px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/item_toview_message_name"
+                                android:textColor="@color/colorToview"
+                                android:text="查看提示"
+                                android:textSize="33px"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <!-- TODO： 提示小红点 -->
+                            <ImageView
+                                android:id="@+id/item_toview_message_tishi"
+                                android:layout_toRightOf="@id/item_toview_message_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/item_toview_message_time"
+                                android:textColor="@color/colorbMessageText"
+                                android:layout_centerVertical="true"
+                                android:textSize="28px"
+                                android:layout_marginRight="20px"
+                                android:layout_alignParentRight="true"
+                                android:text=""
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/item_toview_message"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10px"
+                            android:text="暂时没有查看提示"
+                            android:textColor="@color/colorbMessageText"
+                            android:textSize="28px" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_below="@+id/item_toview_message_head"
+                        android:layout_marginTop="30px"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/commom_background"/>
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+            </com.zhy.autolayout.AutoLinearLayout>
 
 
 

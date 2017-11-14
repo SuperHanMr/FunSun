@@ -38,15 +38,28 @@ public class RequestUrl {
     public static final String zixun = HTTP + "/content/v1/?content_type=global";
 
     //我的消息列表
-    public static final String MESSAGELIST =HTTP+ "/user_message_visit_list/v1/?page=1";
+    public static final String MESSAGELIST =HTTP+ "/user_info_message_list/v1/";
 
 
     //我的消息-评论提示列表
     public static final String COMMENTPROMTING = HTTP+"/user_message_comment_list/v1/";
 
+    //我的消息-评论提示列表-点进去明细
+    public static final String COMMENTDATAIL = HTTP+"/user_message_comment_detail_list/v1/";
+
 
     //我的消息-查看提示列表
     public static final String TOVIEWPROMTING = HTTP+"/user_message_visit_list/v1/";
+
+
+
+    //设置-修改个人信息
+    public static final String XIUGAIUERINFO = HTTP+"/user_info_set_avatar/v1/";
+
+    //设置-修改密码
+    public static final String WANGJIPASSWORD = HTTP+"/account/v1/password/change/";
+
+
 
 }
 

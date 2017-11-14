@@ -6,6 +6,7 @@ import com.fengxun.funsun.utils.SPUtils;
 import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.callback.BitmapCallback;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpParams;
 
@@ -49,5 +50,22 @@ public class NetworkReuset {
                 .execute(onCallBack);
     }
 
+
+    /**
+     * @param url 请求地址
+     * @param onCallBack 回调
+     */
+    public void GetReuset(String url,HttpParams params,onCallBack onCallBack ){
+        OkGo.get(url)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+
+    public void GetBitmap(String url, BitmapCallback callback){
+        OkGo.get(url).tag(this).execute(callback);
+
+    }
 
 }

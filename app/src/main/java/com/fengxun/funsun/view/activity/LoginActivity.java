@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -7,15 +8,20 @@ import android.widget.EditText;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.LoginBean;
+import com.fengxun.funsun.model.eventbus.MainActivityEventBus;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
+import com.fengxun.funsun.view.base.ActivityStack;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.lzy.okgo.model.HttpParams;
+
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -89,7 +95,6 @@ public class LoginActivity extends BaseActivity {
             public void onSucceed(LoginBean loginBean, Call call, String string) {
                 if (loginBean.getCode()!=400){
                     //保用户信息持久化
-                    new SuperHanDialog(LoginActivity.this,R.style.dialog,"登录成功").show();
                     SPUtils.putBoolean(KEY.KEY_ISLOGIN,true);
                     SPUtils.putString(KEY.KEY_USERTOKEN,loginBean.getData().getAccess_token());
                     SPUtils.putString(KEY.KEY_REFRESHTOKEN,loginBean.getData().getRefresh_token());
@@ -98,8 +103,10 @@ public class LoginActivity extends BaseActivity {
                     SPUtils.putString(KEY.KEY_USERNAME,loginBean.getData().getUser_info().getNick());
                     SPUtils.putString(KEY.KEY_USERHEAD,loginBean.getData().getUser_info().getAvatar());
                     SPUtils.putString(KEY.KEY_USERFUNSUNNUM,loginBean.getData().getUser_info().getFunsun_id());
-                    SPUtils.putString(KEY.KEY_USERGENDER,loginBean.getData().getUser_info().getSex()==1?"男":"女");
-
+                    SPUtils.putInt(KEY.KEY_USERGENDER,loginBean.getData().getUser_info().getSex());
+                    openActivity(MainActivity.class);
+                    // 发送消息 通知Main刷新界面
+                    EventBus.getDefault().post(new MainActivityEventBus(2));
                 }else {
                     new SuperHanDialog(LoginActivity.this,R.style.dialog,loginBean.getMsg()).show();
                 }

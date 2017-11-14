@@ -20,8 +20,10 @@ import android.widget.Toast;
 
 import com.fengxun.funsun.FunSunAPP;
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.bean.CodeBean;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SteBoolarUtil;
+import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.zhy.autolayout.AutoLayoutActivity;
 
@@ -55,6 +57,9 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         super.onCreate(savedInstanceState);
         // 加载布局
         setContentView(getLayoutId());
+
+        //添加一个Activity实例
+        ActivityStack.addAct(this);
         //设置状态栏和标题栏颜色一致
         SteBoolarUtil.setWindowStatusBarColor(this,getBoolarColors());
         mToolbar = (Toolbar) findViewById(R.id.tooblar);
@@ -179,6 +184,27 @@ public abstract class BaseActivity extends AutoLayoutActivity {
             window.setStatusBarColor(getResources().getColor(android.R.color.white));
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+    }
+
+
+    /*
+       处理返回的Code
+     */
+
+    public void handlingCode(CodeBean codeBean){
+        if (codeBean.getCode()==200){
+            finish();
+        }else {
+            new SuperHanDialog(this,codeBean.getMsg()).show();
+        }
+    }
+
+
+    /*
+       弹窗 只能再Activity里面用
+     */
+    public void DialogPromting(String string){
+      new SuperHanDialog(this,string).show();
     }
 
 

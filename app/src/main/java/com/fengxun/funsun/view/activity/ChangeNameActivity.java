@@ -5,19 +5,27 @@ import android.text.SpannableString;
 import android.widget.EditText;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.bean.CodeBean;
+import com.fengxun.funsun.model.request.NetworkReuset;
+import com.fengxun.funsun.model.request.RequestUrl;
+import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.FitStateUI;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.view.base.BaseActivity;
+import com.fengxun.funsun.view.views.SuperHanDialog;
+import com.lzy.okgo.model.HttpParams;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
 
 /**
  * 程序员：韩永辉
  * 创建日期：on 2017/11/10.
  * Holle Android
  * 内容：修改姓名
+ *
  */
 
 public class ChangeNameActivity extends BaseActivity {
@@ -45,9 +53,24 @@ public class ChangeNameActivity extends BaseActivity {
         setBarLeftIcon(true,R.drawable.dingbuback);
     }
 
-
     @OnClick(R.id.ac_chang_name_btn)
     public void onViewClicked() {
+        String trim = acChangXinPassword.getText().toString();
+        if (trim.contains(" ")){
+            DialogPromting("名字不允许有空格");
+            return;
+        }
+
+        HttpParams params = new HttpParams();
+        params.put("set_type",2);
+        params.put("set_value",trim);
+        NetworkReuset.getInstance().GetReuset(RequestUrl.XIUGAIUERINFO, params, new onCallBack<CodeBean>(this) {
+            @Override
+            public void onSucceed(CodeBean codeBean, Call call, String string) {
+                 handlingCode(codeBean);
+            }
+        });
+
 
     }
 }

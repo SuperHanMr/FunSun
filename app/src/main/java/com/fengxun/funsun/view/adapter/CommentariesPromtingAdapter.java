@@ -1,14 +1,20 @@
 package com.fengxun.funsun.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.bean.CommentPromtingBean;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.view.activity.CommentPromtingParticuarsActivity;
+import com.fengxun.funsun.view.activity.CommentariesPromtingActivity;
 import com.fengxun.funsun.view.base.BasePromtingAdapter;
 import com.fengxun.funsun.view.base.PromtingViewholder;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +29,12 @@ public  class CommentariesPromtingAdapter extends BasePromtingAdapter {
 
     List<CommentPromtingBean.DataBeanX.DataBean> mList;
 
+    private Context context;
 
     public CommentariesPromtingAdapter(Context context) {
         super(context);
+        this.context = context;
+        mList = new ArrayList<>();
     }
 
     /*
@@ -33,6 +42,22 @@ public  class CommentariesPromtingAdapter extends BasePromtingAdapter {
      */
     @Override
     public void onBindViewHolder(PromtingViewholder holder, int position) {
+        ImageView imagViewHead = holder.getImagViewHead(R.id.commentariespromting_item_head);
+        Picasso.with(context).load(mList.get(position).getComment_user_avatar()).into(imagViewHead);
+        holder.setText(R.id.commentariespromting_tv_name,mList.get(position).getComment_user_nick());
+        holder.setText(R.id.commentariespromting_tv_school,mList.get(position).getComment_school());
+        String comment_relation = mList.get(position).getComment_relation();
+        if (!comment_relation.equals("")){
+            holder.getView(R.id.commentariespromting_tv_type).setVisibility(View.VISIBLE);
+            holder.setText(R.id.commentariespromting_tv_type,comment_relation);
+        }
+        holder.setText(R.id.commentariespromting_tv_massage,mList.get(position).getComment_content());
+        holder.setOnClickListener(R.id.commentariespromting_rl_item, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, CommentPromtingParticuarsActivity.class));
+            }
+        });
 
     }
 
@@ -42,13 +67,12 @@ public  class CommentariesPromtingAdapter extends BasePromtingAdapter {
     }
 
     public void setData(List<CommentPromtingBean.DataBeanX.DataBean> data){
-        mList = new ArrayList<>();
         mList = data;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return mList.size()==0?0:mList.size();
     }
 }

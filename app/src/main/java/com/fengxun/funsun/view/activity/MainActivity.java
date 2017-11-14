@@ -1,6 +1,7 @@
 package com.fengxun.funsun.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -16,11 +17,13 @@ import android.widget.RadioGroup;
 import com.fengxun.funsun.FunSunAPP;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
+import com.fengxun.funsun.model.eventbus.MainActivityEventBus;
 import com.fengxun.funsun.utils.FitStateUI;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.SteBoolarUtil;
 import com.fengxun.funsun.view.adapter.MianFragmentViewPager;
+import com.fengxun.funsun.view.base.ActivityStack;
 import com.fengxun.funsun.view.fragment.AroundCampusFragmnet;
 import com.fengxun.funsun.view.fragment.CampusFragment;
 import com.fengxun.funsun.view.fragment.LoginFragment;
@@ -28,6 +31,10 @@ import com.fengxun.funsun.view.fragment.MeFragment;
 import com.fengxun.funsun.view.fragment.NewsFragment;
 import com.fengxun.funsun.view.views.NoSorollViewpager;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +56,12 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EventBus.getDefault().register(this);
         ButterKnife.bind(this);
         initView();
     }
+
+
 
     private void initView() {
         fragments = new ArrayList<>();
@@ -87,5 +97,29 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             diglog = new SuperHanLoginDiglog(context);
         }
         return diglog;
+    }
+
+
+
+
+    /*
+        用EventBus 通知MainActivity 重新添加一次Fragment
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getEventBusRefresh(MainActivityEventBus bus){
+        int mainActivityEventBus = bus.getMainActivityEventBus();
+        fragments.clear();
+        fragments.add(new NewsFragment());
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment():new AroundCampusFragmnet());
+        LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"");
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeFragment(): new LoginFragment());
+        mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
+        mianNoViewpager.setCurrentItem(mainActivityEventBus, false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

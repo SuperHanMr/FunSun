@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@color/colorbWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <include layout="@layout/tooblar_item"/>
 
     <View
@@ -12,14 +13,13 @@
         android:layout_height="1dp"/>
 
 
-    <android.support.v7.widget.RecyclerView
 
-        android:id="@+id/toview_promting_recyclerview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/commentprmoting_particulars_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 
 
-
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

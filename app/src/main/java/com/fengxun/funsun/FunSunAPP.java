@@ -2,12 +2,12 @@ package com.fengxun.funsun;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.request.LoggerInterceptor;
 import com.fengxun.funsun.utils.SPUtils;
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.model.HttpHeaders;
 
@@ -32,6 +32,13 @@ public class FunSunAPP extends Application {
         return false;
     }
 
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -48,6 +55,7 @@ public class FunSunAPP extends Application {
 
        // CacheMode.IF_NONE_CACHE_REQUEST;// 如果缓存不在 再请求网络
     }
+
 
 
 }

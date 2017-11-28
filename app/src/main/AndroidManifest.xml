@@ -65,6 +65,9 @@
         <activity android:name=".view.activity.CommentariesPromtingActivity" />
         <activity android:name=".view.activity.ToViewPromtingActivity"/>
         <activity android:name=".view.activity.CommentPromtingParticuarsActivity"/>
+        <activity android:name=".view.activity.ToviewPromtingParticuarsActivity"/>
+        <activity android:name=".view.activity.SystemPromtingActivity"/>
+        <activity android:name=".view.activity.BlackListActivity"/>
         <!--注册服务-->
         <service android:name="com.amap.api.location.APSService"></service>
 

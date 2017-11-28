@@ -9,6 +9,7 @@ import com.fengxun.funsun.model.bean.ToViewListBean;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
+import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.view.adapter.ToViewPromitngAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
 
@@ -58,13 +59,22 @@ public class ToViewPromtingActivity extends BaseActivity {
         toviewPromtingRecyclerview.setLayoutManager(manager);
         toviewPromtingRecyclerview.setAdapter(adapter);
 
-        NetworkReuset.getInstance().GetReuset(RequestUrl.TOVIEWPROMTING, new onCallBack<ToViewListBean>(this) {
+        NetworkReuset.getInstance().getPromting(RequestUrl.TOVIEWPROMTING, new onCallBack<ToViewListBean>(this) {
             @Override
             public void onSucceed(ToViewListBean toViewListBean, Call call, String string) {
                 ToViewListBean.DataBeanX data = toViewListBean.getData();
                 List<ToViewListBean.DataBeanX.DataBean> mList = data.getData();
                 adapter.setData(mList);
+                LogUtils.e("我是网络回调");
+            }
 
+            @Override
+            public void onCacheSuccess(ToViewListBean toViewListBean, Call call) {
+                super.onCacheSuccess(toViewListBean, call);
+                ToViewListBean.DataBeanX data = toViewListBean.getData();
+                List<ToViewListBean.DataBeanX.DataBean> mList = data.getData();
+                adapter.setData(mList);
+                LogUtils.e("我是缓存回调");
             }
         });
 

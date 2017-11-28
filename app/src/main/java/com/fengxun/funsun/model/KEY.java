@@ -26,5 +26,6 @@ public class KEY {
     public static final String KEY_USERFUNSUNNUM = "funsunnum";
     public static final String KEY_USERTOKEN = "usertoken";
 
+    public static final String TAG = "==========LOG=============";
 
 }

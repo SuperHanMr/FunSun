@@ -55,6 +55,8 @@ public class InspectionPhoneUtils {
         long t = Long.parseLong(timeStr);
         LogUtils.e("转换前："+timeStr+",转换后："+t);
         long time = System.currentTimeMillis() - (t*1000);
+
+        LogUtils.e(time+"---->"+(t*1000));
         long mill = (long) Math.ceil(time /1000);//秒前
 
         long minute = (long) Math.ceil(time/60/1000.0f);// 分钟前

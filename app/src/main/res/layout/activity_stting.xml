@@ -4,21 +4,16 @@
     android:background="@color/colorBooblar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <include layout="@layout/tooblar_item"/>
 
-    <com.fengxun.funsun.view.views.MyScrollView
-        android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        android:layout_height="match_parent">
+
 
         <LinearLayout
+            android:background="@drawable/shape_border"
             android:paddingRight="5px"
             android:paddingTop="30px"
             android:orientation="vertical"
             android:paddingLeft="40px"
-            android:background="@drawable/shape_border"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -243,6 +238,7 @@
                 </RelativeLayout>
             </RelativeLayout>
 
+
             <View
                 android:background="@color/commom_background"
                 android:layout_marginTop="30px"
@@ -260,7 +256,7 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/colorbText"
                     android:textSize="@dimen/stting_text"
-                    android:text="密码"
+                    android:text="修改密码"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -364,12 +360,7 @@
 
             </RelativeLayout>
 
-
-
         </LinearLayout>
 
-
-
-    </com.fengxun.funsun.view.views.MyScrollView>
 
 </LinearLayout>

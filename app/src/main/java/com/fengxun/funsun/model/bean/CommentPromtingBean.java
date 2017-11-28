@@ -44,7 +44,7 @@ public class CommentPromtingBean implements Serializable {
         this.msg = msg;
     }
 
-    public static class DataBeanX {
+    public static class DataBeanX implements Serializable {
         /**
          * data : [{"comment_content":"测试12345678","comment_relation":"","comment_school":"","comment_time":1.505807347E9,"comment_user":2,"comment_user_avatar":"123455","comment_user_nick":"123"}]
          * page : 1
@@ -69,7 +69,7 @@ public class CommentPromtingBean implements Serializable {
             this.data = data;
         }
 
-        public static class DataBean {
+        public static class DataBean implements Serializable {
             /**
              * comment_content : 测试12345678
              * comment_relation :

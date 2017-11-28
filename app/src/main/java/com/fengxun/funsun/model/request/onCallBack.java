@@ -51,68 +51,64 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
     }
 
     @Override
-    public void onSuccess(T t, Call call, Response response) {
-        super.onSuccess(t, call, response);
-        if (fragment!=null){
-//            ((BaseFragment)fragment).endNetworkData();
-            fragment = null;
-            return;
-        }
-
-        if (activity!=null){
-            try{
-                ((BaseActivity)activity).diaLogin(activity).dismiss();
-                activity = null;
-            }catch (Exception e1){
-                ((MainActivity)activity).diaLogin(activity).dismiss();
-                activity = null;
-                LogUtils.e(e1.toString()+"----->");
-            }
-        }
+    public void onCacheSuccess(T t, Call call) {
+        super.onCacheSuccess(t, call);
+//        ((BaseActivity)activity).superHanLoginDigloger.dismiss();
     }
 
+    @Override
+    public void onSuccess(T t, Call call, Response response) {
+        super.onSuccess(t, call, response);
+
+    }
+
+
     public abstract void onSucceed(T t, Call call, String string);
+
+
+
 
     // 网络请求失败
     @Override
     public void onError(Call call, Response response, Exception e) {
         super.onError(call, response, e);
-        if (fragment!=null){
-            //((BaseFragment)fragment).endNetworkData();
-            fragment = null;
-            return;
-        }
-        if (activity!=null){
-            try{
-                ((BaseActivity)activity).diaLogin(activity).dismiss();
-                activity = null;
-            }catch (Exception e1){
-                ((MainActivity)activity).diaLogin(activity).dismiss();
-                activity = null;
-                LogUtils.e(e1.toString());
-            }
-        }
+//        if (fragment!=null){
+//            //((BaseFragment)fragment).endNetworkData();
+//            fragment = null;
+//            return;
+//        }
+//        if (activity!=null){
+//            try{
+//                ((BaseActivity)activity).superHanLoginDigloger.dismiss();
+//                activity = null;
+//            }catch (Exception e1){
+//                ((MainActivity)activity).diaLogin(activity).dismiss();
+//                activity = null;
+//                LogUtils.e(e1.toString());
+//            }
+//        }
     }
 
     @Override
     public void onAfter(T t, Exception e) {
         super.onAfter(t, e);
-        if (fragment!=null){
-            //((BaseFragment)fragment).endNetworkData();
-            fragment = null;
-            return;
-        }
-
-        if (activity!=null){
-            try{
-                ((BaseActivity)activity).diaLogin(activity).show();
-                    activity = null;
-            }catch (Exception e1){
-                ((MainActivity)activity).diaLogin(activity).show();
-                activity = null;
-                LogUtils.e(e1.toString());
-            }
-        }
+//        if (fragment!=null){
+//            //((BaseFragment)fragment).endNetworkData();
+//            fragment = null;
+//            return;
+//        }
+//
+//        if (activity!=null){
+//            try{
+//                ((BaseActivity)activity).superHanLoginDigloger.show();
+//                    activity = null;
+//                LogUtils.d("----->走了");
+//            }catch (Exception e1){
+//                ((MainActivity)activity).diaLogin(activity).show();
+//                activity = null;
+//                LogUtils.e(e1.toString());
+//            }
+//        }
 
     }
 

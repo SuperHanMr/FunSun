@@ -20,5 +20,9 @@
     <color name="colorbSystemRed">#FF2E67</color>
     <color name="colorbPinglun">#0DCCB0</color>
     <color name="colorToview">#F6A224</color>
+    <color name="colorhuangse">#F6A224</color>
+    <color name="colorNewItemBg">#F8F9F9</color>
+    <color name="colorTuijian">#F55064</color>
+
 
 </resources>

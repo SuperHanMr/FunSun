@@ -1,7 +1,10 @@
 package com.fengxun.funsun.view.activity;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -51,11 +54,12 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     private List<Fragment> fragments;
 
 
-    private SuperHanLoginDiglog diglog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        transparencyBar(this);
         EventBus.getDefault().register(this);
         ButterKnife.bind(this);
         initView();
@@ -70,6 +74,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"");
         fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeFragment(): new LoginFragment());
         mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
+        mianNoViewpager.setOffscreenPageLimit(2);
         rgTab.setOnCheckedChangeListener(this);
     }
 
@@ -92,12 +97,8 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     }
 
 
-    public SuperHanLoginDiglog diaLogin(Context context){
-        if (diglog==null){
-            diglog = new SuperHanLoginDiglog(context);
-        }
-        return diglog;
-    }
+
+
 
 
 
@@ -122,4 +123,30 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+    /**
+     * 修改状态栏为全透明
+     *
+     * @param activity
+     */
+    @TargetApi(19)
+    public static void transparencyBar(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = activity.getWindow();
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+//        ((ViewGroup)activity.findViewById(android.R.id.content)).getChildAt(0).setFitsSystemWindows(true);//设置跟布局fitsystemwindow=true
+    }
+
 }

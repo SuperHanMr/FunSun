@@ -46,6 +46,7 @@ public class CommentariesPromtingActivity extends BaseActivity {
         return R.color.colorbWhite;
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +69,22 @@ public class CommentariesPromtingActivity extends BaseActivity {
         adapter = new CommentariesPromtingAdapter(this);
         commentariesRecyckerview.setAdapter(adapter);
 
-        NetworkReuset.getInstance().GetReuset(RequestUrl.COMMENTPROMTING, new onCallBack<CommentPromtingBean>(this) {
+        NetworkReuset.getInstance().getCommentPromting(RequestUrl.COMMENTPROMTING, new onCallBack<CommentPromtingBean>(this) {
             @Override
             public void onSucceed(CommentPromtingBean commentPromtingBean, Call call, String string) {
                 List<CommentPromtingBean.DataBeanX.DataBean> data = commentPromtingBean.getData().getData();
                 adapter.setData(data);
+                LogUtils.d("我是网络回调");
+
+            }
+
+
+            @Override
+            public void onCacheSuccess(CommentPromtingBean commentPromtingBean, Call call) {
+                super.onCacheSuccess(commentPromtingBean, call);
+                List<CommentPromtingBean.DataBeanX.DataBean> data = commentPromtingBean.getData().getData();
+                adapter.setData(data);
+                LogUtils.d("我是回调");
             }
         });
 

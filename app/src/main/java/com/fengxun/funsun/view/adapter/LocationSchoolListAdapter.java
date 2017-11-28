@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.bean.SchoolListBean;
 import com.fengxun.funsun.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class LocationSchoolListAdapter extends RecyclerView.Adapter<LocationScho
 
 
     private Context context;
-    private List<String> mList;
+    private List< SchoolListBean.DataBean> mList;
 
     public LocationSchoolListAdapter(Context context) {
         this.context = context;
@@ -40,16 +41,18 @@ public class LocationSchoolListAdapter extends RecyclerView.Adapter<LocationScho
     }
 
 
-
+    /**
+     * @param position
+     */
     @Override
     public void onBindViewHolder(SchoolHodlerView holder, final int position) {
-        final String schoolName = mList.get(position);
-        LogUtils.d(mList.size()+"==="+schoolName);
+        final SchoolListBean.DataBean dataBean = mList.get(position);
+        String schoolName = dataBean.getName();
         holder.tvSchoolName.setText(schoolName);
         holder.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.oNSchoolNameListener(schoolName);
+                listener.oNSchoolNameListener(dataBean);
             }
         });
     }
@@ -59,7 +62,7 @@ public class LocationSchoolListAdapter extends RecyclerView.Adapter<LocationScho
         return mList.size()==0?0:mList.size();
     }
 
-    public void setSchoolData(List<String> mList){
+    public void setSchoolData(List<SchoolListBean.DataBean> mList){
         this.mList = mList;
         LogUtils.d(mList.size()+"");
         notifyDataSetChanged();
@@ -83,6 +86,6 @@ public class LocationSchoolListAdapter extends RecyclerView.Adapter<LocationScho
     private OnSchoolNameListener listener;
 
     public interface OnSchoolNameListener{
-        void oNSchoolNameListener(String school);
+        void oNSchoolNameListener(SchoolListBean.DataBean dataBean);
     }
 }

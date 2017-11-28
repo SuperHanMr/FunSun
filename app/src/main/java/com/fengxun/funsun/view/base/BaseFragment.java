@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -40,7 +41,7 @@ public abstract class BaseFragment extends Fragment {
     protected boolean isVisble;
     // 标志位，标志Fragment已经初始化完成。
     public boolean isPrepared = false;
-
+    public SuperHanLoginDiglog loginDiglog;
 
 
     @Nullable
@@ -92,6 +93,14 @@ public abstract class BaseFragment extends Fragment {
 
     public void NetworkData(){
 
+    }
+
+
+    public SuperHanLoginDiglog diglog(Context context){
+        if (loginDiglog ==null){
+            loginDiglog = new SuperHanLoginDiglog(context);
+        }
+        return loginDiglog;
     }
 
 }

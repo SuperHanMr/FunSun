@@ -65,17 +65,14 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
     RadioButton acRegistrationRb2;
 
 
-    private boolean isChecked;
+    private boolean isChecked = true;
     // 基本信息
     private String year = "";
     private String sxt = "";
     private String nick = "";
-    private String school = "";
+    private String schoolid = "";
     public static final String USERINFO = "userinfo";
     private RegistrationUserBean bean;
-
-
-
 
 
     @Override
@@ -97,6 +94,8 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
         isUserRegistration();
     }
 
+
+
     private void initViews() {
         setBarLeftIcon(true);
 
@@ -114,6 +113,7 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
         }
 
         acRegistrationName.addTextChangedListener(new EditChangedListener());
+        acRegistrationCheckbox.setChecked(isChecked);
         // 监听选择的性别
         acRegistrationRb.setOnCheckedChangeListener(this);
 
@@ -193,7 +193,7 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
 
     // 对象进行序列化 传递给PhoneNumActivtiy
     private void registrationPhone() {
-        bean = new RegistrationUserBean("", sxt, nick, school, year);
+        bean = new RegistrationUserBean("", sxt, nick, schoolid, year);
         Intent intent = new Intent(this, PhoneNumActivtiy.class);
         Bundle mBundle = new Bundle();
         mBundle.putSerializable(USERINFO, bean);
@@ -225,7 +225,7 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
         }).setType(new boolean[]{true, false, false, false, false, false})// 默认全部显示
                 .setCancelText("取消")//取消按钮文字
                 .setSubmitText("确定")//确认按钮文字
-                .setContentSize(13)//滚轮文字大小
+                .setContentSize(15)//滚轮文字大小
                 .setTitleSize(15)//标题文字大小
                 .setTitleText("选择入校时间")//标题文字
                 .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
@@ -255,21 +255,22 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1000&&resultCode==1001){
             String school = data.getStringExtra("school");
-            this.school = school;
+            String schoolId = data.getStringExtra("schoolId");
+            this.schoolid = schoolId;
             acRegistrationLocation.setText(school);
         }
     }
 
     private void isUserRegistration() {
-        LogUtils.d("学校：" + nick + "，性别：" + sxt + ",所在大学：" + school + "入学时间：" + year + "，同意协议：" + isChecked + "");
-        if (nick.equals("") || sxt.equals("") || school.equals("") || year.equals("") || isChecked == false) {
+        LogUtils.d("学校：" + nick + "，性别：" + sxt + ",所在大学：" + schoolid + "入学时间：" + year + "，同意协议：" + isChecked + "");
+        if (nick.equals("") || sxt.equals("") || schoolid.equals("") || year.equals("") || isChecked == false) {
             acRegistrationBtn.setBackgroundResource(R.drawable.shape_login_borde);
             acRegistrationBtn.setEnabled(false);
             return;
         }
 
         if (!nick.contains(" ")) {
-            if (!nick.equals("") && !sxt.equals("") && !school.equals("") && !year.equals("") && isChecked) {
+            if (!nick.equals("") && !sxt.equals("") && !schoolid.equals("") && !year.equals("") && isChecked) {
                 acRegistrationBtn.setBackgroundResource(R.drawable.shape_login_borde_n);
                 acRegistrationBtn.setEnabled(true);
             }

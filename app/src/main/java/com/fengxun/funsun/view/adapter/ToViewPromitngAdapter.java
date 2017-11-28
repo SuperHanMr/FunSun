@@ -1,11 +1,14 @@
 package com.fengxun.funsun.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.bean.ToViewListBean;
+import com.fengxun.funsun.utils.TimeUtils;
+import com.fengxun.funsun.view.activity.ToviewPromtingParticuarsActivity;
 import com.fengxun.funsun.view.base.BasePromtingAdapter;
 import com.fengxun.funsun.view.base.PromtingViewholder;
 import com.squareup.picasso.Picasso;
@@ -43,7 +46,7 @@ public class ToViewPromitngAdapter extends BasePromtingAdapter {
     绑定数据
      */
     @Override
-    public void onBindViewHolder(PromtingViewholder holder, int position) {
+    public void onBindViewHolder(PromtingViewholder holder, final int position) {
         super.onBindViewHolder(holder, position);
         ImageView imagViewHead = holder.getImagViewHead(R.id.toviewtariespromting_item_head);
         Picasso.with(context).load(mList.get(position).getFriend_avatar()).into(imagViewHead);
@@ -61,6 +64,16 @@ public class ToViewPromitngAdapter extends BasePromtingAdapter {
             holder.getView(R.id.toviewtariespromting_tv_labelling_1).setVisibility(View.VISIBLE);
             holder.setText(R.id.toviewtariespromting_tv_labelling_1,mList.get(position).getFriend_relation());
         }
+
+        holder.setOnClickListener(R.id.toviewtariespromting_rl_item, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ToviewPromtingParticuarsActivity.class).putExtra("userid",mList.get(position).getFriend_id()));
+            }
+        });
+
+        int update_time = (int) mList.get(position).getUpdate_time();
+        holder.setText(R.id.toviewtariespromting_tv_time, TimeUtils.getTimeFormatText(String.valueOf(update_time)));
 
 
     }

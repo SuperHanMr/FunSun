@@ -5,28 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.fengxun.funsun.R;
-import com.fengxun.funsun.model.bean.LoginBean;
-import com.fengxun.funsun.model.request.JsonCallback;
-import com.fengxun.funsun.model.request.NetworkReuset;
-import com.fengxun.funsun.model.request.RequestUrl;
-import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SteBoolarUtil;
 import com.fengxun.funsun.view.activity.LoginActivity;
 import com.fengxun.funsun.view.activity.RegistrationActivity;
 import com.fengxun.funsun.view.base.BaseFragment;
-import com.fengxun.funsun.view.base.FunSunResponseBean;
-import com.google.gson.Gson;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.HttpParams;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * 程序员：韩永辉
@@ -38,6 +29,8 @@ public class LoginFragment extends BaseFragment {
 
 
     Unbinder unbinder;
+    @BindView(R.id.status_bar_fix)
+    View statusBarFix;
 
     @Override
     protected int getLayoutId() {
@@ -49,11 +42,13 @@ public class LoginFragment extends BaseFragment {
         setBarLeftTv("我");
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+        statusBarFix.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, SteBoolarUtil.getStateBarHeight(getActivity())));//填充状态栏
         return rootView;
     }
 

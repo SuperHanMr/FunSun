@@ -31,8 +31,10 @@ public class MyScrollView extends ScrollView {
 		}
 	}
 
+
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
+
 		if (inner == null) {
 			return super.onTouchEvent(ev);
 		} else {

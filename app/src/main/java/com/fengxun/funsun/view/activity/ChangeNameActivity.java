@@ -1,19 +1,26 @@
 package com.fengxun.funsun.view.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.widget.EditText;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.CodeBean;
+import com.fengxun.funsun.model.eventbus.MainActivityEventBus;
+import com.fengxun.funsun.model.eventbus.SttingActivityEventBus;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.FitStateUI;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.lzy.okgo.model.HttpParams;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +62,7 @@ public class ChangeNameActivity extends BaseActivity {
 
     @OnClick(R.id.ac_chang_name_btn)
     public void onViewClicked() {
-        String trim = acChangXinPassword.getText().toString();
+        final String trim = acChangXinPassword.getText().toString();
         if (trim.contains(" ")){
             DialogPromting("名字不允许有空格");
             return;
@@ -67,7 +74,20 @@ public class ChangeNameActivity extends BaseActivity {
         NetworkReuset.getInstance().GetReuset(RequestUrl.XIUGAIUERINFO, params, new onCallBack<CodeBean>(this) {
             @Override
             public void onSucceed(CodeBean codeBean, Call call, String string) {
-                 handlingCode(codeBean);
+                if (codeBean.getCode()==200){
+                    new SuperHanDialog(ChangeNameActivity.this, "修改成功", true, new SuperHanDialog.onCloseListener() {
+                        @Override
+                        public void onClick(Dialog dialog) {
+                            SPUtils.putString(KEY.KEY_USERNAME,trim);
+                            EventBus.getDefault().post(new SttingActivityEventBus(2));
+                            dialog.dismiss();
+                            finish();
+                        }
+                    }).show();
+                }else {
+                    new SuperHanDialog(ChangeNameActivity.this,codeBean.getMsg()).show();
+                }
+
             }
         });
 

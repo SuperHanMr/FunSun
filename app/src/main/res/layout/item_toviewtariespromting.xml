@@ -14,7 +14,7 @@
         android:layout_width="100px"
         android:layout_height="100px" />
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:paddingLeft="20px"
         android:orientation="vertical"
         android:layout_marginTop="10px"
@@ -24,6 +24,7 @@
 
 
         <RelativeLayout
+            android:layout_marginLeft="5px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -45,8 +46,6 @@
                 android:text="昨天15：36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-
         </RelativeLayout>
 
 
@@ -54,9 +53,7 @@
             android:layout_marginTop="5px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <TextView
-
                 android:id="@+id/toviewtariespromting_tv_name"
                 android:textColor="@color/colorbMessageText"
                 android:text="瀚哥哥"
@@ -73,6 +70,8 @@
 
             <TextView
                 android:visibility="gone"
+                android:layout_marginLeft="8px"
+                android:textSize="25px"
                 android:id="@+id/toviewtariespromting_tv_labelling_1"
                 android:paddingBottom="3px"
                 android:paddingTop="3px"
@@ -84,12 +83,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-
             <TextView
+                android:textSize="25px"
                 android:id="@+id/toviewtariespromting_tv_labelling_2"
                 android:textColor="@color/colorbWhite"
                 android:layout_marginLeft="10px"
-                android:background="@drawable/text_huangse_bored"
+                android:background="@drawable/hangse_biankuang"
                 android:paddingBottom="3px"
                 android:paddingTop="3px"
                 android:paddingRight="12px"
@@ -107,7 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
 
 

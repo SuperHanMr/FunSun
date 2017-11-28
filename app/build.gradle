@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "27.0.0"
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
     defaultConfig {
         applicationId "com.fengxun.funsun"
         minSdkVersion 16
@@ -12,6 +14,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -19,6 +23,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+
+
 }
 
 dependencies {
@@ -55,6 +67,10 @@ dependencies {
     compile 'com.amap.api:search:latest.integration'
     // 高德地图 定位
     compile 'com.amap.api:location:latest.integration'
-    compile project(':refreshlibrary')
     compile project(':dialoglibrary')
+    // 下拉刷新动画
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile project(':refresh')
+
+    compile 'com.android.support:multidex:1.0.0'
 }

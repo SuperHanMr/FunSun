@@ -31,12 +31,12 @@ public class PromtingViewholder extends RecyclerView.ViewHolder {
         }
 
 
-
     public static PromtingViewholder get(Context context,ViewGroup parent,int layoutId){
             View itemView = LayoutInflater.from(context).inflate(layoutId,parent,false);
             PromtingViewholder holder = new PromtingViewholder(context,itemView,parent);
             return holder;
         }
+
 
 
         /**

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/new_roots1"
+
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--溯源标签 这个控件 可能会多处用到  要单独抽取出去-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/roots1_head"
+        android:src="@drawable/pinglun_message"
+        android:layout_width="55px"
+        android:layout_height="55px" />
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/roots_school_name"
+        android:layout_marginTop="4px"
+        android:layout_marginLeft="48px"
+        android:background="@mipmap/suyuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="1px"
+            android:textSize="25px"
+            android:textColor="@color/colorBooblar"
+            android:id="@+id/roots1_school"
+            android:text="我是北京大学"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>
+
+
+<!--<com.zhy.autolayout.AutoRelativeLayout-->
+<!--android:layout_marginLeft="7px"-->
+<!--android:visibility="gone"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:orientation="horizontal"-->
+<!--android:layout_height="wrap_content">-->
+<!--<ImageView-->
+    <!--android:id="@+id/roots_radian_icon"-->
+    <!--android:layout_marginTop="6px"-->
+    <!--android:src="@drawable/touming"-->
+    <!--android:layout_width="58px"-->
+    <!--android:layout_height="58px"  />-->
+
+<!--<com.zhy.autolayout.AutoLinearLayout-->
+    <!--android:layout_marginLeft="56px"-->
+    <!--android:id="@+id/roots_school_name"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:background="@drawable/roots_biankuang"-->
+    <!--android:layout_marginTop="14px"-->
+    <!--android:layout_width="200px"-->
+    <!--android:layout_height="42px">-->
+
+    <!--<com.zhy.autolayout.AutoRelativeLayout-->
+        <!--android:gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@drawable/roots_biankuang_huangse"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+
+        <!--<TextView-->
+            <!---->
+            <!--android:textColor="@color/colorBooblar"-->
+            <!--android:textSize="25px"-->
+            <!--android:text="我是大学"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+    <!--</com.zhy.autolayout.AutoRelativeLayout>-->
+
+
+    <!--<TextView-->
+        <!--android:paddingBottom="8px"-->
+        <!--android:textSize="25px"-->
+        <!--android:paddingRight="10px"-->
+        <!--android:textColor="@color/colorbWhite"-->
+        <!--android:gravity="center"-->
+        <!--android:text="逛"-->
+        <!--android:layout_width="50px"-->
+        <!--android:layout_height="50px" />-->
+
+<!--</com.zhy.autolayout.AutoLinearLayout>-->
+
+
+
+
+<!--</com.zhy.autolayout.AutoRelativeLayout>-->

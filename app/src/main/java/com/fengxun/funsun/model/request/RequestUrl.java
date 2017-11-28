@@ -51,6 +51,8 @@ public class RequestUrl {
     //我的消息-查看提示列表
     public static final String TOVIEWPROMTING = HTTP+"/user_message_visit_list/v1/";
 
+    //我的消息-查看提示列表-明细
+    public static final String TOVIEWDATAIL = HTTP+"/user_message_visit_detail/v1/";
 
 
     //设置-修改个人信息
@@ -58,6 +60,14 @@ public class RequestUrl {
 
     //设置-修改密码
     public static final String WANGJIPASSWORD = HTTP+"/account/v1/password/change/";
+
+
+    //设置-黑名单
+    public static final String HEIMINGDAN = HTTP+"/black_user/v1/";
+
+
+    // 头条资讯
+    public static final String HEADLINES = HTTP + "/content/v1/";
 
 
 

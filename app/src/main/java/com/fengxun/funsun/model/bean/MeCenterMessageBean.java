@@ -1,5 +1,6 @@
 package com.fengxun.funsun.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * Holle Android
  */
 
-public class MeCenterMessageBean {
+public class MeCenterMessageBean implements Serializable {
     /**
      * code : 200
      * data : [{"comment_data":{"content":"北京电影学院的Ye评论了你!","is_update":"0","timestamp":1.510550567E9},"system_data":{"content":"","is_update":"0","timestamp":""},"visit_data":{"content":"北京大学的小事儿-撩了你一下!","is_update":"0","timestamp":1.510550729E9}}]
@@ -43,7 +44,7 @@ public class MeCenterMessageBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * comment_data : {"content":"北京电影学院的Ye评论了你!","is_update":"0","timestamp":1.510550567E9}
          * system_data : {"content":"","is_update":"0","timestamp":""}
@@ -78,7 +79,7 @@ public class MeCenterMessageBean {
             this.visit_data = visit_data;
         }
 
-        public static class CommentDataBean {
+        public static class CommentDataBean implements Serializable {
             /**
              * content : 北京电影学院的Ye评论了你!
              * is_update : 0
@@ -87,7 +88,7 @@ public class MeCenterMessageBean {
 
             private String content;
             private String is_update;
-            private double timestamp;
+            private String timestamp;
 
             public String getContent() {
                 return content;
@@ -105,16 +106,16 @@ public class MeCenterMessageBean {
                 this.is_update = is_update;
             }
 
-            public double getTimestamp() {
+            public String getTimestamp() {
                 return timestamp;
             }
 
-            public void setTimestamp(double timestamp) {
+            public void setTimestamp(String timestamp) {
                 this.timestamp = timestamp;
             }
         }
 
-        public static class SystemDataBean {
+        public static class SystemDataBean implements Serializable {
             /**
              * content :
              * is_update : 0
@@ -150,7 +151,7 @@ public class MeCenterMessageBean {
             }
         }
 
-        public static class VisitDataBean {
+        public static class VisitDataBean implements Serializable{
             /**
              * content : 北京大学的小事儿-撩了你一下!
              * is_update : 0
@@ -159,7 +160,7 @@ public class MeCenterMessageBean {
 
             private String content;
             private String is_update;
-            private double timestamp;
+            private String timestamp;
 
             public String getContent() {
                 return content;
@@ -177,11 +178,11 @@ public class MeCenterMessageBean {
                 this.is_update = is_update;
             }
 
-            public double getTimestamp() {
+            public String getTimestamp() {
                 return timestamp;
             }
 
-            public void setTimestamp(double timestamp) {
+            public void setTimestamp(String timestamp) {
                 this.timestamp = timestamp;
             }
         }

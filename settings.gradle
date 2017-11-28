@@ -1,1 +1,1 @@
-include ':app', ':refreshlibrary', ':dialoglibrary'
+include ':app', ':dialoglibrary', ':refresh'

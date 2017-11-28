@@ -11,6 +11,16 @@ import java.io.Serializable;
 
 public class LoginBean implements Serializable{
 
+    @Override
+    public String toString() {
+
+        return "LoginBean{" +
+                "msg='" + msg + '\'' +
+                ", data=" + data +
+                ", code=" + code +
+                '}';
+    }
+
     /**
      * msg :
      * data : {"expires_in":864000,"user_info":{"nick":"瀚瀚","admission":"2011","school_name":"郑州大学","avatar":"http://qiniu.shujutiyu.com/FpUR7Id47JPn4eEuQikQQiSxRt-C","funsun_id":"SuperHan","school":"5603","sex":1,"level":1,"school_img":"http://qiniu.funsun.cn/%E9%83%91%E5%B7%9E%E5%A4%A7%E5%AD%A6.png","id":49625},"access_token":"1ikeH-4RwJE9iXMCYedel-Yfc7g","refresh_token":"dZE8ZXEfMwAMSoCB9EZATcAngcA"}

@@ -2,5 +2,7 @@
 <resources>
 
     <dimen name="stting_text">32px</dimen>
+    <dimen name="new_item">2dp</dimen>
+
 
 </resources>

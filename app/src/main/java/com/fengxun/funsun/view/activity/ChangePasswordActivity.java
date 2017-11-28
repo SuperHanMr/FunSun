@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.activity;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.InspectionPhoneUtils;
 import com.fengxun.funsun.view.base.BaseActivity;
+import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.lzy.okgo.model.HttpParams;
 
 import butterknife.BindView;
@@ -70,9 +72,25 @@ public class ChangePasswordActivity extends BaseActivity {
         params.put("old_password",jinPassword);
 
         NetworkReuset.getInstance().PostReuset(RequestUrl.WANGJIPASSWORD, params, new onCallBack<CodeBean>(this) {
+            /**
+             * @param codeBean
+             * @param call
+             * @param string
+             */
             @Override
             public void onSucceed(CodeBean codeBean, Call call, String string) {
-                handlingCode(codeBean);
+                if (codeBean.getCode()==200){
+                    new SuperHanDialog(ChangePasswordActivity.this, "修改成功", true, new SuperHanDialog.onCloseListener() {
+                        @Override
+                        public void onClick(Dialog dialog) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    }).show();
+
+                }else {
+                    new SuperHanDialog(ChangePasswordActivity.this,codeBean.getMsg()).show();
+                }
             }
         });
 

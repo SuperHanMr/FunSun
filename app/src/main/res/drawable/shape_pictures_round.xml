@@ -7,7 +7,7 @@
         android:color="@color/colorGlobal" />
     <stroke
         android:width="3px"
-        android:color="@color/colorbBlue" />
+        android:color="@color/colorBooblar" />
     <size android:width="200px"
         android:height="200px" />
 </shape>

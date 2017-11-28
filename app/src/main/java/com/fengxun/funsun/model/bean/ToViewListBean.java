@@ -1,5 +1,6 @@
 package com.fengxun.funsun.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * Holle Android
  */
 
-public class ToViewListBean {
+public class ToViewListBean implements Serializable {
     /**
      * code : 200
      * data : {"data":[{"friend_avatar":"http://qiniu.shujutiyu.com/FqG4tnhG4AKaYOBVPwv7a-MB1J1-","friend_id":48995,"friend_nick":"小事儿-","friend_relation":"","friend_school":"北京大学","update_time":1.510550729E9,"visit_count":1}],"page":1}
@@ -43,7 +44,7 @@ public class ToViewListBean {
         this.msg = msg;
     }
 
-    public static class DataBeanX {
+    public static class DataBeanX implements Serializable {
         /**
          * data : [{"friend_avatar":"http://qiniu.shujutiyu.com/FqG4tnhG4AKaYOBVPwv7a-MB1J1-","friend_id":48995,"friend_nick":"小事儿-","friend_relation":"","friend_school":"北京大学","update_time":1.510550729E9,"visit_count":1}]
          * page : 1
@@ -68,7 +69,7 @@ public class ToViewListBean {
             this.data = data;
         }
 
-        public static class DataBean {
+        public static class DataBean implements Serializable {
             /**
              * friend_avatar : http://qiniu.shujutiyu.com/FqG4tnhG4AKaYOBVPwv7a-MB1J1-
              * friend_id : 48995

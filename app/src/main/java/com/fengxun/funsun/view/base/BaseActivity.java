@@ -51,6 +51,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     private SuperHanLoginDiglog diglog;
     private TextView tvTitle;
     public ImageView imageView;
+    public SuperHanLoginDiglog superHanLoginDigloger;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,6 +108,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     }
 
     private void initView() {
+        superHanLoginDigloger = new SuperHanLoginDiglog(this);
         barLeftIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +147,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         if (diglog==null){
             diglog = new SuperHanLoginDiglog(context);
         }
+        LogUtils.d("------>创建dialog");
         return diglog;
     }
 

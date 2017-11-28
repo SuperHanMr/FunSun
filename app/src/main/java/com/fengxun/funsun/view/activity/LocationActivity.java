@@ -52,7 +52,6 @@ public class LocationActivity extends BaseActivity implements PoiSearch.OnPoiSea
     RecyclerView acLocationRecyclerview;
 
     private int WRITE_COARSE_LOCATION_REQUEST_CODE = 1;
-    private String school;
 
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -99,10 +98,10 @@ public class LocationActivity extends BaseActivity implements PoiSearch.OnPoiSea
         acLocationRecyclerview.setAdapter(adapter);
         adapter.setOnSchoolNameListener(new LocationSchoolListAdapter.OnSchoolNameListener() {
             @Override
-            public void oNSchoolNameListener(String school) {
-                LocationActivity.this.school = school;
+            public void oNSchoolNameListener(SchoolListBean.DataBean dataBean) {
                 Intent intent = new Intent();
-                intent.putExtra("school",school);
+                intent.putExtra("school",dataBean.getName());
+                intent.putExtra("schoolId",dataBean.getId());
                 setResult(1001,intent);
                 finish();
             }
@@ -221,25 +220,33 @@ public class LocationActivity extends BaseActivity implements PoiSearch.OnPoiSea
         // pois 每个item的基本信息 adapter
         LogUtils.e( pois.get(0).getTitle());
         LogUtils.d("---->"+pois.size());
-        final List<String> list = new ArrayList();
+        final List<SchoolListBean.DataBean> list = new ArrayList();
 
         //请求网络 获取大学列表 进行匹配 相同则传入adapter
         NetworkReuset.getInstance().GetReuset(RequestUrl.QUEYSCHOOL, new onCallBack<SchoolListBean>(this) {
+            /**
+             * @param schoolListBean
+             * @param call
+             * @param string
+             */
             @Override
             public void onSucceed(SchoolListBean schoolListBean, Call call, String string) {
+                diaLogin(LocationActivity.this).dismiss();
                 List<SchoolListBean.DataBean> data = schoolListBean.getData();
                 for (int i = 0; i < pois.size(); i++) {
                     String schooleName = pois.get(i).getTitle();
                     LogUtils.d("------>"+schooleName);
                     for (int i1 = 0; i1 < data.size(); i1++) {
                         if (data.get(i1).getName().equals(schooleName)){
-                            list.add(data.get(i1).getName());
+                            SchoolListBean.DataBean dataBean = data.get(i1);
+                            list.add(dataBean);
                         }
                     }
                 }
                 adapter.setSchoolData(list);
             }
         });
+
     }
 
 

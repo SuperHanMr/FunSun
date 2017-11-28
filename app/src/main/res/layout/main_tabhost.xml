@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:paddingTop="7dp"
+    android:paddingBottom="5dp"
+    android:gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/ivTabhost"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20px"
+        android:textColor="@drawable/tab_txt_selector"
+        android:id="@+id/tvTabhost"
+        />
+</LinearLayout>

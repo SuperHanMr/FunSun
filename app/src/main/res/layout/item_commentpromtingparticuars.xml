@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
+        android:textColor="@color/colorbTextGary"
         android:id="@+id/item_commentariespomting_time"
         android:layout_gravity="center_horizontal"
         android:text="多少多少时间前"
@@ -27,7 +28,7 @@
 
         <com.zhy.autolayout.AutoLinearLayout
             android:orientation="vertical"
-            android:layout_marginTop="10px"
+            android:layout_marginTop="15px"
             android:layout_marginLeft="15px"
             android:layout_toRightOf="@+id/item_commentariespomting_head"
             android:layout_width="match_parent"
@@ -42,6 +43,8 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:layout_marginLeft="4px"
+                android:layout_marginTop="6px"
                 android:id="@+id/item_commentariespomting_pinglun_user"
                 android:textColor="@color/colorbMessageText"
                 android:textSize="25px"
@@ -50,15 +53,15 @@
                 android:layout_height="wrap_content" />
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_marginTop="10px"
+
             android:padding="30px"
-            android:background="@drawable/message_qipao"
+            android:background="@mipmap/message_qipao"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_marginTop="50px"
+                android:layout_marginTop="30px"
                 android:id="@+id/item_commentariespomting_context"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,6 +83,7 @@
                     android:layout_height="40px" />
 
                 <TextView
+                    android:id="@+id/item_commentariespomting_user_name"
                     android:textColor="@color/colorbText"
                     android:layout_alignBottom="@+id/item_commentariespomting_user_head"
                     android:textSize="25px"
@@ -91,6 +95,7 @@
 
 
                 <TextView
+                    android:id="@+id/item_commentariespomting_user_content"
                     android:textSize="25px"
                     android:textColor="@color/colorbText"
                     android:singleLine="true"

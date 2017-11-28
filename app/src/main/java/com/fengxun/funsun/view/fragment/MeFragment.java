@@ -3,6 +3,7 @@ package com.fengxun.funsun.view.fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +21,25 @@ import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.InspectionPhoneUtils;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
+import com.fengxun.funsun.utils.TimeUtils;
 import com.fengxun.funsun.view.activity.CommentariesPromtingActivity;
 import com.fengxun.funsun.view.activity.SttingActivity;
+import com.fengxun.funsun.view.activity.SystemPromtingActivity;
 import com.fengxun.funsun.view.activity.ToViewPromtingActivity;
+import com.fengxun.funsun.view.adapter.SystemPormtingAdapter;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.views.BlurBitmap;
+import com.fengxun.funsun.view.views.BlurTransformation;
+import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.lzy.okgo.callback.BitmapCallback;
 import com.lzy.okgo.model.HttpParams;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -53,7 +64,7 @@ public class MeFragment extends BaseFragment {
     @BindView(R.id.fragment_me_iv_head)
     CircleImageView fragmentMeIvHead;
     @BindView(R.id.fragment_me_ll)
-    LinearLayout fragmentMeLl;
+    AutoRelativeLayout fragmentMeLl;
     @BindView(R.id.fragment_me_tv_name)
     TextView fragmentMeTvName;
     @BindView(R.id.fragment_me_iv_age)
@@ -90,45 +101,67 @@ public class MeFragment extends BaseFragment {
     }
 
 
+    /*
+      拿到图片 下载本地 处理图片模糊
+     */
     @Override
     protected void initView() {
-
-        NetworkReuset.getInstance().GetBitmap(SPUtils.getString(KEY.KEY_USERHEAD), new BitmapCallback() {
-            @Override
-            public void onSuccess(Bitmap bitmap, Call call, Response response) {
-                fragmentMeIvHead.setImageBitmap(bitmap);
-                Bitmap blur = BlurBitmap.blur(getContext(), bitmap);
-                fragmentMeLl.setBackground(new BitmapDrawable(blur));
-            }
-        });
+        Picasso.with(getContext()).load(SPUtils.getString(KEY.KEY_USERHEAD)).into(mTarget);
+        Picasso.with(getContext()).load(SPUtils.getString(KEY.KEY_USERHEAD)).into(fragmentMeIvHead);
         fragmentMeTvName.setText(SPUtils.getString(KEY.KEY_USERNAME));
         fragmentMeIvAge.setImageResource(SPUtils.getInt(KEY.KEY_USERGENDER) == 1 ? R.drawable.male_h : R.drawable.female_h);
         fragmentMeTvSchllo.setText(SPUtils.getString(KEY.KEY_USERSCHOOL));
 
-
-
     }
 
+    private Target mTarget = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            Bitmap blur = BlurBitmap.blur(getContext(), bitmap);
+            fragmentMeLl.setBackground(new BitmapDrawable(blur));
+        }
 
-    /*
-    这里设置个人中心
-    拿到图片 下载本地 处理图片模糊
-     */
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+        }
+    };
+
     @Override
     public void NetworkData() {
+        /*
+        加载进度条
+         */
         HttpParams params = new HttpParams();
         params.put("friend_id_list", "");
-        NetworkReuset.getInstance().GetReuset(RequestUrl.MESSAGELIST, params, new onCallBack<MeCenterMessageBean>(this) {
-
+        NetworkReuset.getInstance().getMeReuset(RequestUrl.MESSAGELIST, params, new onCallBack<MeCenterMessageBean>(this) {
             @Override
             public void onSucceed(MeCenterMessageBean meCenterMessageBean, Call call, String string) {
                 List<MeCenterMessageBean.DataBean> data = meCenterMessageBean.getData();
-                /*
-                TextView 小红点没有写 需要根据返回的值 去判断小红点是否显示
-                 */
                 systemMeassageItem(data.get(0).getSystem_data());
                 commentMeassageItem(data.get(0).getComment_data());
                 vistiMeassageItem(data.get(0).getVisit_data());
+                LogUtils.e("有网啦，正常网络");
+            }
+
+            /*
+            如果没有网络 会走缓存回调
+             */
+
+            @Override
+            public void onCacheSuccess(MeCenterMessageBean meCenterMessageBean, Call call) {
+                super.onCacheSuccess(meCenterMessageBean, call);
+                List<MeCenterMessageBean.DataBean> data = meCenterMessageBean.getData();
+                systemMeassageItem(data.get(0).getSystem_data());
+                commentMeassageItem(data.get(0).getComment_data());
+                vistiMeassageItem(data.get(0).getVisit_data());
+                LogUtils.e("没网啦，走本地缓存");
+
             }
         });
 
@@ -136,27 +169,46 @@ public class MeFragment extends BaseFragment {
 
 
     private void vistiMeassageItem(MeCenterMessageBean.DataBean.VisitDataBean visit_data) {
+        if (visit_data.getIs_update().equals("1")){
+            itemToviewMessageTishi.setVisibility(View.VISIBLE);
+        }
+
         if (!visit_data.getContent().equals("")){
-            int timestamp = (int) visit_data.getTimestamp(); // 时间戳 转换成 刚刚几分钟前
             itemToviewMessage.setText(visit_data.getContent());
-            itemToviewMessageTime.setText(InspectionPhoneUtils.getStandardDate(timestamp+""));
+            String timestamp = visit_data.getTimestamp();
+            String intNumber = timestamp.substring(0,timestamp.indexOf("."));
+            itemToviewMessageTime.setText(TimeUtils.getTimeFormatText(intNumber));
+
         }
     }
 
     private void commentMeassageItem(MeCenterMessageBean.DataBean.CommentDataBean comment_data) {
+        if (comment_data.getIs_update().equals("1")){
+            itemPinglunMessageTishi.setVisibility(View.VISIBLE);
+        }
+
+
+
         if (!comment_data.getContent().equals("")){
-            int timestamp = (int) comment_data.getTimestamp();
             itemPinglunMessage.setText(comment_data.getContent());
-            itemPinglunMessageTime.setText(InspectionPhoneUtils.getStandardDate(String.valueOf(timestamp)));
+            String timestamp = comment_data.getTimestamp();
+            String intNumber = timestamp.substring(0,timestamp.indexOf("."));
+            itemPinglunMessageTime.setText(TimeUtils.getTimeFormatText(String.valueOf(intNumber)));
         }
 
     }
 
     private void systemMeassageItem( MeCenterMessageBean.DataBean.SystemDataBean system_data) {
+
+        if (system_data.getIs_update().equals("1")){
+            itemSystemMessageTishi.setVisibility(View.VISIBLE);
+        }
+
         if (!system_data.getContent().equals("")){
             String timestamp = system_data.getTimestamp();
             itemSystemMessage.setText(system_data.getContent());
-//            itemSystemMessageTime.setText(timestamp);
+            String intNumber = timestamp.substring(0,timestamp.indexOf("."));
+            itemPinglunMessageTime.setText(TimeUtils.getTimeFormatText(String.valueOf(intNumber)));
         }
     }
 
@@ -174,8 +226,11 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.fragment_me_ll_face:
                 break;
+
             case R.id.fragment_me_rl_system:
+                getContext().startActivity(new Intent(getContext(), SystemPromtingActivity.class));
                 break;
+
             case R.id.fragment_me_rl_pinglun:
                 getContext().startActivity(new Intent(getContext(), CommentariesPromtingActivity.class));
                 break;

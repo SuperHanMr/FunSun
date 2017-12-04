@@ -58,7 +58,7 @@ import okhttp3.Call;
  * 程序员：韩永辉
  * 创建日期：on 2017/11/300.
  * Holle Android
- * 内容：播放视频类
+ * 内容：播放视频类 测试
  */
 
 public class VideoPlayerActivity extends AppCompatActivity implements TextView.OnEditorActionListener, CompoundButton.OnCheckedChangeListener {

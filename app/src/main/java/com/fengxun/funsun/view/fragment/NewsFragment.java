@@ -44,7 +44,7 @@ public class NewsFragment extends BaseFragment {
     SlidingTabLayout tabSildingtab;
 
 
-    private String[] titles = {"国内", "北京", "短视频▼", "全球", "国内"};
+    private String[] titles = {"国内", "北京", "短视频▼", "全球", "国外"};
 
     @Override
     protected int getLayoutId() {
@@ -73,8 +73,6 @@ public class NewsFragment extends BaseFragment {
         NewFragmentViewPagerAdapter adapter = new NewFragmentViewPagerAdapter(getChildFragmentManager(), fragments, titles);
         newsViewpager.setAdapter(adapter);
         tabSildingtab.setViewPager(newsViewpager);
-
-
 
     }
 

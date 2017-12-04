@@ -44,6 +44,9 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="19d463b496b38ab65968c081b58b92d3"/>
+
+
+
         <!--注册Activity-->
         <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask"  >
             <intent-filter>
@@ -68,6 +71,12 @@
         <activity android:name=".view.activity.ToviewPromtingParticuarsActivity"/>
         <activity android:name=".view.activity.SystemPromtingActivity"/>
         <activity android:name=".view.activity.BlackListActivity"/>
+        <!--视频播放器-->
+        <activity
+            android:name=".view.activity.VideoPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
         <!--注册服务-->
         <service android:name="com.amap.api.location.APSService"></service>
 

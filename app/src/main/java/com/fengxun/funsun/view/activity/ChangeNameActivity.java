@@ -50,6 +50,8 @@ public class ChangeNameActivity extends BaseActivity {
         return R.color.colorbWhite;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

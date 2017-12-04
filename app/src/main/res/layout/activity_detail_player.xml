@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_detail_player"
+    android:layout_width="match_parent"
+    android:background="@color/colorbBlack"
+    android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/post_detail_nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:paddingRight="30px"
+            android:paddingLeft="30px"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--占位-->
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="400px"/>
+
+            <!--写UI布局 视频信息以及 视频title 视频弹幕 -->
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_marginTop="20px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/video_user_head"
+                        android:layout_width="50px"
+                        android:src="@drawable/pinglun_message"
+                        android:layout_height="50px" />
+
+
+                    <TextView
+                        android:id="@+id/video_user_tv_name"
+                        android:textSize="23px"
+                        android:textColor="@color/colorbWhite"
+                        android:layout_marginLeft="8px"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/video_user_head"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="视频用户名"
+                        />
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <TextView
+                android:id="@+id/video_user_tv_title"
+                android:layout_marginTop="35px"
+                android:layout_marginLeft="2px"
+                android:textColor="@color/colorbWhite"
+                android:text="我是标题我是标题我是标题我是标题我是标题我是标题"
+                android:textSize="33px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="10px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/video_user_tv_time"
+                    android:layout_marginLeft="5px"
+                    android:textColor="@color/colorbWhite"
+                    android:text="一天以前"
+                    android:textSize="23px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:layout_marginLeft="10px"
+                    android:textColor="@color/colorbWhite"
+                    android:textSize="23px"
+                    android:text="视频转载自网络，如有侵权联系删除"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_marginTop="30px"
+                android:layout_marginLeft="2px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <include layout="@layout/roots_layout"/>
+                <include layout="@layout/roots_layout2"/>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <!--弹幕-->
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <com.fengxun.funsun.view.views.barrage.BarrageView
+
+                android:id="@+id/video_user_barrage"
+                android:layout_width="match_parent"
+                android:layout_height="450px"
+                android:layout_marginTop="10px"
+                app:allow_repeat="true"
+                app:line_height="20dp"
+                app:max_text_size="20"
+                app:min_text_size="14"
+                app:random_color="true">
+            </com.fengxun.funsun.view.views.barrage.BarrageView>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/comment_layout"/>
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <com.fengxun.funsun.view.views.video.LandLayoutVideo
+        android:id="@+id/detail_player"
+        android:layout_width="match_parent"
+        android:layout_height="400px" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

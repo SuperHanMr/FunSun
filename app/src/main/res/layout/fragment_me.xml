@@ -328,6 +328,8 @@
                             </com.zhy.autolayout.AutoRelativeLayout>
 
                             <TextView
+                                android:singleLine="true"
+                                android:lines="1"
                                 android:id="@+id/item_pinglun_message"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -408,7 +410,10 @@
                                     android:textSize="28px" />
                             </com.zhy.autolayout.AutoRelativeLayout>
 
+
                             <TextView
+                                android:singleLine="true"
+                                android:lines="1"
                                 android:id="@+id/item_toview_message"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

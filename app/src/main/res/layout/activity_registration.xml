@@ -39,7 +39,6 @@
             android:layout_height="110px">
 
         <RadioButton
-
             android:text="男"
             android:layout_marginRight="40px"
             android:background="@drawable/selector_btn_gender"

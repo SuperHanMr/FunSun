@@ -27,7 +27,8 @@ import okhttp3.Call;
  * 程序员：韩永辉
  * 创建日期：on 2017/11/3.
  * Holle Android
- */
+ * 校园 大事件 小故事 以及拍摄短视频
+ **/
 
 public class CampusFragment extends BaseFragment {
 

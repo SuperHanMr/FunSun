@@ -8,7 +8,10 @@ import android.widget.TextView;
 
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.HeadlinesBean;
+import com.fengxun.funsun.model.bean.VideoInfoBean;
+import com.fengxun.funsun.model.listener.NewItemListener;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.TimeUtils;
 import com.fengxun.funsun.view.base.MultiBaseAdapter;
@@ -133,6 +136,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
 
 
     /*
+    点击Item 跳转详情
+     */
+    private NewItemListener listener;
+    public void setNewItemListenet(NewItemListener listenet){
+        this.listener = listenet;
+    }
+
+
+    /*
     ===============================设置数据================================
      */
 
@@ -203,6 +215,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         if (!data.getComment_relation().equals("")){
             holder.setText(R.id.comment_tv_zuire,data.getComment_relation());
         }
+
     }
 
     /*
@@ -276,7 +289,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     /*
     第二种 视频大图 标题item
      */
-    private void setType2ItemData(ViewHolder holder, HeadlinesBean.DataBean data) {
+    private void setType2ItemData(ViewHolder holder, final HeadlinesBean.DataBean data) {
 
         /*
         背景圆角大图
@@ -338,15 +351,31 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         holder.setText(R.id.new_item_type2_hottest_biaoqian_text,data.getComment_school());
         holder.setText(R.id.new_item_type2_comment,data.getComment());
 
+
         /*
         视频跳转
          */
         holder.setOnClickListener(R.id.new_type2_itemview, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int videoID = data.getVedio_info().getContent_id();
+                String cover = data.getVedio_info().getSchool_cover_img_url().get(0);
+                String vedio_url = data.getVedio_info().getVedio_url();
 
+                listener.OnVideoInfoListener(new VideoInfoBean(vedio_url,cover,videoID));
             }
         });
+
+
+        holder.setOnClickListener(R.id.new_item_comment_type2_icon, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.OnCommentContentListener("我是评论信息");
+            }
+        });
+
+
+
 
     }
 
@@ -371,6 +400,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             TextView tvTilet = holder.getView(R.id.new_item_type1_biaoti);
             tvTilet.setVisibility(View.GONE);
         }
+
 
         holder.setText(R.id.new_china_item_school,data.getContent_publish_user_nick());
         holder.setText(R.id.new_item_type1_time, TimeUtils.getTimeFormatText(String.valueOf(data.getContent_publish_time())));
@@ -416,6 +446,10 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         }
         holder.setText(R.id.hottest_biaoqian_text,data.getComment_school());
         holder.setText(R.id.new_item_type1_comment,data.getComment());
+
+
+
+
     }
 
 

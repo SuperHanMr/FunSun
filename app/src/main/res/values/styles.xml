@@ -68,4 +68,13 @@
 
 
 
+        <!-- collcet theme -->
+         <style name="collectChecBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+             <item name="android:button">@drawable/collect_selector</item>
+         </style>
+
+
+
+
+
 </resources>

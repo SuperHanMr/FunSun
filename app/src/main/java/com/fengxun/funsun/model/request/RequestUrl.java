@@ -69,6 +69,29 @@ public class RequestUrl {
     // 头条资讯
     public static final String HEADLINES = HTTP + "/content/v1/";
 
+    //帖子/视频详情信息
+    public static final String CONTENTDATA = HTTP+"/content/v1/{content_id}/";
+
+    //  提交评论
+    public static final String COMMENTCONTENT = HTTP+"/comment/v1/";
+
+    // 获取评论
+    public static final String GETCOMMENTCONTENT = HTTP+"/login_content_comment/v1/{content_id}/?type=all&limit=100&offset=1";
+
+
+    // 收藏趣闻
+    public static final String COLLECTTION = HTTP+"/content_action/v1/{content_id}/";
+
+    //取消收藏 参数collect_id
+    public static final String CANCELCOLLECTTION = HTTP+"/user_info_delete_collect/v1/";
+
+
+
+    //获取资讯相遇的人 接口整改 改成 给个头像的KEY 去设置头像
+    public static final String MEETTHEMAN = HTTP+"/content_relation/v1/{content_id}/?limit=100&offset=1";
+
+
+
 
 
 }

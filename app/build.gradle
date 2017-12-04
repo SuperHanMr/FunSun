@@ -73,4 +73,10 @@ dependencies {
     compile project(':refresh')
 
     compile 'com.android.support:multidex:1.0.0'
+
+
+    //基于BiliBiliIJKplayer 视频播放框架
+    compile 'com.shuyu:GSYVideoPlayer:2.1.1'
+
+
 }

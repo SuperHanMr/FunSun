@@ -38,6 +38,12 @@ public abstract class BaseNewFragmnet extends Fragment {
     //Fragment对用户可见的标记
     private boolean isUIVisible;
 
+    // 视频信息
+    public static final String VIDEOINFO = "videoinfo";
+
+    //帖子信息
+    public static final String POSTINFO = "postinfo";
+
 
     @Nullable
     @Override
@@ -87,10 +93,9 @@ public abstract class BaseNewFragmnet extends Fragment {
             //数据加载完毕,恢复标记,防止重复加载
             isViewCreated = false;
             isUIVisible = false;
-
-
         }
     }
+
 
     protected abstract void loadData();
     protected abstract void initView(RecyclerView views, ParallaxPtrFrameLayout baseNewfragment);

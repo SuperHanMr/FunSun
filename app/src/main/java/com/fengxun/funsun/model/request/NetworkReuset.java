@@ -203,4 +203,69 @@ public class NetworkReuset {
     }
 
 
+
+    /*
+    请求 视频详情信息
+
+     */
+    public void getVideoData(String contentId,onCallBack callBack){
+        String URL = RequestUrl.CONTENTDATA.replace("{content_id}",contentId);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(callBack);
+    }
+
+
+
+
+    /*
+    请求 评论
+     */
+    public void getCommentContent(String contentId,onCallBack onCallBack){
+        String URL = RequestUrl.GETCOMMENTCONTENT.replace("{content_id}",contentId);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(onCallBack);
+    }
+
+
+
+    /*
+    添加收藏
+     */
+
+    public void addCollcettion(String contentId,HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.COLLECTTION.replace("{content_id}",contentId);
+        OkGo.post(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+
+
+    /*
+    取消收藏
+     */
+    public void cancelCollcetion(HttpParams params,onCallBack onCallBack){
+        OkGo.get(RequestUrl.CANCELCOLLECTTION)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+    }
+
+
+    /*
+    相遇的人
+     */
+
+    public void getMeetTheMan (String contentId,onCallBack onCallBack){
+        OkGo.get(RequestUrl.MEETTHEMAN.replace("{content_id}",contentId))
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(onCallBack);
+
+    }
+
+
 }

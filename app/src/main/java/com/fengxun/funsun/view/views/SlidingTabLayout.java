@@ -733,8 +733,8 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
         return tv_tab_title;
     }
 
-    //setter and getter
 
+    //setter and getter
     // show MsgTipView
     private Paint mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private SparseArray<Boolean> mInitSetMap = new SparseArray<>();
@@ -779,7 +779,6 @@ public class SlidingTabLayout extends HorizontalScrollView implements ViewPager.
             // 覆写destroyItem并且空实现,这样每个Fragment中的视图就不会被销毁
             // super.destroyItem(container, position, object);
         }
-
         @Override
         public int getItemPosition(Object object) {
             return PagerAdapter.POSITION_NONE;

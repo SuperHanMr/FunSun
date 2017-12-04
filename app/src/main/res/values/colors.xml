@@ -23,6 +23,7 @@
     <color name="colorhuangse">#F6A224</color>
     <color name="colorNewItemBg">#F8F9F9</color>
     <color name="colorTuijian">#F55064</color>
+    <color name="black">#fff</color>
 
 
 </resources>

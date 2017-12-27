@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 
 import com.fengxun.funsun.model.listener.OnLoadMoreListener;
+import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.Util;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     protected Context mContext;
     protected List<T> mDatas;
     private boolean mOpenLoadMore;//是否开启加载更多
-    private boolean isAutoLoadMore = true;//是否自动加载，当数据不满一屏幕会自动加载
+    private boolean isAutoLoadMore = false;//是否自动加载，当数据不满一屏幕会自动加载
 
     private boolean isRemoveEmptyView;
 
@@ -172,7 +173,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
                 }
             });
         }
-        startLoadMore(recyclerView, layoutManager);
+//        startLoadMore(recyclerView, layoutManager);
     }
 
 
@@ -187,10 +188,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             return;
         }
 
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     if (!isAutoLoadMore && findLastVisibleItemPosition(layoutManager) + 1 == getItemCount()) {
                         scrollLoadMore();
@@ -213,7 +216,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     /**
      * 到达底部开始刷新
      */
-    private void scrollLoadMore() {
+    protected void scrollLoadMore() {
         if (isReset) {
             return;
         }
@@ -280,9 +283,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             mDatas.addAll(0, datas);
             notifyDataSetChanged();
         }
-
-
     }
+
+
+
+
 
     /**
      * 初次加载、或下拉刷新要替换全部旧数据时刷新数据

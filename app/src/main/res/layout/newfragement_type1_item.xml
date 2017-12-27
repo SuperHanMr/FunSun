@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:id="@+id/new_type1_itemview"
+
     android:elevation="@dimen/new_item"
     android:background="@drawable/shape_newitem_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/new_type1_itemview"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="400px">
@@ -21,12 +22,13 @@
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="400px"
-            android:src="@drawable/imgs_bj"
+            android:src="@drawable/imgs"
             app:riv_mutate_background="true"
             app:riv_corner_radius_top_right="15px"
             app:riv_corner_radius_top_left="15px"
             app:riv_corner_radius_bottom_right="15px"
             app:riv_corner_radius_bottom_left="15px"/>
+
 
         <com.zhy.autolayout.AutoLinearLayout
             android:background="@drawable/yinying_bg_text"
@@ -180,6 +182,7 @@
     </com.zhy.autolayout.AutoLinearLayout>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/new_item_comment_type1_icon"
         android:layout_marginTop="335px"
         android:layout_marginRight="50px"

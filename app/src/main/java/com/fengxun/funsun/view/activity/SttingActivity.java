@@ -17,6 +17,7 @@ import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
+
 import com.fengxun.funsun.view.base.ActivityStack;
 import com.fengxun.funsun.view.base.BaseActivity;
 
@@ -120,8 +121,6 @@ public class SttingActivity extends BaseActivity {
                 break;
             case R.id.ac_stting_rl_huancun:
                 // TODO 清理缓存  acSttingTvHuancun
-
-             
 
                 break;
             case R.id.ac_stting_btn:

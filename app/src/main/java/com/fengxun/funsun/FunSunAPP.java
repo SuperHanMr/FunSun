@@ -2,14 +2,24 @@ package com.fengxun.funsun;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
 
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.request.LoggerInterceptor;
 import com.fengxun.funsun.utils.SPUtils;
+import com.fengxun.funsun.view.views.refresh.PullRefreshHeader;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.model.HttpHeaders;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreater;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreater;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 
 /**
  * 程序员：韩永辉
@@ -54,6 +64,25 @@ public class FunSunAPP extends Application {
 
 
        // CacheMode.IF_NONE_CACHE_REQUEST;// 如果缓存不在 再请求网络
+        SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
+            @NonNull
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                return new PullRefreshHeader(context);
+            }
+        });
+
+
+        SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
+            @NonNull
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                return new ClassicsFooter(context).setPrimaryColor(getResources().getColor(R.color.colorbWhite));
+            }
+        });
+
+
+
     }
 
 

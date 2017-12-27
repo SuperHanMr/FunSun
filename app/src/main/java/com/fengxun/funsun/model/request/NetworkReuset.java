@@ -22,15 +22,16 @@ public class NetworkReuset {
 
 
     /*
-    五种缓存模式
-        1.) 无缓存模式 CacheMode.NO_CACHE
-        2.) 默认缓存模式,遵循304头 CacheMode.DEFAULT
-        3.) 请求网络失败后读取缓存 CacheMode.REQUEST_FAILED_READ_CACHE
-        4.) 如果缓存不存在才请求网络，否则使用缓存 CacheMode.IF_NONE_CACHE_REQUEST
-        5.) 先使用缓存，不管是否存在，仍然请求网络 CacheMode.FIRST_CACHE_THEN_REQUEST
+        五种缓存模式
+        1. 无缓存模式 CacheMode.NO_CACHE
+        2. 默认缓存模式,遵循304头 CacheMode.DEFAULT
+        3. 请求网络失败后读取缓存 CacheMode.REQUEST_FAILED_READ_CACHE
+        4. 如果缓存不存在才请求网络，否则使用缓存 CacheMode.IF_NONE_CACHE_REQUEST
+        5. 先使用缓存，不管是否存在，仍然请求网络 CacheMode.FIRST_CACHE_THEN_REQUEST
      */
 
     private static NetworkReuset  instance = null;
+
 
     public static synchronized NetworkReuset getInstance(){
         if (instance==null){
@@ -268,4 +269,144 @@ public class NetworkReuset {
     }
 
 
+    /*
+    校园小故事
+     */
+    public void getCamPusStoriette(String schoolId,HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.CAMPUSSTORIETTE.replace("{school_id}",schoolId);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+    }
+
+
+    public void getCamPusEventbus(String school_id,HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.CAMPUSEVENTBUS.replace("{school_id}",school_id);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+    }
+
+    /*
+    friend_id (不可空)
+    source: 访问关系卡来源 1:达人榜 2:资讯
+    content_id: 资讯ID source为2时必须存在
+
+     */
+
+    /*
+    user_id 查看用户的ID
+    page    分页-第几页
+
+     */
+    public void getRelationCard(String url,HttpParams params,onCallBack onCallBack){
+
+        OkGo.get(url)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+    }
+
+
+
+    public void getRecommend(onCallBack onCallBack){
+        String URL = RequestUrl.RECOMMENDSCHOOL;
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(onCallBack);
+
+    }
+
+    public void getHotSchool(onCallBack onCallBack){
+        String URL = RequestUrl.HOTSCHOOLE;
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(onCallBack);
+
+
+
+    }
+
+
+
+    public void getSchoolList(HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.SCHOOLELIST;
+
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+
+    public void getInformationData(String url,String contentId,onCallBack onCallBack){
+        String URL = url.replace("{content_id}",contentId);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .execute(onCallBack);
+
+    }
+
+    public void getPostAimNumber(String contentID,HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.POSTINFOAIM.replace("{content_id}",contentID);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+    /*
+    获取评论
+     */
+    public void getCommentData(String contentID,HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.GETCOMMENTDATA.replace("{content_id}",contentID);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+
+
+    /*
+    点赞或者踩
+     */
+    public void commentLike(String contentID,HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.COMMENTLIKE.replace("{comment_id}",contentID);
+        OkGo.post(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+
+    /*
+    兴趣溯源
+     */
+
+    public void getInteresRoost(HttpParams params,onCallBack onCallBack){
+        String URL = RequestUrl.ROOTSINTEREST;
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+    }
+
+
+    public void getCamPusXiaoGuShi(HttpParams params,onCallBack onCallBack){
+        String URl = RequestUrl.schoolInterRoorts;
+        OkGo.get(URl)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+    }
+
 }
+
+

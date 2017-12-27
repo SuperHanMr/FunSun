@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -18,6 +19,7 @@ import com.fengxun.funsun.R;
 import com.fengxun.funsun.utils.LogUtils;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.PtrUIHandler;
 import in.srain.cube.views.ptr.indicator.PtrIndicator;
 
@@ -27,7 +29,7 @@ import in.srain.cube.views.ptr.indicator.PtrIndicator;
  * Holle Android
  */
 
-public class LoadingHeader extends FrameLayout implements PtrUIHandler {
+public class LoadingHeader extends FrameLayout implements PtrUIHandler{
 
 
     ImageView mIvBack1;
@@ -62,6 +64,7 @@ public class LoadingHeader extends FrameLayout implements PtrUIHandler {
         mIvBack1 = (ImageView) findViewById(R.id.iv_background_1);
         mIvBack2 = (ImageView) findViewById(R.id.iv_background_2);
         mIvIcon = (ImageView) findViewById(R.id.iv_refresh_icon);
+
 
         mAnimationDrawable = (AnimationDrawable) mIvIcon.getDrawable();
         mBackAnim1 = AnimationUtils.loadAnimation(getContext(), R.anim.refresh_down_background_1);
@@ -135,6 +138,9 @@ public class LoadingHeader extends FrameLayout implements PtrUIHandler {
                 LogUtils.e("释放刷新刷新");
             }
         }
-
     }
+
+
+
+
 }

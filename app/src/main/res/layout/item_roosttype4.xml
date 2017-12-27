@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:elevation="@dimen/new_item"
+    android:background="@drawable/shape_newitem_bg"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/roots_type4_itemview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:paddingLeft="15px"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/shape_border"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/roots_item_type3_title"
+                android:layout_marginTop="10px"
+                android:textColor="@color/colorbText"
+                android:textSize="33px"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="我是标题我是标题我是标题我是标题我是标题我是标题我是标题？"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="15px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_weight="1"
+                    android:id="@+id/roots_item_type4_imagview1"
+                    android:layout_width="220px"
+                    android:layout_height="160px"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgs"
+                    app:riv_corner_radius_bottom_left="15px"
+                    app:riv_corner_radius_bottom_right="15px"
+                    app:riv_corner_radius_top_left="15px"
+                    app:riv_corner_radius_top_right="15px"
+                    app:riv_mutate_background="true" />
+
+                <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_marginLeft="15px"
+                    android:layout_weight="1"
+                    android:id="@+id/roots_item_type4_imagview2"
+                    android:layout_width="220px"
+                    android:layout_height="160px"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgs"
+                    app:riv_corner_radius_bottom_left="15px"
+                    app:riv_corner_radius_bottom_right="15px"
+                    app:riv_corner_radius_top_left="15px"
+                    app:riv_corner_radius_top_right="15px"
+                    app:riv_mutate_background="true" />
+
+
+                <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_marginRight="15px"
+                    android:layout_marginLeft="15px"
+                    android:layout_weight="1"
+                    android:id="@+id/roots_item_type4_imagview3"
+                    android:layout_width="220px"
+                    android:layout_height="160px"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/imgs"
+                    app:riv_corner_radius_bottom_left="15px"
+                    app:riv_corner_radius_bottom_right="15px"
+                    app:riv_corner_radius_top_left="15px"
+                    app:riv_corner_radius_top_right="15px"
+                    app:riv_mutate_background="true" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="10px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/roots_item_type4_recommend"
+                    android:layout_marginLeft="5px"
+                    android:paddingBottom="2px"
+                    android:paddingTop="2px"
+                    android:paddingRight="12px"
+                    android:paddingLeft="12px"
+                    android:textColor="@color/colorbWhite"
+                    android:background="@drawable/fenhong_biankuang"
+                    android:textSize="25px"
+                    android:text="推荐"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/roots_item_type4_tv_name"
+                    android:textSize="25px"
+                    android:layout_marginLeft="10px"
+                    android:text="快乐小太阳"
+                    android:textColor="@color/colorbTextGary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/roots_item_type4_tv_time"
+                    android:layout_marginLeft="10px"
+                    android:textColor="@color/colorbTextGary"
+                    android:textSize="25px"
+                    android:text="1分钟前"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_marginTop="10px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/roots_text_tag"/>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_marginTop="10px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/comment_user_info"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_marginRight="50px"
+        android:id="@+id/roots_item_type4_iv_btn"
+        android:layout_marginTop="260px"
+        android:layout_gravity="right"
+        android:src="@drawable/pinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</com.zhy.autolayout.AutoFrameLayout>

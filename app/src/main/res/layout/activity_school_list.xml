@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorbWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/tooblar_item"/>
+
+    <View
+        android:background="@color/colorbTextGary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <GridView
+
+        android:gravity="center"
+        android:layout_marginTop="20px"
+        android:numColumns="3"
+        android:id="@+id/ac_schoole_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </GridView>
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

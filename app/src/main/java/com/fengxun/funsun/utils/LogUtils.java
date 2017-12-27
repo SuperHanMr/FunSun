@@ -11,6 +11,8 @@ public class LogUtils {
     static String methodName;//方法名
     static int lineNumber;//行数
 
+    private static int LOG_MAXLENGTH = 2000;
+
 
     public static boolean isDebuggable() {
 
@@ -83,21 +85,18 @@ public class LogUtils {
 
 
     public static void e(String tag, String msg) {
-        if (tag == null || tag.length() == 0
-                || msg == null || msg.length() == 0)
-            return;
-
-        int segmentSize = 3 * 1024;
-        long length = msg.length();
-        if (length <= segmentSize ) {// 长度小于等于限制直接打印
-            Log.e(tag, msg);
-        }else {
-            while (msg.length() > segmentSize ) {// 循环分段打印日志
-                String logContent = msg.substring(0, segmentSize );
-                msg = msg.replace(logContent, "");
-                Log.e(tag, logContent);
+        int strLength = msg.length();
+        int start = 0;
+        int end = LOG_MAXLENGTH;
+        for (int i = 0; i < 100; i++) {
+            if (strLength > end) {
+                Log.e(tag + i, msg.substring(start, end));
+                start = end;
+                end = end + LOG_MAXLENGTH;
+            } else {
+                Log.e(tag + i, msg.substring(start, strLength));
+                break;
             }
-            Log.e(tag, msg);// 打印剩余日志
         }
     }
 

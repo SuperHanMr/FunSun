@@ -25,7 +25,23 @@ public class KEY {
     public static final String KEY_USERGENDER = "usergender";
     public static final String KEY_USERFUNSUNNUM = "funsunnum";
     public static final String KEY_USERTOKEN = "usertoken";
+    public static final String KEY_USERID = "userid";
+    public static final String KEY_USERSCHOOLID = "schollid";
+
 
     public static final String TAG = "============LOG=============";
+
+
+    public static final String KEY_VIDEOINFO = "videoinfo";
+
+    public static final String COMMENTID = "{content_id}";
+
+
+    public static final String KEY_SCHOOLID = "schoolid";
+
+    public static final String KEY_SCHOOLNAME = "schoolname";
+
+    public static final String KEY_ROOTSTAG = "rootstag";
+
 
 }

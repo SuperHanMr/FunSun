@@ -62,6 +62,19 @@ public class DisplayUtils {
         scaledDensity = metric.scaledDensity;
     }
 
+
+    /**
+     * 获取屏幕宽度
+     *
+     * @param activity activity
+     * @return 屏幕宽度
+     */
+    public static int getScreenWidth(Activity activity) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
+    }
+
     /**
      * 是否是横屏
      */

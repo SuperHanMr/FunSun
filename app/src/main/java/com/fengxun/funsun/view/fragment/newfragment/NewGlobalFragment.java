@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.HeadlinesBean;
+import com.fengxun.funsun.model.bean.RelationInfBean;
 import com.fengxun.funsun.model.bean.VideoInfoBean;
 import com.fengxun.funsun.model.listener.NewItemListener;
 import com.fengxun.funsun.model.listener.SpaceItemDecoration;
@@ -20,14 +21,21 @@ import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.ACache;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.ToastUtil;
+import com.fengxun.funsun.view.activity.InformationParticularsActivity;
+import com.fengxun.funsun.view.activity.RelationCalorieActivity;
 import com.fengxun.funsun.view.activity.VideoPlayerActivity;
 import com.fengxun.funsun.view.adapter.NewRecyclerViewAdapter;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
+import com.fengxun.funsun.view.views.EditTextDialog;
 import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.HttpParams;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +56,12 @@ import okhttp3.Response;
 public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListener {
 
     private List<HeadlinesBean.DataBean> list;
-    private ParallaxPtrFrameLayout baseNewfragment;
+    private RefreshLayout baseNewfragment;
     private NewRecyclerViewAdapter adapter;
-
 
     // 使用缓存
     private ACache aCache;
+    private EditTextDialog dialog;
 
 
     @Nullable
@@ -66,12 +74,7 @@ public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListene
     @Override
     protected void loadData() {
         LogUtils.e("/*====================自动刷新============*/");
-        baseNewfragment.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                baseNewfragment.autoRefresh();
-            }
-        },250);
+        baseNewfragment.autoRefresh();
     }
 
 
@@ -79,7 +82,7 @@ public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListene
         处理 每个模块
          */
     @Override
-    protected void initView(RecyclerView views, final ParallaxPtrFrameLayout baseNewfragment) {
+    protected void initView(RecyclerView views, final RefreshLayout baseNewfragment) {
 
         list = new ArrayList<>();
 
@@ -108,16 +111,19 @@ public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListene
         /*
         =====================下拉刷新====================
          */
-        baseNewfragment.setPullToRefresh(true);
-        baseNewfragment.disableWhenHorizontalMove(true);
+       baseNewfragment.setOnLoadmoreListener(new OnLoadmoreListener() {
+           @Override
+           public void onLoadmore(RefreshLayout refreshlayout) {
+               NetworkData(false);
+           }
+       });
 
-        baseNewfragment.setPtrHandler(new PtrDefaultHandler() {
+        baseNewfragment.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                NetworkData();
+            public void onRefresh(RefreshLayout refreshlayout) {
+                NetworkData(true);
             }
         });
-
 
         adapter.setNewItemListenet(this);
 
@@ -126,7 +132,7 @@ public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListene
     网络请求
     */
 
-    public void NetworkData() {
+    public void NetworkData(final boolean isRefresh) {
         LogUtils.e("请求网络");
         HttpParams params = new HttpParams();
         params.put("content_type", "foreign");
@@ -134,18 +140,32 @@ public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListene
             @Override
             public void onSucceed(HeadlinesBean headlinesBean, Call call, String string) {
                 List<HeadlinesBean.DataBean> data = headlinesBean.getData();
-                if (data.size() != 0) {
-                    adapter.setData(data);
-                    aCache.put("foreign", string);
+
+                if (isRefresh){
+                    if (data.size() != 0) {
+                        adapter.setData(data);
+                        aCache.put("foreign", string);
+                    }
+                    ToastUtil.massageToast(getContext(),data.size());
+                    baseNewfragment.finishRefresh();
+                }else {
+                    adapter.setLoadMoreData(data);
+                    baseNewfragment.finishLoadmore();
                 }
-                baseNewfragment.refreshComplete();
+
             }
             @Override
             public void onError(Call call, Response response, Exception e) {
                 super.onError(call, response, e);
-                baseNewfragment.refreshComplete();
+
+                if (isRefresh){
+                    baseNewfragment.finishRefresh();
+                }else {
+                    baseNewfragment.finishLoadmore();
+                }
+
                 //TODO 现在判断是死的 应该根据 状态吗判断失败原因 目前 只返回网络不好的错误
-//                new SuperHanDialog(getContext(), "似乎和互联网断开链接~").show();
+               new SuperHanDialog(getContext(), "似乎和互联网断开链接~").show();
             }
         });
     }
@@ -164,10 +184,34 @@ public class NewGlobalFragment extends BaseNewFragmnet implements NewItemListene
     @Override
     public void OnPostInfoListener(String postId, int type) {
 
+        Intent intent = new Intent(getContext(), InformationParticularsActivity.class);
+        intent.putExtra(BaseNewFragmnet.POSTINFO,postId);
+        getActivity().startActivity(intent);
+
+
     }
 
     @Override
-    public void OnCommentContentListener(String content) {
+    public void OnCommentContentListener(String contentId,String userId) {
 
+        dialog = new EditTextDialog(contentId, userId, new EditTextDialog.SendBackListener() {
+            @Override
+            public void sendBack() {
+                dialog.dismiss();
+                ToastUtil.showNormalToast(getContext(),"评论成功");
+            }
+        });
+        dialog.show(getFragmentManager(),"dialog");
+
+    }
+
+    @Override
+    public void onRelationListener(String userId, String contentId, int type) {
+        RelationInfBean bean = new RelationInfBean(type, userId, contentId);
+        Intent intent = new Intent(getContext(), RelationCalorieActivity.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable(BaseNewFragmnet.RELATION, bean);
+        intent.putExtras(mBundle);
+        getContext().startActivity(intent);
     }
 }

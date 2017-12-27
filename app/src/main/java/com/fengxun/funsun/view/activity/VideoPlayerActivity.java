@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,13 +23,16 @@ import com.fengxun.funsun.model.bean.GetCommentContentBean;
 import com.fengxun.funsun.model.bean.MeetTheManBean;
 import com.fengxun.funsun.model.bean.VideoBean;
 import com.fengxun.funsun.model.bean.VideoInfoBean;
+import com.fengxun.funsun.model.listener.OnVideoPlayerTime;
 import com.fengxun.funsun.model.listener.SampleListener;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.TimeUtils;
+import com.fengxun.funsun.utils.ToastUtil;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
+import com.fengxun.funsun.view.views.EmojiKeyboard;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.fengxun.funsun.view.views.barrage.Barrage;
 import com.fengxun.funsun.view.views.barrage.BarrageView;
@@ -43,15 +45,21 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer;
 import com.squareup.picasso.Picasso;
+import com.zhy.autolayout.AutoFrameLayout;
+import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.github.rockerhieu.emojicon.EmojiconEditText;
+import io.github.rockerhieu.emojicon.EmojiconGridFragment;
+import io.github.rockerhieu.emojicon.EmojiconsFragment;
+import io.github.rockerhieu.emojicon.emoji.Emojicon;
 import okhttp3.Call;
 
 /**
@@ -61,15 +69,16 @@ import okhttp3.Call;
  * 内容：播放视频类 测试
  */
 
-public class VideoPlayerActivity extends AppCompatActivity implements TextView.OnEditorActionListener, CompoundButton.OnCheckedChangeListener {
+public class VideoPlayerActivity extends AppCompatActivity implements TextView.OnEditorActionListener, CompoundButton.OnCheckedChangeListener, OnVideoPlayerTime
+,EmojiconGridFragment.OnEmojiconClickedListener, EmojiconsFragment.OnEmojiconBackspaceClickedListener{
 
     @BindView(R.id.post_detail_nested_scroll)
     NestedScrollView postDetailNestedScroll;
 
     @BindView(R.id.detail_player)
     LandLayoutVideo detailPlayer;
-    @BindView(R.id.activity_detail_player)
-    RelativeLayout activityDetailPlayer;
+    @BindView(R.id.video_ll)
+    AutoLinearLayout activityDetailPlayer;
 
 
     @BindView(R.id.video_user_head)
@@ -86,7 +95,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
      /*
       学校溯源
         */
-   CircleImageView roots1Head;
+            CircleImageView roots1Head;
     @BindView(R.id.roots1_school)
     TextView rootsSchoolName;
     @BindView(R.id.new_roots1)
@@ -115,7 +124,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     RadioButton commentIvRightRb; // 右边的吐槽 一进来选中
 
     @BindView(R.id.comment_iv_nomeet)
-    ImageView commentIvNomeet; // 如果有相遇的 就隐藏 默认显示
+    ImageView commentIvNomeet; // 如果就有相遇的 隐藏 默认显示
 
     @BindView(R.id.comment_iv_meet_head)
     CircleImageView commentIvMeetHead; //相遇的人头像
@@ -129,39 +138,37 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     @BindView(R.id.comment_rb) //左边右边评论按钮
             RadioGroup commentRb;
     @BindView(R.id.comment_ed_content)
-    EditText commentEdContent;
+    EmojiconEditText commentEdContent;
+    @BindView(R.id.ac_information_fragment)
+    AutoFrameLayout acInformationFragment;
+
 
     private int commentType;
-
-
     private boolean isPlay;
     private boolean isPause;
+
+
     /*
     视频旋转管理类
      */
-    private OrientationUtils orientationUtils;
 
+
+    private OrientationUtils orientationUtils;
     private List<Barrage> mBarrages = new ArrayList<>();
     private int videoId;
     private int content_publish_user_id;
     private SuperHanLoginDiglog diglog;
     private int collection;
+    private VideoBean.DataBean videoBeanData;
+    private TextView texZimu;
+    private EmojiKeyboard emojiKeyboard;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_player);
         ButterKnife.bind(this);
-        //断网自动重新链接，url前接上ijkhttphook:
-        //String url = "ijkhttphook:http://baobab.wdjcdn.com/14564977406580.mp4";
-        //如果视频帧数太高导致卡画面不同步
-        //VideoOptionModel videoOptionModel = new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 5);
-        //如果视频seek之后从头播放
-        //VideoOptionModel videoOptionModel = new VideoOptionModel(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);
-        //List<VideoOptionModel> list = new ArrayList<>();
-        //list.add(videoOptionModel);
-        //GSYVideoManager.instance().setOptionModelList(list);
-        //GSYVideoManager.instance().setTimeOut(4000, true);
 
         /*
         =======================获取跳转过来的视频信息=======================
@@ -182,6 +189,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         orientationUtils = new OrientationUtils(this, detailPlayer);
         //初始化不打开外部的旋转
         orientationUtils.setEnable(false);
+
+
 
 
 
@@ -211,28 +220,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
                         isPlay = true;
                     }
 
-                    @Override
-                    public void onEnterFullscreen(String url, Object... objects) {
-                        super.onEnterFullscreen(url, objects);
-                        Debuger.printfError("***** onEnterFullscreen **** " + objects[0]);//title
-                        Debuger.printfError("***** onEnterFullscreen **** " + objects[1]);//当前全屏player
-                    }
-
-                    @Override
-                    public void onAutoComplete(String url, Object... objects) {
-                        super.onAutoComplete(url, objects);
-                    }
-
-                    @Override
-                    public void onClickStartError(String url, Object... objects) {
-                        super.onClickStartError(url, objects);
-                    }
 
                     @Override
                     public void onQuitFullscreen(String url, Object... objects) {
                         super.onQuitFullscreen(url, objects);
-                        Debuger.printfError("***** onQuitFullscreen **** " + objects[0]);//title
-                        Debuger.printfError("***** onQuitFullscreen **** " + objects[1]);//当前非全屏player
+
                         if (orientationUtils != null) {
                             orientationUtils.backToProtVideo();
                         }
@@ -259,8 +251,31 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
             }
         });
 
+        /*
+        关闭播放器
+         */
+        detailPlayer.findViewById(R.id.video_iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        detailPlayer.findViewById(R.id.video_iv_jvbao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.showNormalToast(VideoPlayerActivity.this, "点击了举报");
+            }
+        });
+
+        texZimu = (TextView) detailPlayer.findViewById(R.id.video_zimu_text);
+
+        detailPlayer.setOnVideoPlayerTimeListener(this);
+
         detailPlayer.startPlayLogic();
 
+        emojiKeyboard = new EmojiKeyboard(this, commentEdContent, acInformationFragment, commentIvEmoji, activityDetailPlayer);
+        setEmojiconFragment(false);
 
         /*
         这里 联网请求视频详细信息
@@ -269,15 +284,60 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         NetworkReuset.getInstance().getVideoData(String.valueOf(videoId), new onCallBack<VideoBean>(this) {
             @Override
             public void onSucceed(VideoBean videoBean, Call call, String string) {
-                VideoBean.DataBean data = videoBean.getData();
-                content_publish_user_id = data.getContent_publish_user_id();
-                initView(data);
+                videoBeanData = videoBean.getData();
+                content_publish_user_id = videoBeanData.getContent_publish_user_id();
+                initView(videoBeanData);
             }
         });
 
+    }
 
 
+    /*
+    屏幕的点击事件
+     */
+    @OnClick({R.id.ac_video_zimufanyi, R.id.ac_video_zimu})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ac_video_zimufanyi:
 
+                break;
+            case R.id.ac_video_zimu:
+                break;
+        }
+    }
+
+       /*
+    播放时间 实时监听
+     */
+
+    @Override
+    public void onVideoPlayerTimeListener(int videoPlayerTime) {
+        VideoBean.DataBean.VedioWordZhCnBean vedioWordZhCn =
+                videoBeanData.getVedio_word_zh_cn();
+
+        if (vedioWordZhCn == null || videoBeanData == null) {
+            return;
+        }
+
+        List<Integer> beginTime = vedioWordZhCn.getBeginTime();
+        List<Integer> endTime = vedioWordZhCn.getEndTime();
+        List<String> text = vedioWordZhCn.getText();
+
+        for (int i = 0; i < beginTime.size(); i++) {
+            if (videoPlayerTime > beginTime.get(i) && videoPlayerTime < endTime.get(i)) {
+                texZimu.setText(text.get(i));
+
+                //TODO 这个位置 要做横屏字幕
+//                TextView textView = (TextView) detailPlayer.findViewById(R.id.video_tv_hengxiang);
+//                if (textView!=null){
+//                    textView.setText(text.get(i));
+//                    LogUtils.e(textView.getText().toString());
+//                }
+//                LogUtils.e(textView+"****");
+
+            }
+        }
 
     }
 
@@ -311,7 +371,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
 
 
         } else {
-
             newRoots1.setVisibility(View.VISIBLE);
             newRoots2.setVisibility(View.GONE);
             Picasso.with(this).load(data.getContent_root_tag_img()).into(roots1Head);
@@ -319,13 +378,13 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         }
 
         commentIvRightRb.setChecked(true);
+
         commentRb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.comment_iv_left_rb:
                         commentType = 1;
-                        LogUtils.e(KEY.TAG+"");
                         break;
                     case R.id.comment_iv_right_rb:
                         commentType = 0;
@@ -341,9 +400,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         commentIvCollect.setOnCheckedChangeListener(this);
 
         collection = data.getIs_collection();
-        if (collection ==0){
+        if (collection == 0) {
             commentIvCollect.setChecked(false);
-        }else {
+        } else {
             commentIvCollect.setChecked(true);
         }
 
@@ -371,16 +430,14 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
             @Override
             public void onSucceed(MeetTheManBean meetTheManBean, Call call, String string) {
                 List<MeetTheManBean.DataBean> data1 = meetTheManBean.getData();
-                if (data1.size()!=0){
+                if (data1.size() != 0) {
                     MeetTheManBean.DataBean dataBean = data1.get(0);
                     String user_avatar = dataBean.getUser_avatar();
                     commentIvNomeet.setVisibility(View.GONE);
                     commentRlMeet.setVisibility(View.VISIBLE);
                     Picasso.with(VideoPlayerActivity.this).load(user_avatar).into(commentIvMeetHead);
                     //TODO
-
-                }else {
-
+                } else {
                     commentIvNomeet.setVisibility(View.VISIBLE);
                     commentRlMeet.setVisibility(View.GONE);
                 }
@@ -388,10 +445,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         });
 
 
-
-
     }
-
 
 
     /*
@@ -399,7 +453,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         */
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId== EditorInfo.IME_ACTION_SEND){
+        if (actionId == EditorInfo.IME_ACTION_SEND) {
             String content = commentEdContent.getText().toString().trim();
             sendCommentContent(content);
             diglog.show();
@@ -414,22 +468,20 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
      */
     private void sendCommentContent(final String content) {
         HttpParams params = new HttpParams();
-        params.put("is_first",1);
-        params.put("content_id",videoId);
-        params.put("comment_direction",commentType);
-        LogUtils.e(KEY.TAG+commentType);
-        params.put("comment_content",content);
-        params.put("content_publish_user_id",content_publish_user_id);
+        params.put("is_first", 1);
+        params.put("content_id", videoId);
+        params.put("comment_direction", commentType);
+        params.put("comment_content", content);
+        params.put("content_publish_user_id", content_publish_user_id);
         NetworkReuset.getInstance().PostReuset(RequestUrl.COMMENTCONTENT, params, new onCallBack<CommentContentBean>(this) {
             @Override
             public void onSucceed(CommentContentBean commentContentBean, Call call, String string) {
                 /*
                 评论 commentContentBean
                  */
-                if (commentContentBean.getCode()==200){
-                    videoUserBarrage.addBarrage(new Barrage(content,commentType));
+                if (commentContentBean.getCode() == 200) {
+                    videoUserBarrage.addBarrage(new Barrage(content, commentType));
                     commentEdContent.setText("");
-
                 }
                 diglog.dismiss();
 
@@ -454,6 +506,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         if (StandardGSYVideoPlayer.backFromWindowFull(this)) {
             return;
         }
+
+        if (!emojiKeyboard.interceptBackPress()) {
+            super.onBackPressed();
+        }
         super.onBackPressed();
     }
 
@@ -470,6 +526,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         getCurPlay().onVideoResume();
         super.onResume();
         isPause = false;
+
+
     }
 
     @Override
@@ -511,29 +569,49 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
         HttpParams params = new HttpParams();
-        LogUtils.e(KEY.TAG+isChecked);
-            if (!isChecked){
-                params.clear();
-                params.put("content_id",videoId);
-                NetworkReuset.getInstance().cancelCollcetion(params, new onCallBack(this) {
-                    @Override
-                    public void onSucceed(Object o, Call call, String string) {
-                    }
-                });
+        LogUtils.e(KEY.TAG + isChecked);
+        if (!isChecked) {
+            params.clear();
+            params.put("content_id", videoId);
+            NetworkReuset.getInstance().cancelCollcetion(params, new onCallBack(this) {
+                @Override
+                public void onSucceed(Object o, Call call, String string) {
+                }
+            });
 
-
-            }else {
-                params.clear();
-                params.put("action","collect");
-                NetworkReuset.getInstance().addCollcettion(String.valueOf(videoId), params, new onCallBack(this) {
-                    @Override
-                    public void onSucceed(Object o, Call call, String string) {
-                    }
-                });
-
-
-            }
+        } else {
+            params.clear();
+            params.put("action", "collect");
+            NetworkReuset.getInstance().addCollcettion(String.valueOf(videoId), params, new onCallBack(this) {
+                @Override
+                public void onSucceed(Object o, Call call, String string) {
+                }
+            });
+        }
     }
+
+
+    private void setEmojiconFragment(boolean useSystemDefault) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.ac_information_fragment, EmojiconsFragment.newInstance(useSystemDefault))
+                .commit();
+
+    }
+
+
+    @Override
+    public void onEmojiconClicked(Emojicon emojicon) {
+        EmojiconsFragment.input(commentEdContent, emojicon);
+    }
+
+
+    @Override
+    public void onEmojiconBackspaceClicked(View v) {
+        EmojiconsFragment.backspace(commentEdContent);
+    }
+
+
 }
 
 

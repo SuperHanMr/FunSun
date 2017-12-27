@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:background="@color/colorBooblar"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/zhangtailan" />
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:background="@color/colorBooblar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/campus_tv_school_name"
+                android:textSize="38px"
+                android:textColor="@color/colorbWhite"
+                android:text="郑州大学"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_marginRight="30px"
+                android:layout_gravity="right"
+                android:textColor="@color/colorbWhite"
+                android:textSize="38px"
+                android:text="逛校园"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+            <ImageView
+                android:src="@drawable/guangyiguang"
+                android:layout_marginRight="10px"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+    </com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout>
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
+
+<!--
+
+ <com.zhy.autolayout.AutoFrameLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoLinearLayout
+
+            android:layout_marginTop="5px"
+            android:orientation="vertical"
+            android:background="@drawable/shape_border"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/campus_vp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="80px"></android.support.v4.view.ViewPager>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/huangse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <com.fengxun.funsun.view.views.SlidingTabLayout
+                android:id="@+id/campus_tab"
+                android:layout_marginTop="20px"
+                android:layout_marginLeft="40px"
+                android:layout_marginBottom="10px"
+                android:layout_marginRight="20px"
+                tl:tl_textSelectColor="#000"
+                tl:tl_textUnselectColor="#fff"
+                tl:tl_indicator_color="#000"
+                tl:tl_indicator_corner_radius="1.5dp"
+                tl:tl_indicator_height="5dp"
+                tl:tl_indicator_width="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </com.fengxun.funsun.view.views.SlidingTabLayout>
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoFrameLayout>
+-->

@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout
+<com.zhy.autolayout.AutoLinearLayout
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_detail_player"
     android:layout_width="match_parent"
-    android:background="@color/colorbBlack"
     android:layout_height="match_parent">
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/video_ll"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:background="@color/colorbBlack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/post_detail_nested_scroll"
         android:layout_width="match_parent"
@@ -13,6 +30,7 @@
         android:fillViewport="true">
 
         <com.zhy.autolayout.AutoLinearLayout
+
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -39,6 +57,7 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/video_user_head"
+                        android:layout_centerVertical="true"
                         android:layout_width="50px"
                         android:src="@drawable/pinglun_message"
                         android:layout_height="50px" />
@@ -54,6 +73,42 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="视频用户名"
+                        />
+
+
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/ac_video_zimufanyi"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="5px"
+                        android:paddingTop="5px"
+                        android:paddingRight="15px"
+                        android:paddingLeft="15px"
+                        android:textSize="23px"
+                        android:textColor="@color/colorbWhite"
+                        android:text="字幕翻译"
+                        android:background="@drawable/zimufanyi_selector"
+                        android:layout_marginRight="20px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/ac_video_zimu"
+                        android:layout_marginRight="20px"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/ac_video_zimufanyi"
+                        android:paddingBottom="5px"
+                        android:paddingTop="5px"
+                        android:paddingRight="15px"
+                        android:paddingLeft="15px"
+                        android:textSize="23px"
+                        android:textColor="@color/colorbWhite"
+                        android:background="@drawable/shape_zimu_border"
+                        android:text="字幕"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
 
                 </com.zhy.autolayout.AutoRelativeLayout>
@@ -108,34 +163,49 @@
 
             </com.zhy.autolayout.AutoLinearLayout>
 
-
+                <!--height 450px-->
             <com.fengxun.funsun.view.views.barrage.BarrageView
-
                 android:id="@+id/video_user_barrage"
                 android:layout_width="match_parent"
-                android:layout_height="450px"
+                android:layout_height="162dp"
                 android:layout_marginTop="10px"
                 app:allow_repeat="true"
                 app:line_height="20dp"
                 app:max_text_size="20"
                 app:min_text_size="14"
                 app:random_color="true">
-            </com.fengxun.funsun.view.views.barrage.BarrageView>
 
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_weight="1"
-                android:layout_gravity="bottom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <include layout="@layout/comment_layout"/>
-            </com.zhy.autolayout.AutoRelativeLayout>
+            </com.fengxun.funsun.view.views.barrage.BarrageView>
         </com.zhy.autolayout.AutoLinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 
     <com.fengxun.funsun.view.views.video.LandLayoutVideo
         android:id="@+id/detail_player"
         android:layout_width="match_parent"
         android:layout_height="400px" />
 
-</com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/comment_layout" />
+
+        <!--这个位置装表情-->
+        <com.zhy.autolayout.AutoFrameLayout
+            android:visibility="gone"
+            android:id="@+id/ac_information_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.zhy.autolayout.AutoFrameLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

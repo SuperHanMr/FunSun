@@ -7,6 +7,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@drawable/fengexian</item>
     </style>
 
     <style name="tab_rb_style">
@@ -73,8 +74,29 @@
              <item name="android:button">@drawable/collect_selector</item>
          </style>
 
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="video_subtitles" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/zimufanyi_selector</item>
+        <item name="android:textColor">@drawable/text_zimu_selector</item>
+    </style>
 
 
 
+    <style name="BottomDialog" parent="@style/AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowSoftInputMode">stateAlwaysVisible</item><!--显示软件盘-->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+
+    <style name="TranslationCheckbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/ranslationcheckbox_selector</item>
+    </style>
+    
+    
 
 </resources>

@@ -33,7 +33,6 @@ import com.fengxun.funsun.view.fragment.LoginFragment;
 import com.fengxun.funsun.view.fragment.MeFragment;
 import com.fengxun.funsun.view.fragment.NewsFragment;
 import com.fengxun.funsun.view.views.NoSorollViewpager;
-import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -67,10 +66,14 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
 
 
+
     private void initView() {
         fragments = new ArrayList<>();
         fragments.add(new NewsFragment());
-        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment():new AroundCampusFragmnet());
+
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment(SPUtils.getString(KEY.KEY_USERSCHOOLID),
+                SPUtils.getString(KEY.KEY_USERSCHOOL),false):new AroundCampusFragmnet());
+
         LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"");
         fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeFragment(): new LoginFragment());
         mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
@@ -99,10 +102,6 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
 
 
-
-
-
-
     /*
         用EventBus 通知MainActivity 重新添加一次Fragment
      */
@@ -111,12 +110,14 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
         int mainActivityEventBus = bus.getMainActivityEventBus();
         fragments.clear();
         fragments.add(new NewsFragment());
-        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment():new AroundCampusFragmnet());
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment(SPUtils.getString(KEY.KEY_USERSCHOOLID),
+                SPUtils.getString(KEY.KEY_USERSCHOOL),false):new AroundCampusFragmnet());
         LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"");
         fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeFragment(): new LoginFragment());
         mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
         mianNoViewpager.setCurrentItem(mainActivityEventBus, false);
     }
+
 
     @Override
     protected void onDestroy() {

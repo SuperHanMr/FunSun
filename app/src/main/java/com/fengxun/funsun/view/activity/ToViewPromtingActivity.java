@@ -12,6 +12,9 @@ import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.view.adapter.ToViewPromitngAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 
 import java.util.List;
 
@@ -28,6 +31,9 @@ import okhttp3.Call;
 public class ToViewPromtingActivity extends BaseActivity {
     @BindView(R.id.toview_promting_recyclerview)
     RecyclerView toviewPromtingRecyclerview;
+    @BindView(R.id.ac_toview_refresh)
+    RefreshLayout acToviewRefresh;
+    private ToViewPromitngAdapter adapter;
 
 
     @Override
@@ -46,25 +52,47 @@ public class ToViewPromtingActivity extends BaseActivity {
         // TODO: add setContentView(...) invocation
         setStatusBarTextColocr();
         ButterKnife.bind(this);
-        setBarLeftIcon(true,R.drawable.dingbuback);
-        setTvTitle("查看提示",R.color.colorbBlack);
+        setBarLeftIcon(true, R.drawable.dingbuback);
+        setTvTitle("查看提示", R.color.colorbBlack);
         initViews();
+        NetworkData(true);
 
     }
 
     private void initViews() {
-        final ToViewPromitngAdapter adapter = new ToViewPromitngAdapter(this);
+        adapter = new ToViewPromitngAdapter(this);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         toviewPromtingRecyclerview.setLayoutManager(manager);
         toviewPromtingRecyclerview.setAdapter(adapter);
+        acToviewRefresh.setEnableAutoLoadmore(false);
+
+        acToviewRefresh.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                NetworkData(false);
+            }
+        });
+
+    }
+
+
+    private void NetworkData(final boolean isReresh){
 
         NetworkReuset.getInstance().getPromting(RequestUrl.TOVIEWPROMTING, new onCallBack<ToViewListBean>(this) {
             @Override
             public void onSucceed(ToViewListBean toViewListBean, Call call, String string) {
                 ToViewListBean.DataBeanX data = toViewListBean.getData();
                 List<ToViewListBean.DataBeanX.DataBean> mList = data.getData();
-                adapter.setData(mList);
+                if (isReresh){
+                    adapter.setData(mList);
+
+                }else {
+//                    adapter.setLoadData(mList);
+                    acToviewRefresh.finishLoadmore();
+                }
+
+
                 LogUtils.e("我是网络回调");
             }
 
@@ -77,7 +105,6 @@ public class ToViewPromtingActivity extends BaseActivity {
                 LogUtils.e("我是缓存回调");
             }
         });
-
     }
 
 

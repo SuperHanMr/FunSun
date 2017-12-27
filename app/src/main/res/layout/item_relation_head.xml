@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#fafafa"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:padding="40px"
+        android:background="@drawable/shape_newitem_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/relation_iv_head"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:src="@drawable/pinglun_message" />
+
+        <TextView
+            android:id="@+id/relation_school_name"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="10px"
+            android:textColor="@color/colorbText"
+            android:textSize="33px"
+            android:layout_toRightOf="@+id/relation_iv_head"
+            android:text="清华大学"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+            android:layout_marginBottom="5px"
+            android:textSize="25px"
+            android:textColor="@color/colorbTextGary"
+            android:id="@+id/relation_tv_name"
+            android:layout_marginLeft="15px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/relation_iv_head"
+
+            android:layout_toRightOf="@+id/relation_iv_head"
+            android:text="瀚哥哥" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="40px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:paddingTop="40px">
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_newitem_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/colorBooblar"
+                android:id="@+id/relation_tv_xingqu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20px"
+                android:text="无"
+                android:textSize="45px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="10px"
+                android:text="共同兴趣" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_newitem_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:textColor="@color/colorBooblar"
+                android:id="@+id/relation_tv_xiangyv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20px"
+                android:text="0"
+                android:textSize="45px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="10px"
+                android:text="相遇" />
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8px"
+        android:background="#f2f2f2" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+
+        android:layout_marginBottom="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="6px"
+            android:layout_height="50px"
+            android:layout_marginLeft="40px"
+            android:background="@color/colorBooblar" />
+
+        <TextView
+            android:textColor="@color/colorbText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20px"
+            android:text="Ta的语录"
+            android:textSize="33px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

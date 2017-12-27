@@ -1,7 +1,12 @@
 package com.fengxun.funsun.utils;
 
 import android.content.Context;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.fengxun.funsun.R;
 
 /**
  *
@@ -36,4 +41,21 @@ public class ToastUtil {
         }
         oneTime=twoTime;
     }
+
+
+    public static void massageToast(Context context,int num){
+        Toast toast = new Toast(context);
+        View layout = View.inflate(context, R.layout.massage_toast, null);
+        TextView textView = (TextView) layout.findViewById(R.id.toast_mun);
+        if (num==0){
+           textView.setText("趣闻消耗太快，我们正在开采");
+        }else {
+            textView.setText("发现"+num+"条新趣闻");
+        }
+        toast.setView(layout);
+        // 设置土司显示在屏幕的位置
+        toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.TOP, 0, 100);
+        toast.show();
+    }
+
 }

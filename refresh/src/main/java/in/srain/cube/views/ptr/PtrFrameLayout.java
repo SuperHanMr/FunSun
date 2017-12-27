@@ -262,6 +262,7 @@ public class PtrFrameLayout extends ViewGroup {
             if (isDebug()) {
                 PtrCLog.d(LOG_TAG, "onLayout content: %s %s %s %s", left, top, right, bottom);
             }
+
             mContent.layout(left, top, right, bottom);
         }
     }

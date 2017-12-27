@@ -39,9 +39,10 @@ import okhttp3.Call;
  * 程序员：韩永辉
  * 创建日期：on 2017/11/6.
  * Holle Android
- * 内容 填写基本信息
- * TODO：头像暂时不做 后面的话自定义拍照或者拍摄视频
- * TODO：残留问题 数据回显 如果当前Activity因内存不足销毁 该如何保存数据
+ *
+ * 内容 注册填写基本信息
+ * TODO：头像暂时不做 后面的话自定义拍照或者拍摄视频 待续...
+ * TODO：残留问题 数据回显 如果当前Activity因内存不足销毁 该如何保存数据?
  * 地理位置明天做 2017/11/8
  */
 
@@ -133,6 +134,7 @@ public class RegistrationActivity extends BaseActivity implements RadioGroup.OnC
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId) {
+
             case R.id.ac_registration_rb1:
                 sxt = String.valueOf(1);
                 break;

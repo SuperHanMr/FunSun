@@ -21,7 +21,7 @@ import java.util.List;
 public abstract class BasePromtingAdapter extends RecyclerView.Adapter<PromtingViewholder> {
 
 
-    private Context context;
+    public Context context;
 
     public BasePromtingAdapter(Context context) {
         this.context = context;

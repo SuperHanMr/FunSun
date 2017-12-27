@@ -72,6 +72,11 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
     @Override
     public void onError(Call call, Response response, Exception e) {
         super.onError(call, response, e);
+       if (response.code()==949){
+            ToastUtil.showNormalToast(activity,"登录失效");
+        }
+
+
 //        if (fragment!=null){
 //            //((BaseFragment)fragment).endNetworkData();
 //            fragment = null;
@@ -109,7 +114,6 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
 //                LogUtils.e(e1.toString());
 //            }
 //        }
-
     }
 
     @Override

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorbWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ac_information_ll"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/tooblar_item"/>
+    <include layout="@layout/view_line"/>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            app:srlEnableRefresh="false"
+            android:id="@+id/relation_refreshLayout"
+            app:srlEnableNestedScrolling="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:descendantFocusability="blocksDescendants"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoLinearLayout
+
+        android:id="@+id/ac_information_ll_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/ac_information_roots_rl"
+            android:layout_marginTop="30px"
+            android:paddingRight="30px"
+            android:paddingLeft="30px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/roots_layout"/>
+            <include layout="@layout/roots_layout2"/>
+        </RelativeLayout>
+
+
+        <!-- title标题 字体加粗-->
+        <TextView
+            android:paddingRight="30px"
+            android:paddingLeft="30px"
+            android:id="@+id/ac_information_tv_title"
+            android:textColor="@color/colorbText"
+            android:textSize="39px"
+            android:layout_marginTop="30px"
+            android:text="我是标题我是标题我是标题我是标题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:paddingRight="30px"
+            android:paddingLeft="30px"
+            android:layout_marginTop="30px"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ac_information_iv_head"
+                android:layout_width="50px"
+                android:src="@drawable/pinglun_message"
+                android:layout_height="50px" />
+
+            <TextView
+                android:id="@+id/ac_information_tv_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:text="丰讯小助手"
+                android:textColor="@color/colorbTextGary" />
+
+
+            <TextView
+                android:id="@+id/ac_information_tv_time"
+                android:layout_marginLeft="20px"
+                android:layout_gravity="center_vertical"
+                android:text="10小时前"
+                android:textColor="@color/colorbTextGary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:padding="30px"
+            android:background="@color/colorbWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <WebView
+                android:id="@+id/ac_information_webview"
+                android:layout_width="match_parent"
+                android:layout_height="700px">
+            </WebView>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+        <!--  这个位置 Text 换成对应的文字 -->
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:paddingRight="30px"
+            android:paddingLeft="30px"
+            android:layout_weight="1"
+            android:layout_marginTop="30px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/ac_information_tv_root"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorbTextGary"
+                android:text="文章转载自网络，如有侵权请联系删除"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/ac_information_collect"
+                style="@style/collectChecBox"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+        <View
+            android:layout_marginTop="30px"
+            android:layout_width="match_parent"
+            android:layout_height="8px"
+            android:background="#f2f2f2" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ac_information_aim_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30px">
+        </android.support.v7.widget.RecyclerView>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginBottom="30px"
+            android:paddingRight="30px"
+            android:paddingLeft="30px"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/miaoguo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:textSize="28px"
+                android:layout_marginLeft="20px"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorbText"
+                android:text="瞄过"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/ac_information_tv_miaoguo_number"
+                android:layout_marginLeft="20px"
+                android:layout_gravity="center_vertical"
+                android:textSize="28px"
+                android:textColor="@color/colorbTextGary"
+                android:text="7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8px"
+            android:background="#f2f2f2" />
+        <com.zhy.autolayout.AutoLinearLayout
+            android:padding="30px"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/jiushuo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:textSize="28px"
+                android:textColor="@color/colorbText"
+                android:text="就说"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/ac_information_tv_comment_number"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:textSize="28px"
+                android:textColor="@color/colorbTextGary"
+                android:text="数量"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioGroup
+                    android:layout_centerVertical="true"
+                    android:id="@+id/rg_text"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <RadioButton
+                        android:id="@+id/rb_text_time"
+                        android:checked="true"
+                        android:textColor="@drawable/text_selector"
+                        android:textSize="36px"
+                        android:layout_marginRight="15px"
+                        android:text="时间"
+                        android:button="@null"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_text_redu"
+                        android:textColor="@drawable/text_selector"
+                        android:textSize="36px"
+                        android:text="热度"
+                        android:button="@null"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RadioGroup>
+
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ac_information_comment_recyclerview"
+            android:padding="20px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+
+         </com.zhy.autolayout.AutoLinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:background="@color/colorbWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/comment_layout"/>
+
+        <!--这个位置装表情-->
+            <com.zhy.autolayout.AutoFrameLayout
+                android:visibility="gone"
+                android:id="@+id/ac_information_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.zhy.autolayout.AutoFrameLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

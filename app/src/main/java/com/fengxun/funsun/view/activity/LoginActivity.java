@@ -104,6 +104,7 @@ public class LoginActivity extends BaseActivity {
                     SPUtils.putString(KEY.KEY_USERHEAD,loginBean.getData().getUser_info().getAvatar());
                     SPUtils.putString(KEY.KEY_USERFUNSUNNUM,loginBean.getData().getUser_info().getFunsun_id());
                     SPUtils.putInt(KEY.KEY_USERGENDER,loginBean.getData().getUser_info().getSex());
+                    SPUtils.putString(KEY.KEY_USERSCHOOLID,loginBean.getData().getUser_info().getSchool());
                     openActivity(MainActivity.class);
                     // 发送消息 通知Main刷新界面
                     EventBus.getDefault().post(new MainActivityEventBus(2));

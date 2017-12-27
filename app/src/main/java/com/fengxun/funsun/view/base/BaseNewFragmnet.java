@@ -12,6 +12,7 @@ import com.fengxun.funsun.R;
 import com.fengxun.funsun.utils.LogUtils;
 
 import com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,9 +28,8 @@ import butterknife.Unbinder;
 
 public abstract class BaseNewFragmnet extends Fragment {
 
-    @BindView(R.id.base_newfragment)
-    ParallaxPtrFrameLayout baseNewfragment;
-    Unbinder unbinder;
+
+    private RefreshLayout baseNewfragment;
     private RecyclerView recyclerView;
 
     //Fragment的View加载完毕的标记
@@ -45,12 +45,19 @@ public abstract class BaseNewFragmnet extends Fragment {
     public static final String POSTINFO = "postinfo";
 
 
+    //关系信息
+
+    public static final String RELATION = "relation";
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_newfragment, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.new_recyclerview);
-        unbinder = ButterKnife.bind(this, view);
+        baseNewfragment = (RefreshLayout) view.findViewById(R.id.base_newfragment);
+        baseNewfragment.setEnableAutoLoadmore(false);
         LogUtils.e("加载了");
 
         if (recyclerView!=null){
@@ -98,13 +105,13 @@ public abstract class BaseNewFragmnet extends Fragment {
 
 
     protected abstract void loadData();
-    protected abstract void initView(RecyclerView views, ParallaxPtrFrameLayout baseNewfragment);
+    protected abstract void initView(RecyclerView views, RefreshLayout baseNewfragment);
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+
     }
 
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:id="@+id/roots_tag_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="5px"
+        android:paddingTop="5px"
+        android:paddingRight="20px"
+        android:paddingLeft="20px"
+        android:textSize="23px"
+        android:textColor="@color/colorbSystemRed"
+        android:text="溯源1溯源1溯源1溯源1"
+        android:background="@drawable/shape_roots_brea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginLeft="20px"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="5px"
+        android:paddingTop="5px"
+        android:paddingRight="20px"
+        android:paddingLeft="20px"
+        android:textSize="23px"
+        android:textColor="@color/colorhuangse"
+        android:text="溯源1溯源1"
+        android:background="@drawable/shape_roots_huangse_brea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginLeft="20px"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="5px"
+        android:paddingTop="5px"
+        android:paddingRight="20px"
+        android:paddingLeft="20px"
+        android:textSize="23px"
+        android:textColor="@color/colorBooblar"
+        android:text="源1溯源1"
+        android:background="@drawable/shape_roots_lu_brea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

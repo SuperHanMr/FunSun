@@ -132,6 +132,7 @@ public class PhoneNumActivtiy extends BaseActivity {
                     SPUtils.putString(KEY.KEY_USERHEAD,loginBean.getData().getUser_info().getAvatar());
                     SPUtils.putString(KEY.KEY_USERFUNSUNNUM,loginBean.getData().getUser_info().getFunsun_id());
                     SPUtils.putInt(KEY.KEY_USERGENDER,loginBean.getData().getUser_info().getSex());
+                    SPUtils.putString(KEY.KEY_USERSCHOOLID,loginBean.getData().getUser_info().getSchool());
                     // 发送消息 通知Main刷新界面
                     EventBus.getDefault().post(new MainActivityEventBus(2));
                     new SuperHanDialog(PhoneNumActivtiy.this, "注册成功", true, new SuperHanDialog.onCloseListener() {

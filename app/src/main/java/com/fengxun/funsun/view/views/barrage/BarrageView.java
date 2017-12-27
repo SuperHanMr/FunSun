@@ -20,6 +20,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+
+import io.github.rockerhieu.emojicon.EmojiconTextView;
+
 import static com.fengxun.funsun.view.views.barrage.BarrageTools.getScreenWidth;
 
 
@@ -141,7 +144,7 @@ public class BarrageView extends RelativeLayout {
 
         //final TextView textView = tb.isShowBorder() ? new BorderTextView(getContext(), borderColor) : new TextView(getContext()); // 创建是否有边框的弹幕
         //创建 没有边框的
-        final TextView textView = new TextView(getContext());
+        final EmojiconTextView textView = new EmojiconTextView(getContext());
         textView.setTextColor(Color.WHITE);
         textView.setText(tb.getContent());
 

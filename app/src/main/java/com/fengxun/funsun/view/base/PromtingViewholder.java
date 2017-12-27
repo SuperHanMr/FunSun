@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.zhy.autolayout.AutoLinearLayout;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * 程序员：韩永辉
  * 创建日期：on 2017/11/12.
@@ -75,5 +80,31 @@ public class PromtingViewholder extends RecyclerView.ViewHolder {
         view.setOnClickListener(listener);
         return this;
     }
+
+
+    /*
+    获取圆形头像
+     */
+    public CircleImageView getCircleImageView(int viewid){
+        CircleImageView head = getView(viewid);
+        return head;
+    }
+
+    /*
+    获取圆角图片
+     */
+    public RoundedImageView getRoundedImageViewBg(int viewid){
+        RoundedImageView head = getView(viewid);
+        return head;
+    }
+
+
+    public AutoLinearLayout getAutoLinearLayout(int viewId){
+        AutoLinearLayout linearLayout = getView(viewId);
+        return linearLayout;
+    }
+
+
+
 
 }

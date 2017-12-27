@@ -72,4 +72,11 @@ public class CommentariesPromtingParticuarsAdapter extends BasePromtingAdapter {
         this.mList = data;
         notifyDataSetChanged();
     }
+
+    public void setLoadData(List<CommentariesPromtingBean.DataBeanX.DataBean> data){
+        mList.addAll(data);
+        notifyDataSetChanged();
+
+    }
+
 }

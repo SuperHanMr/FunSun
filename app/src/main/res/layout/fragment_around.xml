@@ -1,14 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBooblar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/zhangtailan"/>
     <include layout="@layout/tooblar_item"/>
-    <RelativeLayout
-        android:background="@drawable/shape_border"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></RelativeLayout>
 
-</LinearLayout>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:background="@drawable/shape_border"
+        android:padding="30px"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/around_campus_rl_search_school"
+            android:padding="20px"
+            android:background="@drawable/shape_login_borde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/sousuo"
+                android:layout_marginLeft="10px"
+                android:src="@drawable/sousuo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/sousuo"
+                android:layout_marginLeft="20px"
+                android:text="搜索学校"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/dingwei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginBottom="20px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_gravity="center_vertical"
+                android:layout_width="6px"
+                android:layout_height="25px"
+                android:background="@drawable/shape_vertical_line" />
+
+            <TextView
+                android:textColor="@color/colorbText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:text="热门学校"
+                android:textSize="30px" />
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/around_campus_gengduo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10px"
+                    android:text="查看更多"
+                    android:textColor="@color/colorTextShenHui"
+                    android:textSize="30px" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/colorbWhite"
+                android:id="@+id/around_campus_scholl_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
+
+
+            <!-- TODO 这个位置 待定 附近学校  -->
+            <com.zhy.autolayout.AutoLinearLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25px"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="6px"
+                    android:layout_height="25px"
+                    android:background="@drawable/shape_vertical_line" />
+
+                <TextView
+
+                    android:textColor="@color/colorbText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:text="附近学校"
+                    android:textSize="30px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="gone"
+                android:layout_marginTop="5px"
+                android:layout_marginBottom="5px"
+                android:background="@color/colorbWhite"
+                android:id="@+id/around_campus_scholl_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="20px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+                <View
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="6px"
+                    android:layout_height="25px"
+                    android:background="@drawable/shape_vertical_line" />
+
+                <TextView
+                    android:textColor="@color/colorbText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
+                    android:text="推荐学校"
+                    android:textSize="30px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+            <com.fengxun.funsun.view.views.FlowLayout
+                app:width_space="30px"
+                android:layout_marginTop="20px"
+                app:height_space="10px"
+                android:id="@+id/flow_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </com.fengxun.funsun.view.views.FlowLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        </ScrollView>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

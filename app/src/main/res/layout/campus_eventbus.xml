@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+
+    android:elevation="@dimen/new_item"
+    android:background="@drawable/shape_newitem_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/campus_event_item_fl"
+        android:layout_width="match_parent"
+        android:layout_height="400px">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/campus_event_iv_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/imgs"
+            app:riv_mutate_background="true"
+            app:riv_corner_radius_top_right="15px"
+            app:riv_corner_radius_top_left="15px"
+            app:riv_corner_radius_bottom_right="15px"
+            app:riv_corner_radius_bottom_left="15px"/>
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:background="@drawable/yinying_bg_text"
+            android:orientation="vertical"
+            android:paddingTop="20px"
+            android:paddingLeft="30px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:lines="1"
+                    android:id="@+id/campus_event_tv_biaoti"
+                    android:textColor="@color/colorbWhite"
+                    android:textSize="33px"
+                    android:text="我是标题我是标题我是标题我是标题我是标题我"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_marginRight="10px"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/redu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/campus_event_tv_num"
+                    android:layout_marginRight="40px"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="25px"
+                    android:textColor="@color/colorbWhite"
+                    android:text="66"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="15px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:id="@+id/campus_event_tv_school"
+                    android:textSize="25px"
+                    android:textColor="@color/colorbWhite"
+                    android:text="我是学校text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/campus_event_tv_time"
+                    android:layout_marginLeft="20px"
+                    android:textColor="@color/colorbWhite"
+                    android:textSize="25px"
+                    android:text="我是帖子发表时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/campus_event_iv_bofang"
+            android:layout_centerInParent="true"
+            android:src="@drawable/bofang"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="10px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="20px"
+            android:id="@+id/campus_event_iv_head"
+            android:layout_marginLeft="15px"
+            android:layout_width="80px"
+            android:src="@drawable/pinglun_message"
+            android:layout_centerVertical="true"
+            android:layout_height="80px" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginLeft="10px"
+            android:layout_toRightOf="@+id/campus_event_iv_head"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="horizontal"
+                android:paddingTop="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+
+                    android:textSize="23px"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorbMessageText"
+                    android:text="我是标签text"
+                    android:id="@+id/campus_event_tv_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="10px"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="23px"
+                    android:id="@+id/hottest_biaoqian"
+                    android:paddingBottom="5px"
+                    android:paddingTop="5px"
+                    android:paddingRight="12px"
+                    android:paddingLeft="12px"
+                    android:background="@drawable/shape_text_border_zise"
+                    android:textColor="@color/colorBooblar"
+                    android:text="最热"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/campus_event_tv_comment_name"
+                    android:textColor="@color/colorbTextGary"
+                    android:layout_marginLeft="10px"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="23px"
+                    android:text="评论者Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/campus_event_tv_comment_content"
+                android:layout_marginLeft="5px"
+                android:textSize="23px"
+                android:layout_marginTop="8px"
+                android:textColor="@color/colorbMessageText"
+                android:text="热门评论 热门评论"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/new_item_comment_type1_icon"
+        android:layout_marginTop="335px"
+        android:layout_marginRight="50px"
+        android:layout_gravity="right"
+        android:src="@drawable/pinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</com.zhy.autolayout.AutoFrameLayout>

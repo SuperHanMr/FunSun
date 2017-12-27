@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorbWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ac_information_content_ll"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/tooblar_item"/>
+        <include layout="@layout/view_line"/>
+
+
+        <!--这个位置 是整体内容 -->
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.fengxun.funsun.view.views.RecyclerViewHeader
+                android:padding="30px"
+                android:id="@+id/ac_information_recyclerview_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:id="@+id/ac_information_fl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <include layout="@layout/information_head"/>
+                </FrameLayout>
+            </com.fengxun.funsun.view.views.RecyclerViewHeader>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ac_information_content_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/comment_layout"/>
+    </com.zhy.autolayout.AutoFrameLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

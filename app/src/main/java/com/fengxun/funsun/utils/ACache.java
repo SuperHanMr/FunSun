@@ -34,6 +34,7 @@ import java.io.RandomAccessFile;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -122,6 +123,34 @@ public class ACache {
 			super.close();
 			mCache.put(file);
 		}
+	}
+
+
+
+	public void put(String key,List<String> list){
+		for (int i = 0; i < list.size(); i++) {
+			String s = list.get(i);
+			File file = mCache.newFile(key);
+			BufferedWriter out = null;
+			try {
+				out = new BufferedWriter(new FileWriter(file), 1024);
+				out.write(s);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (out != null) {
+					try {
+						out.flush();
+						out.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+				mCache.put(file);
+			}
+		}
+
+
 	}
 
 	// =======================================

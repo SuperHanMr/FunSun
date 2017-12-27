@@ -4,9 +4,8 @@
     android:background="@color/colorBooblar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include layout="@layout/zhangtailan"/>
     <include layout="@layout/tooblar_item"/>
-
-
 
         <LinearLayout
             android:background="@drawable/shape_border"
@@ -16,6 +15,8 @@
             android:paddingLeft="40px"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
 
             <RelativeLayout
                 android:layout_marginTop="20px"

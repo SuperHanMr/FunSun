@@ -95,4 +95,10 @@ public class ToviewPromtingParticuarsAdapter extends BasePromtingAdapter {
         this.mList = data;
         notifyDataSetChanged();
     }
+
+    public void setLoadData(List<ToviewPromtingParticuarsBean.DataBeanX.DataBean> data){
+        mList.addAll(data);
+        notifyDataSetChanged();
+    }
+
 }

@@ -32,7 +32,7 @@ public class RequestUrl {
     public static final String INSPECTION = HTTP + "/check_user_info/v1/";
 
     //  查询所有学校
-    public static final String QUEYSCHOOL = TEST + "/load_school/v2/?scope=only";
+    public static final String QUEYSCHOOL = HTTP + "/load_school/v2/?scope=only";
 
     //  资讯
     public static final String zixun = HTTP + "/content/v1/?content_type=global";
@@ -91,7 +91,42 @@ public class RequestUrl {
     public static final String MEETTHEMAN = HTTP+"/content_relation/v1/{content_id}/?limit=100&offset=1";
 
 
+    public static final String CAMPUSSTORIETTE = TEST+"/school_content/v2/{school_id}/small/";
 
+
+    public static final String CAMPUSEVENTBUS = HTTP+"/school_content/v2/{school_id}/big/";
+
+
+    public static final String RELATIONCIDE = HTTP +"/login_user_friend_info/v1/";
+
+
+    public static final String QUOTATIONS  = HTTP+"/friend_record_list/v1/";
+
+
+    public static final String RECOMMENDSCHOOL = HTTP+"/recommend_school/v1/";
+
+
+    public static final String HOTSCHOOLE = HTTP+"/hot_school/v1/";
+
+    public static final String SCHOOLELIST = HTTP+"/search_all_school/v1/";
+
+    public static final String INFORMATIONDATA = HTTP+"/content/v1/{content_id}/";
+
+
+    public static final String POSTINFOAIM = HTTP+"/content_view/v1/{content_id}/";
+
+
+    public static final String GETCOMMENTDATA = HTTP+"/login_content_comment/v1/{content_id}/";
+
+
+    public static final String COMMENTLIKE = HTTP+"/comment_action/v1/{comment_id}/";
+
+
+    public static final String ROOTSINTEREST = "http://api.funsun.cn/not_login_content_source/v1/";
+
+    public static final String TOWCAMPUSXIAOGUSHI = HTTP+"/school_content/v2/{school_id}/small/";
+
+    public static final String schoolInterRoorts  = HTTP +"/school_content_source/v1/";
 
 
 }

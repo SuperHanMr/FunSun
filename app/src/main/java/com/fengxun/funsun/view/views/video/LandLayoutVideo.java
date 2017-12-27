@@ -3,14 +3,18 @@ package com.fengxun.funsun.view.views.video;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.fengxun.funsun.R;
+
+import com.fengxun.funsun.model.listener.OnVideoPlayerTime;
+import com.fengxun.funsun.model.listener.OnVideoTextViewListener;
+
 import com.fengxun.funsun.utils.LogUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
-import java.io.File;
-import java.util.Map;
+
 
 /**
  * Created by shuyu on 2016/12/23.
@@ -18,6 +22,9 @@ import java.util.Map;
  */
 public class LandLayoutVideo extends StandardGSYVideoPlayer {
 
+
+
+    public boolean isQuanPing;
 
     /**
      * 1.5.0开始加入，如果需要不同布局区分功能，需要重载
@@ -32,16 +39,54 @@ public class LandLayoutVideo extends StandardGSYVideoPlayer {
 
     public LandLayoutVideo(Context context, AttributeSet attrs) {
         super(context, attrs);
+
     }
+
+
+    @Override
+    protected void setTextAndProgress(int secProgress) {
+        super.setTextAndProgress(secProgress);
+        int timeMs = getCurrentPositionWhenPlaying();
+        int totalSeconds = timeMs / 1000;
+        if (onVideoPlayerTime!=null){
+            onVideoPlayerTime.onVideoPlayerTimeListener(totalSeconds);
+        }
+
+    }
+
+
+
+
+    /*
+    监听播放时间
+     */
+
+    private OnVideoPlayerTime onVideoPlayerTime;
+    public void setOnVideoPlayerTimeListener(OnVideoPlayerTime onVideoPlayerTime){
+        this.onVideoPlayerTime = onVideoPlayerTime;
+    }
+
+
+
+
+    private OnVideoTextViewListener onVideoTextViewListener;
+
+    public void setOnVideoTextViewListener (OnVideoTextViewListener onVideoTextViewListener){
+        this.onVideoTextViewListener = onVideoTextViewListener;
+    }
+
+
+
 
 
     //这个必须配置最上面的构造才能生效
     @Override
     public int getLayoutId() {
         if (mIfCurrentIsFullscreen) {
-            LogUtils.e("我是1111111111");
+            LogUtils.e("重新载入布局载入横向布局");
             return R.layout.sample_video_land;
         }
+
         return R.layout.sample_video_normal;
     }
 
@@ -49,6 +94,10 @@ public class LandLayoutVideo extends StandardGSYVideoPlayer {
     public ImageView getBackButton() {
         return super.getBackButton();
     }
+
+
+
+
 
     @Override
     protected void updateStartImage() {
@@ -63,10 +112,13 @@ public class LandLayoutVideo extends StandardGSYVideoPlayer {
                     imageView.setImageResource(R.drawable.video_click_play_selector);
                 }
             }
+
+
         } else {
             super.updateStartImage();
         }
     }
+
 
 
 }

@@ -88,5 +88,10 @@ public class ToViewPromitngAdapter extends BasePromtingAdapter {
         notifyDataSetChanged();
     }
 
+    public void setLoadData(List<ToViewListBean.DataBeanX.DataBean> data){
+        mList.addAll(data);
+        notifyDataSetChanged();
+    }
+
 
 }

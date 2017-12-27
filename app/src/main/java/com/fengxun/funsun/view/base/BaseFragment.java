@@ -1,9 +1,9 @@
 package com.fengxun.funsun.view.base;
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 
 import butterknife.ButterKnife;
@@ -28,7 +29,7 @@ import butterknife.Unbinder;
  * 抽取下拉刷新
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends android.support.v4.app.Fragment {
 
     private Toolbar mToolbar;
     private RelativeLayout barLeftIcon;
@@ -57,6 +58,7 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -69,9 +71,20 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutId();
 
     public void setBarLeftTv(String string){
+        barLeftTv.getPaint().setFakeBoldText(true);
         barLeftTv.setText(string);
     }
 
+
+    public void setBarLeftIcon(boolean isVisble){
+        barLeftIcon.setVisibility(View.VISIBLE);
+        barLeftIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+    }
 
     /**
      * 实现Fragment数据的缓加载
@@ -101,6 +114,20 @@ public abstract class BaseFragment extends Fragment {
             loginDiglog = new SuperHanLoginDiglog(context);
         }
         return loginDiglog;
+    }
+
+
+    // 子类 可以直接跳转Activity
+    public void openActivity(Class<?> targetActivityClass) {
+        Intent intent = new Intent(getContext(), targetActivityClass);
+        getActivity().startActivity(intent);
+    }
+
+    /*
+    弹窗 只能再Activity里面用
+  */
+    public void DialogPromting(String string){
+        new SuperHanDialog(getContext(),string).show();
     }
 
 }

@@ -16,7 +16,6 @@
     <color name="colorbText">#333333</color>
     <color name="colorbTextGary">#cccccc</color>
     <color name="colorbMessageText">#606060</color>
-
     <color name="colorbSystemRed">#FF2E67</color>
     <color name="colorbPinglun">#0DCCB0</color>
     <color name="colorToview">#F6A224</color>
@@ -24,6 +23,8 @@
     <color name="colorNewItemBg">#F8F9F9</color>
     <color name="colorTuijian">#F55064</color>
     <color name="black">#fff</color>
+    <color name="colorTextHuise">#9b9b9b</color>
+    <color name="colorTextShenHui">#808080</color>
 
 
 </resources>

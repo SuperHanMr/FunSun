@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/item_relation"
+    android:layout_marginTop="30px"
+    android:layout_marginLeft="40px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_relation_head"
+            android:layout_width="90px"
+            android:src="@drawable/pinglun_message"
+            android:layout_height="90px" />
+        <com.zhy.autolayout.AutoLinearLayout
+
+            android:orientation="vertical"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/item_relation_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <TextView
+                android:id="@+id/item_relation_tv_name"
+                android:layout_marginTop="10px"
+                android:textColor="@color/colorbText"
+                android:textSize="33px"
+                android:text="瀚哥哥"
+                android:layout_alignTop="@+id/item_relation_head"
+                android:layout_toRightOf="@+id/item_relation_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="2px"
+                android:layout_marginLeft="1px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:textColor="@color/colorbWhite"
+                    android:id="@+id/item_relation_relation"
+                    android:textSize="25px"
+                    android:paddingBottom="5px"
+                    android:paddingTop="5px"
+                    android:paddingRight="12px"
+                    android:paddingLeft="12px"
+                    android:text="学妹"
+                    android:background="@drawable/text_zise_bored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+
+                <TextView
+                    android:id="@+id/item_relation_tv_school_name"
+                    android:textColor="@color/colorbTextGary"
+                    android:layout_marginLeft="5px"
+                    android:textSize="25px"
+                    android:text="北京航天抗衡大学"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginLeft="15px"
+        android:orientation="vertical"
+        android:layout_below="@+id/item_relation_head"
+        android:layout_toRightOf="@+id/item_relation_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:paddingBottom="30px"
+            android:orientation="vertical"
+            android:layout_marginTop="10px"
+            android:layout_marginRight="30px"
+            android:background="@mipmap/qipaoyinying"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:id="@+id/item_relation_tv_comment"
+                android:layout_marginTop="5px"
+                android:textColor="@color/colorbText"
+                android:text="新帖火钳留名"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:padding="20px"
+                android:layout_marginRight="15px"
+                android:layout_marginTop="20px"
+                android:background="@drawable/shape_login_borde"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/item_relation_bg"
+                    android:src="@drawable/imgs"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="250px"
+                    android:scaleType="centerCrop"
+                    app:riv_mutate_background="true"
+                    app:riv_corner_radius_top_right="15px"
+                    app:riv_corner_radius_top_left="15px"
+                    app:riv_corner_radius_bottom_right="15px"
+                    app:riv_corner_radius_bottom_left="15px"
+                    android:layout_height="150px" />
+
+
+
+                <TextView
+                    android:textSize="28px"
+                    android:id="@+id/item_relattv_comment_content_titleion_bg"
+                    android:layout_marginTop="10px"
+                    android:layout_marginLeft="10px"
+                    android:layout_toRightOf="@+id/item_relation_bg"
+                    android:lines="2"
+                    android:text="我是标题我是标题我是标题我是标题我是标题我是标题"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/colorbTextGary"
+                    android:textSize="23px"
+                    android:id="@+id/item_blacklist_tv_posted_user_name"
+                    android:layout_marginLeft="15px"
+                    android:layout_marginBottom="10px"
+                    android:layout_alignBottom="@+id/item_relation_bg"
+                    android:layout_toRightOf="@+id/item_relation_bg"
+                    android:text="发布者:瀚哥哥"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:textColor="@color/colorbTextGary"
+            android:id="@+id/item_relation_tv_time"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="15px"
+            android:text="5天前"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

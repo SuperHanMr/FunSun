@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
+
     <FrameLayout
         android:id="@+id/surface_container"
         android:layout_width="match_parent"
@@ -23,6 +24,20 @@
         android:layout_alignParentTop="true"
         android:background="#000000"
         android:scaleType="fitCenter" />
+
+
+
+    <TextView
+        android:text="6666"
+        android:textColor="@color/colorbWhite"
+        android:layout_marginTop="100px"
+        android:id="@+id/video_tv_hengxiang"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
 
     <LinearLayout
         android:id="@+id/layout_bottom"
@@ -150,15 +165,9 @@
             android:scaleType="centerInside"
             android:src="@drawable/back" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+
     </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/preview_layout"
         android:layout_width="@dimen/seek_bar_image"
@@ -167,4 +176,5 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
         android:visibility="gone" />
+
 </RelativeLayout>

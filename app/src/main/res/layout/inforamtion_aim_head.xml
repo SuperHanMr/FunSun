@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingRight="20px"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/item_information_iv_head"
+        android:src="@drawable/pinglun_message"
+        android:layout_width="90px"
+        android:layout_height="90px" />
+    <TextView
+        android:singleLine="true"
+        android:lines="1"
+        android:gravity="center"
+        android:id="@+id/item_information_tv_name"
+        android:layout_marginTop="10px"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="90px"
+        android:layout_height="wrap_content"
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>

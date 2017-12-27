@@ -1,12 +1,14 @@
 package com.fengxun.funsun.model.bean;
 
+import java.io.Serializable;
+
 /**
  * 程序员：韩永辉
  * 创建日期：on 2017/12/2.
  * Holle Android
  */
 
-public class CommentContentBean {
+public class CommentContentBean implements Serializable{
     /**
      * code : 200
      * data : {"comment_content":"22從2","comment_direction":0,"comment_id":16024,"comment_school":"郑州大学","comment_time":1.512198139E9,"comment_user":49625,"comment_user_avatar":"http://qiniu.shujutiyu.com/FoHIjvQF278UgCqRSCevj1AdkdXa","comment_user_nick":"666","content_id":15678,"hot_cnt":0,"like_cnt":0}
@@ -41,7 +43,7 @@ public class CommentContentBean {
         this.msg = msg;
     }
 
-    public static class DataBean {
+    public static class DataBean  implements Serializable{
         /**
          * comment_content : 22從2
          * comment_direction : 0
@@ -131,6 +133,7 @@ public class CommentContentBean {
         public void setComment_user_nick(String comment_user_nick) {
             this.comment_user_nick = comment_user_nick;
         }
+
 
         public int getContent_id() {
             return content_id;

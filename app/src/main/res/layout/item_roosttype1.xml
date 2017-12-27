@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="@dimen/new_item"
+    android:background="@drawable/shape_newitem_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/roots_type1_itemview"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400px">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/roots_item_type1_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:src="@drawable/imgs"
+            app:riv_mutate_background="true"
+            app:riv_corner_radius_top_right="15px"
+            app:riv_corner_radius_top_left="15px"
+            app:riv_corner_radius_bottom_right="15px"
+            app:riv_corner_radius_bottom_left="15px"/>
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:background="@drawable/yinying_bg_text"
+            android:orientation="vertical"
+            android:paddingTop="20px"
+            android:paddingLeft="30px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:singleLine="true"
+                android:lines="1"
+                android:id="@+id/roots_item_type1_biaoti"
+                android:textColor="@color/colorbWhite"
+                android:textSize="33px"
+                android:text="我是标题我是标题我是标题我是标题我是标题我"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="15px"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/roots_china_item_recommend"
+                    android:paddingRight="20px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/roots_item_type1_tuijian_icon"
+                        android:layout_marginLeft="2px"
+                        android:textSize="25px"
+                        android:textColor="@color/colorbWhite"
+                        android:paddingRight="10px"
+                        android:paddingLeft="10px"
+                        android:background="@drawable/text_zise_bored"
+                        android:text="推荐"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <TextView
+
+                    android:id="@+id/roots_china_item_school"
+                    android:textSize="25px"
+                    android:textColor="@color/colorbWhite"
+                    android:text="我是学校text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/roots_item_type1_time"
+                    android:layout_marginLeft="20px"
+                    android:textColor="@color/colorbWhite"
+                    android:textSize="25px"
+                    android:text="我是帖子发表时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoFrameLayout
+            android:paddingLeft="30px"
+            android:gravity="bottom"
+            android:id="@+id/roots_two_ll_type1"
+            android:layout_marginBottom="40px"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/roots_text_tag"/>
+        </com.zhy.autolayout.AutoFrameLayout>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_marginLeft="20px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <include layout="@layout/comment_user_info" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/roots_item_comment_type1_icon"
+        android:layout_marginTop="335px"
+        android:layout_marginRight="50px"
+        android:layout_gravity="right"
+        android:src="@drawable/pinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</com.zhy.autolayout.AutoFrameLayout>

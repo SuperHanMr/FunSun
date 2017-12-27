@@ -1,20 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/colorBooblar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <include layout="@layout/zhangtailan"/>
 
-    <com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout
-        android:id="@+id/shuxin"
+    <android.support.v7.widget.Toolbar
+        android:background="@color/colorBooblar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:visibility="gone"
+            android:id="@+id/campus_left_back"
+            android:layout_width="200px"
+            android:layout_height="100px">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </RelativeLayout>
 
-    </com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout>
+        <TextView
+            android:id="@+id/campus_tv_school_name"
+            android:textSize="15dp"
+            android:textColor="@color/colorbWhite"
+            android:text="大学名称"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
-</LinearLayout>
+      <com.zhy.autolayout.AutoLinearLayout
+          android:id="@+id/campus_right"
+          android:layout_gravity="right"
+          android:orientation="horizontal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+
+          <ImageView
+              android:layout_gravity="center_vertical"
+              android:src="@drawable/guangyiguang"
+              android:layout_marginRight="15px"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              />
+
+
+          <TextView
+              android:layout_gravity="center_vertical"
+              android:id="@+id/campus_tv_guangxiaoyuan"
+              android:layout_marginRight="20px"
+              android:textColor="@color/colorbWhite"
+              android:textSize="15dp"
+              android:text="逛校园"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+
+      </com.zhy.autolayout.AutoLinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/campus_refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_marginTop="5px"
+                android:background="@drawable/shape_border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/campus_vp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="100px"></android.support.v4.view.ViewPager>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_marginTop="2px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/huangse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.fengxun.funsun.view.views.SlidingTabLayout
+                    android:id="@+id/campus_tab"
+                    tl:tl_textsize="15dp"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginRight="20px"
+                    tl:tl_textSelectColor="#000"
+                    tl:tl_textUnselectColor="@color/colorbText"
+                    tl:tl_indicator_color="#000"
+                    tl:tl_indicator_corner_radius="1.5dp"
+                    tl:tl_indicator_height="5px"
+                    tl:tl_indicator_width="35px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp">
+                </com.fengxun.funsun.view.views.SlidingTabLayout>
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoFrameLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

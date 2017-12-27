@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_meetman_head"
+        android:src="@drawable/pinglun_message"
+        android:layout_width="100px"
+        android:layout_height="100px" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+
+        android:id="@+id/item_meetman_ll"
+        android:layout_marginLeft="20px"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@+id/item_meetman_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+       <com.zhy.autolayout.AutoLinearLayout
+
+           android:orientation="vertical"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:id="@+id/item_meetman_school_name"
+               android:textSize="30px"
+               android:textColor="@color/colorbText"
+               android:text="学校名称"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               />
+
+           <TextView
+               android:id="@+id/item_meetman_user_name"
+               android:textSize="23px"
+               android:layout_marginTop="10px"
+               android:textColor="@color/colorbMessageText"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="用户名称"
+               />
+
+       </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/item_meetman_number"
+                    android:textSize="33px"
+                    android:textColor="@color/colorbSystemRed"
+                    android:text="99+"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:textSize="23px"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorbMessageText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="相遇"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_below="@+id/item_meetman_ll"
+        android:layout_alignLeft="@+id/item_meetman_ll"
+        android:layout_marginTop="40px"
+        android:background="@color/commom_background"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

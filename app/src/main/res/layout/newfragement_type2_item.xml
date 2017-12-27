@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-
     android:elevation="@dimen/new_item"
     android:background="@drawable/shape_newitem_bg"
     android:layout_width="match_parent"
@@ -24,7 +23,7 @@
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="400px"
-                android:src="@drawable/imgs_bj"
+                android:src="@drawable/imgs"
                 app:riv_mutate_background="true"
                 app:riv_corner_radius_top_right="15px"
                 app:riv_corner_radius_top_left="15px"
@@ -105,9 +104,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <include layout="@layout/roots_layout2"/>
-
                 <include layout="@layout/roots_layout" />
             </com.zhy.autolayout.AutoRelativeLayout>
 
@@ -196,6 +193,7 @@
 
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/new_item_comment_type2_icon"
         android:layout_marginTop="335px"
         android:layout_marginRight="50px"

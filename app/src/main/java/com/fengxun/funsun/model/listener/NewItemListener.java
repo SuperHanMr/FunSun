@@ -21,9 +21,18 @@ public interface NewItemListener {
     void OnPostInfoListener(String postId,int type);
 
 
+
     /*
     用户评论信息
      */
-    void OnCommentContentListener(String content);
+    void OnCommentContentListener(String contentId,String userId);
+
+
+    /*
+    关系卡 ID 资讯的ID 类型 2
+     */
+
+    void onRelationListener(String userId,String contentId,int type);
+
 
 }

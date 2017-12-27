@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="30px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/botton_title"
+            android:gravity="center"
+            android:textSize="@dimen/bottom_menu_btn_text_size"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"
+            android:text="选择类别"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_menu_btn_height"
+            />
+
+        <View
+            android:background="@color/commom_background"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <TextView
+
+        android:layout_marginTop="15px"
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_menu_btn_height"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#9A2DD4"
+        android:textSize="@dimen/bottom_menu_btn_text_size"
+        android:background="@drawable/bottom_menu_btn_selector">
+    </TextView>
+
+
+
+</LinearLayout>

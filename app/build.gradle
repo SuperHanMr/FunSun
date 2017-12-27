@@ -29,8 +29,19 @@ android {
         abortOnError false
     }
 
+}
 
 
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.1'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -44,11 +55,10 @@ dependencies {
     // 屏幕适配
     compile 'com.zhy:autolayout:1.4.5'
     //依赖注入：ButterKnife
-    //    compile 'com.jakewharton:butterknife:8.4.0'
-    //    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:design:23.1.0'
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     // 圆形头像
     compile 'de.hdodenhof:circleimageview:2.1.0'
@@ -71,12 +81,19 @@ dependencies {
     // 下拉刷新动画
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile project(':refresh')
-
     compile 'com.android.support:multidex:1.0.0'
-
-
     //基于BiliBiliIJKplayer 视频播放框架
     compile 'com.shuyu:GSYVideoPlayer:2.1.1'
+    //稳定版
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    //没有使用特殊Header，可以不加这行
+
+
+    compile 'me.shaohui:bottomdialog:1.1.9'
+    compile project(':library')
+
+
 
 
 }

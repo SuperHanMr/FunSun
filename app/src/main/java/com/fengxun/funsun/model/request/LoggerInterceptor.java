@@ -85,7 +85,7 @@ public class LoggerInterceptor implements Interceptor {
             String result = buffer.clone()
                     .readString(charset)
                     ;
-            LogUtils.e("Response: " + result);
+            LogUtils.e("成功获取JSON：",result);
         }
     }
 }

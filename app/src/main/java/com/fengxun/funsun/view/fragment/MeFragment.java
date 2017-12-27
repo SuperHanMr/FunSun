@@ -134,6 +134,7 @@ public class MeFragment extends BaseFragment {
 
     @Override
     public void NetworkData() {
+        super.NetworkData();
         /*
         加载进度条
          */

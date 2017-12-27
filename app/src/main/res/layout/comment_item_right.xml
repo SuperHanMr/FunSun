@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/comment_item_right_ll"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_weight="1"
+            android:layout_marginRight="10px"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/comment_item_right_school_name"
+            android:textColor="@color/colorbText"
+            android:textSize="23px"
+            android:text="学校名字"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/comment_item_right_user_name"
+                android:textColor="@color/colorbTextGary"
+                android:layout_below="@+id/comment_item_right_school_name"
+                android:textSize="23px"
+                android:text="评论用户名"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/comment_item_right"
+            android:src="@drawable/pinglun_message"
+            android:layout_width="110px"
+            android:layout_height="110px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginRight="70px"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/comment_item_right_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:id="@+id/comment_item_triangle_right"
+            android:src="@drawable/comment_triangle_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/comment_item_right_text_ll"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/comment_bg_right"
+            android:padding="20px"
+            android:layout_below="@+id/comment_item_triangle_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <io.github.rockerhieu.emojicon.EmojiconTextView
+                emojicon:emojiconAlignment="baseline"
+                android:id="@+id/comment_item_right_content"
+                android:textColor="@color/colorbText"
+                android:textSize="23px"
+                android:maxWidth="600px"
+                emojicon:emojiconSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/comment_item_right_tiem"
+                android:layout_gravity="right"
+                android:layout_marginTop="15px"
+                android:text="五分钟前"
+                android:textSize="20px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginRight="15px"
+            android:layout_toLeftOf="@+id/comment_item_right_text_ll"
+            android:layout_marginTop="17px"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="105px">
+
+
+
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/comment_item_right_checkbx_zan"-->
+                <!--android:button="@drawable/zan_selector"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--/>-->
+
+
+            <ImageButton
+                android:id="@+id/comment_item_right_btn_zan"
+                android:background="@drawable/zan_n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/comment_item_right_tv_number"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:textSize="23px"
+                android:text="1"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/comment_item_right_checkbx_cai"-->
+                <!--android:button="@drawable/cai_selector"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--/>-->
+
+            <ImageButton
+                android:id="@+id/comment_item_right_btn_cai"
+                android:background="@drawable/cai_n"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

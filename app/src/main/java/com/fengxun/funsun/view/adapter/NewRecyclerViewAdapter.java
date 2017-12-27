@@ -1,7 +1,8 @@
 package com.fengxun.funsun.view.adapter;
 
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
+
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +13,12 @@ import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.HeadlinesBean;
 import com.fengxun.funsun.model.bean.VideoInfoBean;
 import com.fengxun.funsun.model.listener.NewItemListener;
+import com.fengxun.funsun.model.listener.OnLoadMoreListener;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.TimeUtils;
+import com.fengxun.funsun.utils.Util;
+import com.fengxun.funsun.view.activity.InterestRootsActivity;
+import com.fengxun.funsun.view.activity.SchoolRootsActivity;
 import com.fengxun.funsun.view.base.MultiBaseAdapter;
 import com.fengxun.funsun.view.base.ViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -34,7 +39,6 @@ import java.util.Random;
  * 第二种 视频大图 标题item
  * 第三种 标题左侧 小图右侧item
  * 第四种 标题居中 小图并列排成一排
- * 第五种 上拉加载
  * 重写 getTpye方法 判断 item返回的type 展示相应的item
  */
 
@@ -44,7 +48,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     private final int NEWITEM_TYPE1 = 2;//第一种大图 标题帖子item
     private final int NEWITEM_TYPE2 = 1;//第二种 视频大图 标题item
     private final int NEWITEM_TYPE3 = 0;//第三种 标题左侧 小图右侧item
-    private final int NEWITEM_TYPE4 = 3;//标题居中 小图并列排成一排
+    private final int NEWITEM_TYPE4 = 3;//标题居中 小图并列排成一排;
 
 
     /*
@@ -56,6 +60,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
 
     @Override
     protected void convert(ViewHolder holder, HeadlinesBean.DataBean data, int position, int viewType) {
+
             /*
             给每个控件设置 数据
              */
@@ -71,16 +76,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
                 break;
             case NEWITEM_TYPE4:
                 setType4ItemData(holder,data);
-
                 break;
-
         }
 
     }
 
+
     /*
-    viewType 根据 ViewType去判断返回对应的item布局
-     */
+        viewType 根据 ViewType去判断返回对应的item布局
+         */
     @Override
     protected int getItemLayoutId(int viewType) {
         switch (viewType){
@@ -108,7 +112,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         data 就是数据源 然后 根据数据源的的类型去判断 展示什么样的item
          */
         int content_type = data.getContent_type_v2();
-        LogUtils.d("我是item类型:"+content_type);
+
         switch (content_type){
 
             case NEWITEM_TYPE1:
@@ -135,6 +139,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     }
 
 
+
     /*
     点击Item 跳转详情
      */
@@ -144,6 +149,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     }
 
 
+
     /*
     ===============================设置数据================================
      */
@@ -151,12 +157,11 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     /*
     标题居中 小图并列排成一排
      */
-    private void setType4ItemData(ViewHolder holder, HeadlinesBean.DataBean data) {
+    private void setType4ItemData(ViewHolder holder, final HeadlinesBean.DataBean data) {
         /*
            设置标题
          */
         holder.setText(R.id.new_item_type3_title,data.getContent_title());
-
         /*
         设置三图
          */
@@ -178,6 +183,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.getView(R.id.new_item_type4_recommend).setVisibility(View.VISIBLE);
         }
 
+
         holder.setText(R.id.new_item_type4_tv_name,data.getContent_publish_user_nick());
         holder.setText(R.id.new_item_type4_tv_time,TimeUtils.getTimeFormatText(String.valueOf(data.getContent_publish_time())));
 
@@ -185,6 +191,11 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         /*
         两种溯源的展示
          */
+        final Intent intent = new Intent();
+        intent.putExtra(KEY.KEY_SCHOOLID,String.valueOf(data.getContent_root_tag_id()));
+        intent.putExtra(KEY.KEY_SCHOOLNAME,data.getContent_root_tag());
+
+
         AutoRelativeLayout view1 = holder.getView(R.id.new_roots1); // 学校溯源
         AutoRelativeLayout view2 = holder.getView(R.id.new_roots2); // 兴趣溯源
         if (!data.getContent_root_tag_img().equals("")){
@@ -196,6 +207,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots1_school,data.getContent_root_tag());
             view2.setVisibility(View.GONE);
             view1.setVisibility(View.VISIBLE);
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent.setClass(mContext,SchoolRootsActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }else {
             /*
             隐藏学校溯源 显示兴趣溯源
@@ -203,6 +223,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots2_content,data.getContent_root_tag());
             view2.setVisibility(View.VISIBLE);
             view1.setVisibility(View.GONE);
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LogUtils.e("跳转到兴趣溯源");
+                    intent.setClass(mContext,InterestRootsActivity.class);
+                    mContext.startActivity(intent);
+
+                }
+            });
         }
 
 
@@ -216,12 +245,37 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.comment_tv_zuire,data.getComment_relation());
         }
 
+        holder.setOnClickListener(R.id.new_item_type3_iv_btn, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.e("-------->");
+                listener.OnCommentContentListener(String.valueOf(data.getContent_id()),String.valueOf(data.getContent_publish_user_id()));
+            }
+        });
+
+
+        holder.setOnClickListener(R.id.comment_user_head, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRelationListener(data.getComment_user_id()+"",data.getContent_id()+"",2);
+            }
+        });
+
+
+        holder.setOnClickListener(R.id.new_type4_itemview, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.OnPostInfoListener(String.valueOf(data.getContent_id()),1);
+            }
+        });
+
+
     }
 
     /*
     第三种 标题左侧 小图右侧
      */
-    private void setType3ItemData(ViewHolder holder, HeadlinesBean.DataBean data) {
+    private void setType3ItemData(ViewHolder holder, final HeadlinesBean.DataBean data) {
 
         /*
         标题左边的 圆角图片
@@ -244,6 +298,11 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         /*
         两种溯源的展示
          */
+        final Intent intent = new Intent();
+        intent.putExtra(KEY.KEY_SCHOOLID,String.valueOf(data.getContent_root_tag_id()));
+        intent.putExtra(KEY.KEY_SCHOOLNAME,data.getContent_root_tag());
+
+
         AutoRelativeLayout view1 = holder.getView(R.id.new_roots1); // 学校溯源
         AutoRelativeLayout view2 = holder.getView(R.id.new_roots2); // 兴趣溯源
         if (!data.getContent_root_tag_img().equals("")){
@@ -255,6 +314,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots1_school,data.getContent_root_tag());
             view2.setVisibility(View.GONE);
             view1.setVisibility(View.VISIBLE);
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent.setClass(mContext,SchoolRootsActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }else {
 
             /*
@@ -263,6 +331,16 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots2_content,data.getContent_root_tag());
             view2.setVisibility(View.VISIBLE);
             view1.setVisibility(View.GONE);
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LogUtils.e("跳转到兴趣溯源");
+                    intent.setClass(mContext,InterestRootsActivity.class);
+                    mContext.startActivity(intent);
+
+                }
+            });
+
         }
 
 
@@ -278,6 +356,30 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         if (!data.getComment_relation().equals("")){
             holder.setText(R.id.comment_tv_zuire,data.getComment_relation());
         }
+
+        holder.setOnClickListener(R.id.new_item_type3_iv_btn, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.e("-------->");
+                listener.OnCommentContentListener(String.valueOf(data.getContent_id()),String.valueOf(data.getContent_publish_user_id()));
+            }
+        });
+
+
+        holder.setOnClickListener(R.id.comment_user_head, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRelationListener(data.getComment_user_id()+"",data.getContent_id()+"",2);
+            }
+        });
+
+        holder.setOnClickListener(R.id.new_type3_itemview, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.OnPostInfoListener(String.valueOf(data.getContent_id()),1);
+            }
+        });
+
 
     }
 
@@ -319,6 +421,11 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         /*
         两种溯源显示
          */
+
+        final Intent intent = new Intent();
+        intent.putExtra(KEY.KEY_SCHOOLID,String.valueOf(data.getContent_root_tag_id()));
+        intent.putExtra(KEY.KEY_SCHOOLNAME,data.getContent_root_tag());
+
         AutoRelativeLayout view1 = holder.getView(R.id.new_roots1); // 学校溯源
         AutoRelativeLayout view2 = holder.getView(R.id.new_roots2); // 兴趣溯源
         if (!data.getContent_root_tag_img().equals("")){
@@ -330,6 +437,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots1_school,data.getContent_root_tag());
             view2.setVisibility(View.GONE);
             view1.setVisibility(View.VISIBLE);
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent.setClass(mContext,SchoolRootsActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }else {
             /*
             隐藏学校溯源 显示兴趣溯源
@@ -337,6 +453,14 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots2_content,data.getContent_root_tag());
             view2.setVisibility(View.VISIBLE);
             view1.setVisibility(View.GONE);
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent.setClass(mContext,InterestRootsActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }
 
         /*
@@ -361,7 +485,6 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
                 int videoID = data.getVedio_info().getContent_id();
                 String cover = data.getVedio_info().getSchool_cover_img_url().get(0);
                 String vedio_url = data.getVedio_info().getVedio_url();
-
                 listener.OnVideoInfoListener(new VideoInfoBean(vedio_url,cover,videoID));
             }
         });
@@ -370,10 +493,17 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         holder.setOnClickListener(R.id.new_item_comment_type2_icon, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.OnCommentContentListener("我是评论信息");
+                LogUtils.e("-------->");
+                listener.OnCommentContentListener(String.valueOf(data.getContent_id()),String.valueOf(data.getContent_publish_user_id()));
             }
         });
 
+        holder.setOnClickListener(R.id.new_item_type2_hottest_user_head, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRelationListener(data.getComment_user_id()+"",data.getContent_id()+"",2);
+            }
+        });
 
 
 
@@ -383,7 +513,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     /*
     第一种大图 标题帖子item
      */
-    private void setType1ItemData(ViewHolder holder, HeadlinesBean.DataBean data) {
+    private void setType1ItemData(ViewHolder holder, final HeadlinesBean.DataBean data) {
 
         /*
         Item 背景大图
@@ -405,7 +535,6 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         holder.setText(R.id.new_china_item_school,data.getContent_publish_user_nick());
         holder.setText(R.id.new_item_type1_time, TimeUtils.getTimeFormatText(String.valueOf(data.getContent_publish_time())));
         AutoRelativeLayout viewRecommend = holder.getView(R.id.new_china_item_recommend);
-        LogUtils.d(data.getRecommend()+"");
         if (data.getRecommend()==0){
             viewRecommend.setVisibility(View.GONE);
         }else {
@@ -417,6 +546,11 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         判断 溯源的头像是否为空 不为空 则是学校溯源 否则就是 兴趣溯源
         隐藏 兴趣溯源 显示学校溯源
          */
+
+        final Intent intent = new Intent();
+        intent.putExtra(KEY.KEY_SCHOOLID,String.valueOf(data.getContent_root_tag_id()));
+        intent.putExtra(KEY.KEY_SCHOOLNAME,data.getContent_root_tag());
+
         AutoRelativeLayout view1 = holder.getView(R.id.new_roots1);
         AutoRelativeLayout view2 = holder.getView(R.id.new_roots2);
         if (!data.getContent_root_tag_img().equals("")){
@@ -428,6 +562,15 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots1_school,data.getContent_root_tag());
             view2.setVisibility(View.GONE);
             view1.setVisibility(View.VISIBLE);
+
+            view1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent.setClass(mContext,SchoolRootsActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }else {
             /*
             隐藏学校溯源 显示兴趣溯源
@@ -435,6 +578,17 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
             holder.setText(R.id.roots2_content,data.getContent_root_tag());
             view2.setVisibility(View.VISIBLE);
             view1.setVisibility(View.GONE);
+            view2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  LogUtils.e("跳转到兴趣溯源");
+                    intent.setClass(mContext,InterestRootsActivity.class);
+                    mContext.startActivity(intent);
+
+                }
+            });
+
+
         }
 
         /*
@@ -447,11 +601,28 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         holder.setText(R.id.hottest_biaoqian_text,data.getComment_school());
         holder.setText(R.id.new_item_type1_comment,data.getComment());
 
+        holder.setOnClickListener(R.id.new_item_comment_type1_icon, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.e("-------->");
+                listener.OnCommentContentListener(String.valueOf(data.getContent_id()),String.valueOf(data.getContent_publish_user_id()));
+            }
+        });
 
+        holder.setOnClickListener(R.id.hottest_user_head, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onRelationListener(data.getComment_user_id()+"",data.getContent_id()+"",2);
+            }
+        });
 
+        holder.setOnClickListener(R.id.new_type1_itemview, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.OnPostInfoListener(String.valueOf(data.getContent_id()),1);
+            }
+        });
 
     }
-
-
 
 }

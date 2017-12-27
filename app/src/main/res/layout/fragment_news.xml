@@ -17,7 +17,7 @@
         tl:tl_textBold="BOTH"
         tl:tl_indicator_color="@color/colorbWhite"
         tl:tl_textUnselectColor="@color/colorbWhite"
-        tl:tl_textSelectColor="@color/colorbWhite"
+        tl:tl_textSelectColor="@color/colorBooblar"
         tl:tl_indicator_margin_left="2dp"
         tl:tl_indicator_margin_right="2dp"
         tl:tl_indicator_style="BLOCK" />

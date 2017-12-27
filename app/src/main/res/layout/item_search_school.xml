@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/search_school_list_re"
+    android:layout_marginTop="5px"
+    android:background="@drawable/shape_login_borde"
+    android:layout_width="match_parent"
+    android:layout_height="130px">
+
+    <TextView
+
+        android:layout_marginLeft="30px"
+        android:id="@+id/search_school_name"
+        android:textColor="@color/colorbText"
+        android:textSize="35px"
+        android:layout_centerVertical="true"
+        android:text="北京大学"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

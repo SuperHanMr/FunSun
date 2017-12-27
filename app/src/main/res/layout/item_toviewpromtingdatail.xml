@@ -76,7 +76,7 @@
                 <ImageView
                     android:id="@+id/item_toviewpromtingdatail_iv_context"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/imgs_bj"
+                    android:src="@drawable/imgs"
                     android:layout_width="70px"
                     android:layout_height="70px" />
 

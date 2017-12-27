@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/base_newfragment"
-            app:ptr_pull_to_fresh="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -18,5 +17,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="match_parent">
                </android.support.v7.widget.RecyclerView>
-        </com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 </com.zhy.autolayout.AutoLinearLayout>

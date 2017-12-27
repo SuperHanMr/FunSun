@@ -44,7 +44,7 @@ public class NewsFragment extends BaseFragment {
     SlidingTabLayout tabSildingtab;
 
 
-    private String[] titles = {"国内", "北京", "短视频▼", "全球", "国外"};
+    private String[] titles = {"国内", "北京", "短视频", "全球", "国外"};
 
     @Override
     protected int getLayoutId() {

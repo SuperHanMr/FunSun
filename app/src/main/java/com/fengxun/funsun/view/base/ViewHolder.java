@@ -14,6 +14,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.github.rockerhieu.emojicon.EmojiconTextView;
 
 /**
  * Author: Othershe
@@ -60,6 +61,10 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     }
 
 
+    public EmojiconTextView getTextView(int viewId){
+        EmojiconTextView textView = (EmojiconTextView) mViews.get(viewId);
+        return textView;
+    }
 
     public View getConvertView() {
         return mConvertView;
@@ -84,6 +89,16 @@ public class ViewHolder extends RecyclerView.ViewHolder {
    public RoundedImageView getRoundedImageView(int viewID){
        RoundedImageView imageView = getView(viewID);
        return imageView;
+   }
+
+
+   /*
+    获取原型头像
+    */
+
+   public CircleImageView getCircleImageView(int viewId){
+       CircleImageView head = getView(viewId);
+       return head;
    }
 
    public ImageView getImagvIew(int viewID){

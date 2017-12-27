@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+
+    android:elevation="@dimen/new_item"
+    android:background="@drawable/shape_newitem_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/campus_storiette_fl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/campus_storiette_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:riv_corner_radius_top_left="15px"
+                app:riv_corner_radius_top_right="15px"
+                app:riv_mutate_background="true" />
+
+
+            <!-- 热度 这个获取圆角图片控件的高 赋值给 热度控件的高  -->
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/campus_storiette_redu_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+
+                    android:background="@drawable/yinying_bg_text">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/campus_storiette_redu_head"
+                        android:layout_width="50px"
+                        android:layout_height="50px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="35px"
+                        android:src="@drawable/pinglun_message" />
+
+                    <ImageView
+                        android:id="@+id/campus_storiette_iv_redu"
+                        android:layout_width="50px"
+                        android:layout_height="50px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30px"
+                        android:layout_toRightOf="@+id/campus_storiette_redu_head"
+                        android:src="@drawable/redu" />
+                    <TextView
+                        android:id="@+id/campus_storiette_redu_tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10px"
+                        android:layout_toRightOf="@id/campus_storiette_iv_redu"
+                        android:text="23"
+                        android:textColor="@color/colorbWhite"
+                        android:textSize="25px" />
+
+
+
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+            <!--溯源-->
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35px"
+                android:paddingLeft="30px">
+
+                <include layout="@layout/roots_layout2" />
+
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/campus_storiette_iv_video"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_centerInParent="true"
+                android:src="@drawable/bofang" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <TextView
+            android:id="@+id/campus_storiette_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="10px"
+            android:singleLine="true"
+            android:textColor="@color/colorbText"
+            android:textSize="33px" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15px"
+            android:paddingTop="15px">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/campus_storiette_comment_iv_head"
+                android:layout_width="70px"
+                android:layout_height="70px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_marginTop="4px"
+                android:src="@drawable/pinglun_message" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:layout_marginTop="10px"
+                android:layout_toRightOf="@+id/campus_storiette_comment_iv_head"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/shape_text_border_zise"
+                    android:paddingBottom="5px"
+                    android:paddingLeft="12px"
+                    android:paddingRight="12px"
+                    android:paddingTop="5px"
+                    android:text="最热"
+                    android:textColor="@color/colorBooblar"
+                    android:textSize="23px" />
+
+                <TextView
+                    android:id="@+id/campus_storiette_comment_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20px"
+                    android:layout_marginTop="10px"
+                    android:singleLine="true"
+                    android:text="啊哈哈哈哈哈哈哈哈哈"
+                    android:textColor="@color/colorbMessageText"
+                    android:textSize="23px" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/campus_storiette_comment_iv_comment"
+        android:layout_marginBottom="130px"
+        android:layout_marginTop="110px"
+        android:layout_marginRight="20px"
+        android:layout_gravity="right|bottom"
+        android:src="@drawable/pinglun"
+        android:layout_width="80px"
+        android:layout_height="80px" />
+
+</com.zhy.autolayout.AutoFrameLayout>

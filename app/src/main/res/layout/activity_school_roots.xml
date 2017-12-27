@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <FrameLayout
+        android:id="@+id/ac_school_roots"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>
+
+
+    <!--&lt;!&ndash;<fragment&ndash;&gt;-->
+    <!--&lt;!&ndash;android:name="com.fengxun.funsun.view.fragment.CampusFragment"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/ac_school_roots"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="match_parent"/>&ndash;&gt;-->
+
+
+
+    <!--&lt;!&ndash;<fragment&ndash;&gt;-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="match_parent"/>&ndash;&gt;-->
+
+
+<!--<FrameLayout-->
+<!--android:id="@+id/ac_school_roots"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent">-->
+
+
+<!--</FrameLayout>-->

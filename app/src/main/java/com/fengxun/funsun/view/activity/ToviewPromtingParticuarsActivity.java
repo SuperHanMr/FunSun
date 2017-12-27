@@ -12,6 +12,9 @@ import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.view.adapter.ToviewPromtingParticuarsAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.lzy.okgo.model.HttpParams;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 
 import java.util.List;
 
@@ -30,8 +33,12 @@ public class ToviewPromtingParticuarsActivity extends BaseActivity {
 
     @BindView(R.id.toview_promting_paitcuars_recyclerview)
     RecyclerView toviewPromtingPaitcuarsRecyclerview;
+    @BindView(R.id.ac_promting_refresh)
+    SmartRefreshLayout acPromtingRefresh;
     private int userid;
     private ToviewPromtingParticuarsAdapter adapter;
+
+    private int pager = 1;
 
     @Override
     protected int getLayoutId() {
@@ -50,9 +57,9 @@ public class ToviewPromtingParticuarsActivity extends BaseActivity {
         setStatusBarTextColocr();
         ButterKnife.bind(this);
         userid = getIntent().getIntExtra("userid", 1);
-        setBarLeftIcon(true,R.drawable.dingbuback);
+        setBarLeftIcon(true, R.drawable.dingbuback);
         initViews();
-        LoData();
+        LoData(true);
     }
 
     private void initViews() {
@@ -61,17 +68,34 @@ public class ToviewPromtingParticuarsActivity extends BaseActivity {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         toviewPromtingPaitcuarsRecyclerview.setLayoutManager(manager);
         toviewPromtingPaitcuarsRecyclerview.setAdapter(adapter);
+        acPromtingRefresh.setEnableAutoLoadmore(false);
+        acPromtingRefresh.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                pager++;
+                LoData(false);
+            }
+        });
+
     }
 
-    private void LoData() {
+    private void LoData(final boolean isReresh) {
         HttpParams params = new HttpParams();
-        params.put("friend_id",userid);
-        params.put("page",1); // page 可以改变 添加刷新
+        params.put("friend_id", userid);
+        params.put("page", pager); // page 可以改变 添加刷新
         NetworkReuset.getInstance().GetReuset(RequestUrl.TOVIEWDATAIL, params, new onCallBack<ToviewPromtingParticuarsBean>(this) {
             @Override
             public void onSucceed(ToviewPromtingParticuarsBean toviewPromtingParticuarsBean, Call call, String string) {
                 List<ToviewPromtingParticuarsBean.DataBeanX.DataBean> data = toviewPromtingParticuarsBean.getData().getData();
-                adapter.setData(data);
+
+                if (isReresh) {
+                    adapter.setData(data);
+                } else {
+                    adapter.setLoadData(data);
+                    acPromtingRefresh.finishLoadmore();
+
+                }
+
             }
         });
 

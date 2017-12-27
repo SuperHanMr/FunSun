@@ -58,6 +58,7 @@ public class LocationActivity extends BaseActivity implements PoiSearch.OnPoiSea
 
     //声明AMapLocationClientOption对象
     public AMapLocationClientOption mLocationOption = null;
+
     private LocationSchoolListAdapter adapter;
 
 
@@ -75,7 +76,6 @@ public class LocationActivity extends BaseActivity implements PoiSearch.OnPoiSea
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-
         initViews();
     }
 

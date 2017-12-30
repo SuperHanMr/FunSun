@@ -167,7 +167,6 @@ public class SttingActivity extends BaseActivity {
 
 
 
-
     /*
     选择性别 只能改一次
     思路 是我保存还是服务器保存

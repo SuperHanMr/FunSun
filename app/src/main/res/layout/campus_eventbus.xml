@@ -145,11 +145,7 @@
                 android:paddingTop="10px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-
-
-
                 <TextView
-
                     android:textSize="23px"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/colorbMessageText"
@@ -171,8 +167,6 @@
                     android:text="最热"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-
                 <TextView
                     android:id="@+id/campus_event_tv_comment_name"
                     android:textColor="@color/colorbTextGary"
@@ -182,7 +176,6 @@
                     android:text="评论者Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
             </com.zhy.autolayout.AutoLinearLayout>
 
 
@@ -198,8 +191,20 @@
                 android:layout_height="wrap_content" />
         </com.zhy.autolayout.AutoLinearLayout>
 
-
     </com.zhy.autolayout.AutoRelativeLayout>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="80px">
+            <TextView
+                android:layout_marginLeft="20px"
+                android:layout_centerVertical="true"
+                android:text="暂无评论"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
 
     </com.zhy.autolayout.AutoLinearLayout>
 

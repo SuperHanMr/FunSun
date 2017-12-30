@@ -1,6 +1,7 @@
 package com.fengxun.funsun.model.request;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.view.base.FunSunResponseBean;
 import com.google.gson.Gson;
 
@@ -37,10 +38,8 @@ public abstract class JsonCallback<T> extends com.lzy.okgo.callback.AbsCallback<
         //这里我们既然都已经拿到了泛型的真实类型，即对应的 class ，那么当然可以开始解析数据了，我们采用 Gson 解析
         //以下代码是根据泛型解析数据，返回对象，返回的对象自动以参数的形式传递到 onSuccess 中，可以直接使用
 //        JsonReader jsonReader = new JsonReader(response.body().charStream());
-
         string = response.body().string();
-        String json = string.replace("\"vedio_word\": \"{}\"", "\"vedio_word\": null");
-        T data = gson.fromJson(json, type);
+        T data = gson.fromJson(string, type);
         response.close();
         return data;
     }

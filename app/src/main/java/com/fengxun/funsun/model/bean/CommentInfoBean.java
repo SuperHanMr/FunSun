@@ -44,7 +44,16 @@ public class CommentInfoBean implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean {
+    @Override
+    public String toString() {
+        return "CommentInfoBean{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data.toString() +
+                '}';
+    }
+
+    public static class DataBean implements Serializable{
         /**
          * comment_content : 热门趣闻前排吃瓜
          * comment_direction : 1
@@ -207,6 +216,28 @@ public class CommentInfoBean implements Serializable {
 
         public void setLike_cnt(int like_cnt) {
             this.like_cnt = like_cnt;
+        }
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "comment_content='" + comment_content + '\'' +
+                    ", comment_direction=" + comment_direction +
+                    ", comment_evaluation='" + comment_evaluation + '\'' +
+                    ", comment_id=" + comment_id +
+                    ", comment_relation='" + comment_relation + '\'' +
+                    ", comment_school='" + comment_school + '\'' +
+                    ", comment_time=" + comment_time +
+                    ", comment_user=" + comment_user +
+                    ", comment_user_avatar='" + comment_user_avatar + '\'' +
+                    ", comment_user_nick='" + comment_user_nick + '\'' +
+                    ", hot_cnt=" + hot_cnt +
+                    ", latest_child_comment='" + latest_child_comment + '\'' +
+                    ", latest_child_user='" + latest_child_user + '\'' +
+                    ", latest_child_user_avatar='" + latest_child_user_avatar + '\'' +
+                    ", latest_child_user_nick='" + latest_child_user_nick + '\'' +
+                    ", like_cnt=" + like_cnt +
+                    '}';
         }
     }
 }

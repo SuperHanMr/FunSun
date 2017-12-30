@@ -52,6 +52,9 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:singleLine="true"
+                            android:lines="1"
+                            android:maxWidth="250px"
                             android:id="@+id/new_item_type3_tv_tiezi_user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

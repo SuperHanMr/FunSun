@@ -44,10 +44,13 @@
 
 
                 <TextView
+                    android:singleLine="true"
+                    android:lines="1"
+                    android:maxWidth="400px"
                     android:textSize="23px"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/colorbTextGary"
-                    android:text="我是标签text"
+                    android:text="t我是标签text我是标签text"
                     android:layout_marginLeft="10px"
                     android:id="@+id/comment_tv_biaoqian"
                     android:layout_width="wrap_content"

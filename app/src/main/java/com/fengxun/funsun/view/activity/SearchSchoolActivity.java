@@ -1,7 +1,9 @@
 package com.fengxun.funsun.view.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,8 +39,11 @@ import com.fengxun.funsun.view.adapter.SearchSchoolRecyclerViewAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.views.SuperHanDialog;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,6 +98,8 @@ public class SearchSchoolActivity extends BaseActivity implements PoiSearch.OnPo
         ButterKnife.bind(this);
         initViews();
         NetworkData();
+        String s = sHA1(this);
+        LogUtils.d("--->"+s);
     }
 
 
@@ -108,6 +115,8 @@ public class SearchSchoolActivity extends BaseActivity implements PoiSearch.OnPo
                 adapter.setmList(schoolListBeanData);
             }
         });
+
+
 
     }
 
@@ -302,7 +311,7 @@ public class SearchSchoolActivity extends BaseActivity implements PoiSearch.OnPo
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_SEND) {
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             String content = acEdSearchSchool.getText().toString().trim();
             sendSearch(content);
         }
@@ -324,6 +333,32 @@ public class SearchSchoolActivity extends BaseActivity implements PoiSearch.OnPo
         }
 
         adapter.setmList(list);
+    }
 
+
+
+    public static String sHA1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length()-1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

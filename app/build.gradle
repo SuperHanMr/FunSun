@@ -18,11 +18,30 @@ android {
 
     }
     buildTypes {
+
         release {
             minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+    signingConfigs {
+        debug {
+            storeFile file('keystore.jks')
+            storePassword "funsun2017"
+            keyAlias "funsun"
+            keyPassword "funsun2017"
+        }
+    }
+
 
     lintOptions {
         checkReleaseBuilds false
@@ -88,12 +107,12 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
     //没有使用特殊Header，可以不加这行
-
-
     compile 'me.shaohui:bottomdialog:1.1.9'
     compile project(':library')
 
+    compile files('libs/umeng-common-1.4.0.jar')
+    compile files('libs/SocialSDK_QQ_Simplify.jar')
 
-
-
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:support-v4:23.2.1'
 }

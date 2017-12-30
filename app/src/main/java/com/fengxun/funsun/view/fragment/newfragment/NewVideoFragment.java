@@ -20,6 +20,7 @@ import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.ACache;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.ToastUtil;
 import com.fengxun.funsun.view.activity.RelationCalorieActivity;
 import com.fengxun.funsun.view.activity.VideoPlayerActivity;
@@ -27,6 +28,7 @@ import com.fengxun.funsun.view.adapter.NewRecyclerViewAdapter;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.fengxun.funsun.view.views.EditTextDialog;
+import com.fengxun.funsun.view.views.RecyclerViewNoBugLinearLayoutManager;
 import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout;
 import com.google.gson.Gson;
@@ -47,7 +49,7 @@ import okhttp3.Response;
  * 程序员：韩永辉
  * 创建日期：on 2017/11/20.
  * Holle Android
- * 内容：短视频 vedio
+ * 内容：短视频 video
  */
 
 public class NewVideoFragment extends BaseNewFragmnet implements NewItemListener {
@@ -63,6 +65,7 @@ public class NewVideoFragment extends BaseNewFragmnet implements NewItemListener
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -86,9 +89,8 @@ public class NewVideoFragment extends BaseNewFragmnet implements NewItemListener
         读取缓存数据
          */
         aCache = ACache.get(getContext());
-        String asString = aCache.getAsString("vedio");
+        String asString = aCache.getAsString("video");
         if (asString != null) {
-            LogUtils.e("缓存的数据：" + asString);
             Gson gson = new Gson();
             HeadlinesBean headlinesBean = gson.fromJson(asString, HeadlinesBean.class);
             List<HeadlinesBean.DataBean> data = headlinesBean.getData();
@@ -97,7 +99,7 @@ public class NewVideoFragment extends BaseNewFragmnet implements NewItemListener
 
         this.baseNewfragment = baseNewfragment;
         adapter = new NewRecyclerViewAdapter(getContext(), list, true);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        RecyclerViewNoBugLinearLayoutManager manager = new RecyclerViewNoBugLinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         views.setLayoutManager(manager);
         views.addItemDecoration(new SpaceItemDecoration(10));
@@ -134,22 +136,26 @@ public class NewVideoFragment extends BaseNewFragmnet implements NewItemListener
         LogUtils.e("请求网络");
         HttpParams params = new HttpParams();
         params.put("content_type", "video");
-        NetworkReuset.getInstance().getHomeNewReuset(RequestUrl.HEADLINES, params, new onCallBack<HeadlinesBean>(this) {
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.HEADLINES:RequestUrl.NOT_LOGIN_HEADLINES;
+        NetworkReuset.getInstance().getHomeNewReuset(url, params, new onCallBack<HeadlinesBean>(this) {
             @Override
             public void onSucceed(HeadlinesBean headlinesBean, Call call, String string) {
                 List<HeadlinesBean.DataBean> data = headlinesBean.getData();
 
 
+                if (data.size()>5){
+                    aCache.put("video", string);
+                }
                 if (isReresh){
-                    if (data.size() != 0||data!=null) {
-                        adapter.setData(data);
-                        aCache.put("foreign", string);
-                    }
-                    ToastUtil.massageToast(getContext(),data.size());
+                    adapter.setData(data);
                     baseNewfragment.finishRefresh();
 
                 }else {
-                    adapter.setLoadMoreData(data);
+
+                    if (data.size()!=0){
+                        adapter.setLoadMoreData(data);
+                    }
+
                     baseNewfragment.finishLoadmore();
                 }
 
@@ -158,16 +164,11 @@ public class NewVideoFragment extends BaseNewFragmnet implements NewItemListener
             @Override
             public void onError(Call call, Response response, Exception e) {
                 super.onError(call, response, e);
-
-
                 if (isReresh){
                     baseNewfragment.finishRefresh();
                 }else{
                     baseNewfragment.finishLoadmore();
                 }
-
-                //TODO 现在判断是死的 应该根据 状态吗判断失败原因 目前 只返回网络不好的错误
-                new SuperHanDialog(getContext(), "似乎和互联网断开链接~").show();
             }
         });
     }

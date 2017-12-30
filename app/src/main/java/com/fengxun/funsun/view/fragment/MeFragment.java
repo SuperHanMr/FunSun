@@ -61,6 +61,7 @@ import okhttp3.Response;
 public class MeFragment extends BaseFragment {
 
 
+
     @BindView(R.id.fragment_me_iv_head)
     CircleImageView fragmentMeIvHead;
     @BindView(R.id.fragment_me_ll)
@@ -132,9 +133,8 @@ public class MeFragment extends BaseFragment {
         }
     };
 
-    @Override
-    public void NetworkData() {
-        super.NetworkData();
+
+    public void NetworkDatas() {
         /*
         加载进度条
          */
@@ -246,6 +246,7 @@ public class MeFragment extends BaseFragment {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+        NetworkDatas();
         return rootView;
     }
 

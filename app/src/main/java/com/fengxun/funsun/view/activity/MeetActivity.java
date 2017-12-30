@@ -3,7 +3,6 @@ package com.fengxun.funsun.view.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.bean.MeetTheManBean;
@@ -11,13 +10,10 @@ import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.view.adapter.MeetManAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
-import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.lzy.okgo.model.HttpParams;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -60,6 +56,7 @@ public class MeetActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
+        setStatusBarTextColocr();
         ButterKnife.bind(this);
         contentId = getIntent().getStringExtra("contentID");
         NetworkData(true);
@@ -79,8 +76,12 @@ public class MeetActivity extends BaseActivity {
                     adapter.setData(data);
                     refreshLayout.finishRefresh();
                 }else {
-                    adapter.setLoadMoreData(data);
-                    refreshLayout.finishLoadmore();
+                    if (data.size()!=0){
+                        adapter.setLoadMoreData(data);
+                        refreshLayout.finishLoadmore();
+
+                    }
+
                 }
 
             }

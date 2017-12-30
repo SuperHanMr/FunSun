@@ -13,7 +13,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.ScreenUtils;
 import com.zhy.autolayout.AutoLinearLayout;
 
@@ -55,7 +57,7 @@ public class EmojiKeyboard {
         init(activity, editText, emojiPanelView, emojiPanelSwitchView, contentView);
     }
 
-    private void init(Activity activity, EditText editText, View emojiPanelView, View emojiPanelSwitchView, View contentView) {
+    private void init(final Activity activity, EditText editText, View emojiPanelView, View emojiPanelSwitchView, View contentView) {
         this.activity = activity;
         this.editText = editText;
         this.emojiPanelView = emojiPanelView;
@@ -90,10 +92,18 @@ public class EmojiKeyboard {
         emojiPanelSwitchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                    new SuperHanDialog(activity,"请先登录").show();
+                    return;
+                }
+
                 if (EmojiKeyboard.this.emojiPanelView.isShown()) {
                     lockContentViewHeight();
                     hideEmojiPanel(true);
                     unlockContentViewHeight();
+                    LogUtils.e("--------->");
+
                 } else {
                     if (isSoftKeyboardShown()) {
                         lockContentViewHeight();

@@ -1,5 +1,6 @@
 package com.fengxun.funsun.view.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -15,12 +16,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.CommentContentBean;
 import com.fengxun.funsun.model.bean.GetCommentContentBean;
 import com.fengxun.funsun.model.bean.MeetTheManBean;
+import com.fengxun.funsun.model.bean.RelationInfBean;
+import com.fengxun.funsun.model.bean.RoostBean;
 import com.fengxun.funsun.model.bean.VideoBean;
 import com.fengxun.funsun.model.bean.VideoInfoBean;
 import com.fengxun.funsun.model.listener.OnVideoPlayerTime;
@@ -29,10 +33,13 @@ import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.TimeUtils;
 import com.fengxun.funsun.utils.ToastUtil;
+import com.fengxun.funsun.utils.Util;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.fengxun.funsun.view.views.EmojiKeyboard;
+import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.SuperHanLoginDiglog;
 import com.fengxun.funsun.view.views.barrage.Barrage;
 import com.fengxun.funsun.view.views.barrage.BarrageView;
@@ -45,10 +52,19 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer;
 import com.squareup.picasso.Picasso;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.Log;
+import com.umeng.socialize.utils.ShareBoardlistener;
 import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +86,7 @@ import okhttp3.Call;
  */
 
 public class VideoPlayerActivity extends AppCompatActivity implements TextView.OnEditorActionListener, CompoundButton.OnCheckedChangeListener, OnVideoPlayerTime
-,EmojiconGridFragment.OnEmojiconClickedListener, EmojiconsFragment.OnEmojiconBackspaceClickedListener{
+,EmojiconGridFragment.OnEmojiconClickedListener, EmojiconsFragment.OnEmojiconBackspaceClickedListener {
 
     @BindView(R.id.post_detail_nested_scroll)
     NestedScrollView postDetailNestedScroll;
@@ -133,7 +149,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     AutoRelativeLayout commentRlMeet; // 相遇的人布局
 
     @BindView(R.id.comment_iv_sharing) //分享icon
-            ImageView commentIvSharing;
+     ImageView commentIvSharing;
 
     @BindView(R.id.comment_rb) //左边右边评论按钮
             RadioGroup commentRb;
@@ -162,6 +178,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     private VideoBean.DataBean videoBeanData;
     private TextView texZimu;
     private EmojiKeyboard emojiKeyboard;
+    private CustomShareListener mShareListener;
+    private UMImage imageurl;
+    private ShareAction mShareAction;
+    private VideoBean.DataBean.ShareDataBean share_data;
 
 
     @Override
@@ -264,6 +284,12 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         detailPlayer.findViewById(R.id.video_iv_jvbao).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                    new SuperHanDialog(VideoPlayerActivity.this, "请登录").show();
+                    return;
+                }
+
                 ToastUtil.showNormalToast(VideoPlayerActivity.this, "点击了举报");
             }
         });
@@ -293,17 +319,53 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     }
 
 
+    /**
+     * @param view
+     */
     /*
     屏幕的点击事件
      */
-    @OnClick({R.id.ac_video_zimufanyi, R.id.ac_video_zimu})
+    @OnClick({R.id.ac_video_zimufanyi, R.id.ac_video_zimu,R.id.comment_iv_sharing,R.id.comment_rl_meet,R.id.new_roots1,R.id.new_roots2,R.id.video_user_head})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ac_video_zimufanyi:
 
                 break;
             case R.id.ac_video_zimu:
+
                 break;
+            case R.id.comment_iv_sharing:
+                if (mShareAction != null) {
+                    mShareAction.open();
+                } else {
+                    new SuperHanDialog(this, "请登录").show();
+                }
+                break;
+
+            case R.id.comment_rl_meet:
+                startActivity(new Intent(this, MeetActivity.class).putExtra("contentID",videoId+""));
+                break;
+
+            case R.id.new_roots1:
+                startActivity(new Intent(this,SchoolRootsActivity.class)
+                        .putExtra(KEY.KEY_SCHOOLNAME,videoBeanData.getContent_root_tag())
+                        .putExtra(KEY.KEY_SCHOOLID,videoBeanData.getContent_root_tag_id()+""));
+                break;
+            case R.id.new_roots2:
+                startActivity(new Intent(this,InterestRootsActivity.class)
+                        .putExtra(KEY.KEY_SCHOOLNAME,videoBeanData.getContent_root_tag())
+                        .putExtra(KEY.KEY_SCHOOLID,videoBeanData.getContent_root_tag_id()+""));
+                break;
+
+            case R.id.video_user_head:
+                RelationInfBean bean = new RelationInfBean(1,videoBeanData.getContent_publish_user_id()+"",videoBeanData.getContent_id()+"");
+                Intent intent = new Intent(this, RelationCalorieActivity.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putSerializable(BaseNewFragmnet.RELATION, bean);
+                intent.putExtras(mBundle);
+                startActivity(intent);
+                break;
+
         }
     }
 
@@ -313,8 +375,13 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
 
     @Override
     public void onVideoPlayerTimeListener(int videoPlayerTime) {
+
+        if (videoBeanData==null){
+            return;
+        }
         VideoBean.DataBean.VedioWordZhCnBean vedioWordZhCn =
                 videoBeanData.getVedio_word_zh_cn();
+
 
         if (vedioWordZhCn == null || videoBeanData == null) {
             return;
@@ -349,6 +416,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
 
         diglog = new SuperHanLoginDiglog(this);
 
+
+
+
+
         /*
         视频的基本信息
          */
@@ -375,10 +446,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
             newRoots2.setVisibility(View.GONE);
             Picasso.with(this).load(data.getContent_root_tag_img()).into(roots1Head);
             rootsSchoolName.setText(data.getContent_root_tag());
+
+
         }
 
         commentIvRightRb.setChecked(true);
-
         commentRb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -398,13 +470,14 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         是否收藏
          */
         commentIvCollect.setOnCheckedChangeListener(this);
-
         collection = data.getIs_collection();
         if (collection == 0) {
             commentIvCollect.setChecked(false);
         } else {
             commentIvCollect.setChecked(true);
         }
+
+
 
         commentEdContent.setOnEditorActionListener(this);
 
@@ -430,20 +503,58 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
             @Override
             public void onSucceed(MeetTheManBean meetTheManBean, Call call, String string) {
                 List<MeetTheManBean.DataBean> data1 = meetTheManBean.getData();
-                if (data1.size() != 0) {
-                    MeetTheManBean.DataBean dataBean = data1.get(0);
-                    String user_avatar = dataBean.getUser_avatar();
-                    commentIvNomeet.setVisibility(View.GONE);
-                    commentRlMeet.setVisibility(View.VISIBLE);
-                    Picasso.with(VideoPlayerActivity.this).load(user_avatar).into(commentIvMeetHead);
-                    //TODO
-                } else {
-                    commentIvNomeet.setVisibility(View.VISIBLE);
-                    commentRlMeet.setVisibility(View.GONE);
+                if (data1!=null){
+                    if (data1.size() != 0) {
+                        MeetTheManBean.DataBean dataBean = data1.get(0);
+                        String user_avatar = dataBean.getUser_avatar();
+                        commentIvNomeet.setVisibility(View.GONE);
+                        commentRlMeet.setVisibility(View.VISIBLE);
+                        Picasso.with(VideoPlayerActivity.this).load(user_avatar).into(commentIvMeetHead);
+                        //TODO
+                    } else {
+                        commentIvNomeet.setVisibility(View.VISIBLE);
+                        commentRlMeet.setVisibility(View.GONE);
+                    }
                 }
+
             }
         });
 
+
+        /*
+        分享
+         */
+
+        share_data = data.getShare_data();
+        if (share_data!=null){
+            imageurl = new UMImage(this, share_data.getShare_img());
+            imageurl.setThumb(new UMImage(this, share_data.getShare_img()));
+            mShareListener = new CustomShareListener(this);
+            mShareAction = new ShareAction(this).setDisplayList(
+                    SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN_FAVORITE,
+                    SHARE_MEDIA.SINA)
+                    .setShareboardclickCallback(new ShareBoardlistener() {
+                        @Override
+                        public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
+                            if (share_media==SHARE_MEDIA.SINA){
+                                new ShareAction(VideoPlayerActivity.this).withText(Util.wbDynamic(share_data.getShare_title(), share_data.getShare_url()))
+                                        .withMedia(imageurl)
+                                        .setPlatform(share_media)
+                                        .setCallback(mShareListener).share();
+                            }else {
+                                UMWeb web = new UMWeb(share_data.getShare_url());
+                                web.setTitle(share_data.getShare_title());
+                                web.setDescription(share_data.getShare_content());
+                                web.setThumb(new UMImage(VideoPlayerActivity.this, share_data.getShare_img()));
+                                new ShareAction(VideoPlayerActivity.this).withMedia(web)
+                                        .setPlatform(share_media)
+                                        .setCallback(mShareListener)
+                                        .share();
+                            }
+
+                        }
+                    });
+        }
 
     }
 
@@ -454,6 +565,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                new SuperHanDialog(this,"请先登录").show();
+                return false;
+            }
+
             String content = commentEdContent.getText().toString().trim();
             sendCommentContent(content);
             diglog.show();
@@ -567,7 +683,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+        if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+            new SuperHanDialog(VideoPlayerActivity.this, "请登录").show();
+            commentIvCollect.setChecked(false);
+            return;
+        }
         HttpParams params = new HttpParams();
         LogUtils.e(KEY.TAG + isChecked);
         if (!isChecked) {
@@ -611,6 +731,73 @@ public class VideoPlayerActivity extends AppCompatActivity implements TextView.O
         EmojiconsFragment.backspace(commentEdContent);
     }
 
+
+
+
+    private static class CustomShareListener implements UMShareListener {
+
+        private WeakReference<VideoPlayerActivity> mActivity;
+
+        private CustomShareListener(VideoPlayerActivity activity) {
+            mActivity = new WeakReference(activity);
+        }
+
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+
+            if (platform.name().equals("WEIXIN_FAVORITE")) {
+                Toast.makeText(mActivity.get(), platform + " 收藏成功啦", Toast.LENGTH_SHORT).show();
+            } else {
+                if (platform != SHARE_MEDIA.MORE && platform != SHARE_MEDIA.SMS
+                        && platform != SHARE_MEDIA.EMAIL
+                        && platform != SHARE_MEDIA.FLICKR
+                        && platform != SHARE_MEDIA.FOURSQUARE
+                        && platform != SHARE_MEDIA.TUMBLR
+                        && platform != SHARE_MEDIA.POCKET
+                        && platform != SHARE_MEDIA.PINTEREST
+
+                        && platform != SHARE_MEDIA.INSTAGRAM
+                        && platform != SHARE_MEDIA.GOOGLEPLUS
+                        && platform != SHARE_MEDIA.YNOTE
+                        && platform != SHARE_MEDIA.EVERNOTE) {
+                    Toast.makeText(mActivity.get(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            if (platform != SHARE_MEDIA.MORE && platform != SHARE_MEDIA.SMS
+                    && platform != SHARE_MEDIA.EMAIL
+                    && platform != SHARE_MEDIA.FLICKR
+                    && platform != SHARE_MEDIA.FOURSQUARE
+                    && platform != SHARE_MEDIA.TUMBLR
+                    && platform != SHARE_MEDIA.POCKET
+                    && platform != SHARE_MEDIA.PINTEREST
+
+                    && platform != SHARE_MEDIA.INSTAGRAM
+                    && platform != SHARE_MEDIA.GOOGLEPLUS
+                    && platform != SHARE_MEDIA.YNOTE
+                    && platform != SHARE_MEDIA.EVERNOTE) {
+                Toast.makeText(mActivity.get(), platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+                if (t != null) {
+                    Log.d("throw", "throw:" + t.getMessage());
+                }
+            }
+
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(mActivity.get(), platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
 

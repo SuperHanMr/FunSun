@@ -13,21 +13,23 @@ import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.HeadlinesBean;
 import com.fengxun.funsun.model.bean.VideoInfoBean;
 import com.fengxun.funsun.model.listener.NewItemListener;
-import com.fengxun.funsun.model.listener.OnLoadMoreListener;
+
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.TimeUtils;
-import com.fengxun.funsun.utils.Util;
+
 import com.fengxun.funsun.view.activity.InterestRootsActivity;
 import com.fengxun.funsun.view.activity.SchoolRootsActivity;
 import com.fengxun.funsun.view.base.MultiBaseAdapter;
 import com.fengxun.funsun.view.base.ViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
+
+
 import com.squareup.picasso.Picasso;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 /**
  * 程序员：韩永辉
@@ -44,7 +46,8 @@ import java.util.Random;
 
 
 public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataBean>{
-
+    
+    
     private final int NEWITEM_TYPE1 = 2;//第一种大图 标题帖子item
     private final int NEWITEM_TYPE2 = 1;//第二种 视频大图 标题item
     private final int NEWITEM_TYPE3 = 0;//第三种 标题左侧 小图右侧item
@@ -57,6 +60,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     public NewRecyclerViewAdapter(Context context, List datas, boolean isOpenLoadMore) {
         super(context, datas, isOpenLoadMore);
     }
+
 
     @Override
     protected void convert(ViewHolder holder, HeadlinesBean.DataBean data, int position, int viewType) {
@@ -108,6 +112,8 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
     @Override
     protected int getViewType(int position, HeadlinesBean.DataBean data) {
 
+
+        
         /*
         data 就是数据源 然后 根据数据源的的类型去判断 展示什么样的item
          */
@@ -172,7 +178,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
         for (int i = 0; i < views.size(); i++) {
             Picasso.with(mContext).load(data.getContent_cover_img_url_v2().get(i)).into(views.get(i));
         }
-
+    
 
         /*
         设置 推荐标签 发帖用户姓名 发帖时间
@@ -233,6 +239,7 @@ public class NewRecyclerViewAdapter extends MultiBaseAdapter<HeadlinesBean.DataB
                 }
             });
         }
+
 
 
         /*

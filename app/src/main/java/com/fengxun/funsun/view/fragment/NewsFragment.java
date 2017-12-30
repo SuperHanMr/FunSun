@@ -77,7 +77,6 @@ public class NewsFragment extends BaseFragment {
     }
 
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

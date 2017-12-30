@@ -127,8 +127,6 @@ public class CampusLittlestoryActivity extends BaseActivity implements NewItemLi
         params.put("school_id",interesId);
         params.put("source_tag_id",rootsID);
         params.put("sort",21);
-
-
         LogUtils.e(interesId+"-------"+rootsID);
         NetworkReuset.getInstance().getCamPusXiaoGuShi( params, new onCallBack<CamPusStorietteBean>(this) {
             @Override

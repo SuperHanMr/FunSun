@@ -4,7 +4,9 @@ package com.fengxun.funsun.model.request;
 
 
 
+import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -69,6 +71,18 @@ public class LoggerInterceptor implements Interceptor {
         }
        ResponseBody responseBody = response.body();
         long contentLength = responseBody.contentLength();
+        String header = response.header("X-User-Anonymous");
+
+        LogUtils.e(response.headers().toString());
+        if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+            if (SPUtils.getString(KEY.KEY_USERTOKEN)==null&&header!=null){
+                SPUtils.putString(KEY.KEY_USERTOKEN,header);
+                LogUtils.e("没有登录匿名token存储，token值："+SPUtils.getString(KEY.KEY_USERTOKEN));
+            }
+
+
+        }
+
         BufferedSource source = responseBody.source();
         try {
             source.request(Long.MAX_VALUE); // Buffer the entire body.

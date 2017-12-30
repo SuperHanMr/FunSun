@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorbWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/tooblar_item"/>
+    <include layout="@layout/view_line"/>
+
+
+    <TextView
+        android:textSize="30px"
+        android:layout_marginTop="40px"
+        android:textColor="@color/colorbMessageText"
+        android:gravity="center"
+        android:text="我们将根据您的选择给您定制推荐"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorbWhite"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:paddingBottom="40px"
+        android:paddingTop="40px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <GridView
+            android:verticalSpacing="20dp"
+            android:gravity="center"
+            android:numColumns="3"
+            android:id="@+id/ac_selector_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </GridView>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

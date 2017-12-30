@@ -43,19 +43,25 @@ public class ToastUtil {
     }
 
 
-    public static void massageToast(Context context,int num){
+    public static void massageToast(Context context,String massage){
         Toast toast = new Toast(context);
         View layout = View.inflate(context, R.layout.massage_toast, null);
         TextView textView = (TextView) layout.findViewById(R.id.toast_mun);
-        if (num==0){
-           textView.setText("趣闻消耗太快，我们正在开采");
-        }else {
-            textView.setText("发现"+num+"条新趣闻");
-        }
+//        if (num==0){
+//           textView.setText("趣闻消耗太快，我们正在开采");
+//        }else {
+//            textView.setText("发现"+num+"条新趣闻");
+//        }
+
+
+        textView.setText(massage);
         toast.setView(layout);
-        // 设置土司显示在屏幕的位置
-        toast.setGravity(Gravity.FILL_HORIZONTAL | Gravity.TOP, 0, 100);
         toast.show();
     }
+
+
+
+
+
 
 }

@@ -187,8 +187,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         if (!mOpenLoadMore || mLoadMoreListener == null) {
             return;
         }
-
-
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -270,7 +268,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     public void setLoadMoreData(List<T> datas) {
         int size = mDatas.size();
         mDatas.addAll(datas);
-        notifyItemInserted(size);
+        notifyItemChanged(size);
     }
 
     /**
@@ -280,6 +278,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
      */
     public void setData(List<T> datas) {
         if (mDatas!=null){
+
             mDatas.addAll(0, datas);
             notifyDataSetChanged();
         }

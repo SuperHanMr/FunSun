@@ -21,6 +21,7 @@ import com.fengxun.funsun.model.bean.HotSchoolBean;
 import com.fengxun.funsun.model.bean.RecommendSchooleBean;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.onCallBack;
+import com.fengxun.funsun.utils.ACache;
 import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.SteBoolarUtil;
 import com.fengxun.funsun.view.activity.LoginActivity;
@@ -31,6 +32,7 @@ import com.fengxun.funsun.view.adapter.aroudcampus.AroundCampusHotstopAdapter;
 import com.fengxun.funsun.view.adapter.aroudcampus.AroundCampusVicinityAdapter;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.views.FlowLayout;
+import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -67,11 +69,18 @@ public class AroundCampusFragmnet extends BaseFragment {
 
     private ArrayList<String> recommendList;
     private AroundCampusHotstopAdapter adapter;
+    private ACache aCache;
+
+    private boolean isLogdin;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_around;
     }
+
+
+
+
 
 
     @Override
@@ -81,6 +90,8 @@ public class AroundCampusFragmnet extends BaseFragment {
         unbinder = ButterKnife.bind(this, rootView);
         return rootView;
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -95,8 +106,7 @@ public class AroundCampusFragmnet extends BaseFragment {
     @Override
     protected void initView() {
 
-
-        if (SPUtils.getBoolean(KEY.KEY_ISLOGIN, false)) {
+        if (isLogdin) {
             setBarLeftIcon(true);
         } else {
             statusBarFix.setLayoutParams(new
@@ -132,6 +142,27 @@ public class AroundCampusFragmnet extends BaseFragment {
                 NetworkDatas();
             }
         });
+        /*
+        列表数据
+         */
+        aCache = ACache.get(getContext());
+        String schoollist = aCache.getAsString("schoollist");
+        if (schoollist!=null){
+            Gson gson = new Gson();
+            HotSchoolBean hotSchoolBean = gson.fromJson(schoollist, HotSchoolBean.class);
+            List<HotSchoolBean.DataBean> data = hotSchoolBean.getData();
+            adapter.setData(data);
+        }
+
+
+        String tuijian = aCache.getAsString("tuijian");
+        if (tuijian!=null){
+            Gson gson = new Gson();
+            RecommendSchooleBean recommendSchooleBean = gson.fromJson(tuijian, RecommendSchooleBean.class);
+            List<RecommendSchooleBean.DataBean> data = recommendSchooleBean.getData();
+            processRecommendSchoolData(data);
+        }
+
 
     }
 
@@ -168,10 +199,11 @@ public class AroundCampusFragmnet extends BaseFragment {
 
 
     public void NetworkDatas() {
-
         NetworkReuset.getInstance().getHotSchool(new onCallBack<HotSchoolBean>(this) {
             @Override
             public void onSucceed(HotSchoolBean hotSchoolBean, Call call, String string) {
+
+                aCache.put("schoollist",string);
                 List<HotSchoolBean.DataBean> data = hotSchoolBean.getData();
                 adapter.setData(data);
 
@@ -182,6 +214,7 @@ public class AroundCampusFragmnet extends BaseFragment {
         NetworkReuset.getInstance().getRecommend(new onCallBack<RecommendSchooleBean>(this) {
             @Override
             public void onSucceed(RecommendSchooleBean recommendSchooleBean, Call call, String string) {
+                aCache.put("tuijian",string);
                 List<RecommendSchooleBean.DataBean> data = recommendSchooleBean.getData();
                 flowLayout.removeAllViews();
                 processRecommendSchoolData(data);

@@ -10,9 +10,10 @@ import java.util.List;
  */
 
 public class RelationInfoBean implements Serializable {
+
     /**
      * code : 200
-     * data : {"avatar":"http://qiniu.funsun.cn/wx-/790627-85a886e464098572fd00d92f24dd8268","id":"26519","level":"1","meet_count":0,"nick":"清华微生活","photo_list":[{"id":23815,"photo_url":"http://qiniu.funsun.cn/build-girl-avatar%20%2858%29.jpg"}],"relation":"","same_Interest":"","same_like":"","school":"5501","school_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_name":"清华大学","sex":"0","user_blacklist":0}
+     * data : {"avatar":"http://qiniu.funsun.cn/wx-/790627-33dc82737abaac7e892597e39dd2511b","id":"36815","level":"1","meet_count":0,"nick":"FLIGHTCLUB中文站","photo_list":[{"id":33402,"photo_url":"http://qiniu.funsun.cn/build-girl-avatar%20%28153%29.jpg"}],"relation":"","same_Interest":"","same_like":[],"school":"","school_img":"","school_name":"","sex":"0","user_blacklist":0}
      * msg : 查询成功
      */
 
@@ -46,18 +47,18 @@ public class RelationInfoBean implements Serializable {
 
     public static class DataBean {
         /**
-         * avatar : http://qiniu.funsun.cn/wx-/790627-85a886e464098572fd00d92f24dd8268
-         * id : 26519
+         * avatar : http://qiniu.funsun.cn/wx-/790627-33dc82737abaac7e892597e39dd2511b
+         * id : 36815
          * level : 1
          * meet_count : 0
-         * nick : 清华微生活
-         * photo_list : [{"id":23815,"photo_url":"http://qiniu.funsun.cn/build-girl-avatar%20%2858%29.jpg"}]
+         * nick : FLIGHTCLUB中文站
+         * photo_list : [{"id":33402,"photo_url":"http://qiniu.funsun.cn/build-girl-avatar%20%28153%29.jpg"}]
          * relation :
          * same_Interest :
-         * same_like :
-         * school : 5501
-         * school_img : http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png
-         * school_name : 清华大学
+         * same_like : []
+         * school :
+         * school_img :
+         * school_name :
          * sex : 0
          * user_blacklist : 0
          */
@@ -69,13 +70,13 @@ public class RelationInfoBean implements Serializable {
         private String nick;
         private String relation;
         private String same_Interest;
-        private String same_like;
         private String school;
         private String school_img;
         private String school_name;
         private String sex;
         private int user_blacklist;
         private List<PhotoListBean> photo_list;
+        private List<?> same_like;
 
         public String getAvatar() {
             return avatar;
@@ -133,14 +134,6 @@ public class RelationInfoBean implements Serializable {
             this.same_Interest = same_Interest;
         }
 
-        public String getSame_like() {
-            return same_like;
-        }
-
-        public void setSame_like(String same_like) {
-            this.same_like = same_like;
-        }
-
         public String getSchool() {
             return school;
         }
@@ -189,10 +182,18 @@ public class RelationInfoBean implements Serializable {
             this.photo_list = photo_list;
         }
 
+        public List<?> getSame_like() {
+            return same_like;
+        }
+
+        public void setSame_like(List<?> same_like) {
+            this.same_like = same_like;
+        }
+
         public static class PhotoListBean {
             /**
-             * id : 23815
-             * photo_url : http://qiniu.funsun.cn/build-girl-avatar%20%2858%29.jpg
+             * id : 33402
+             * photo_url : http://qiniu.funsun.cn/build-girl-avatar%20%28153%29.jpg
              */
 
             private int id;

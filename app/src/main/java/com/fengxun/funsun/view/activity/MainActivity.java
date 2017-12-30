@@ -2,8 +2,6 @@ package com.fengxun.funsun.view.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,38 +9,47 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.fengxun.funsun.FunSunAPP;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
+import com.fengxun.funsun.model.bean.TagesIntenr;
 import com.fengxun.funsun.model.eventbus.MainActivityEventBus;
-import com.fengxun.funsun.utils.FitStateUI;
+import com.fengxun.funsun.model.request.NetworkReuset;
+import com.fengxun.funsun.model.request.RequestUrl;
+import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
-import com.fengxun.funsun.utils.SteBoolarUtil;
 import com.fengxun.funsun.view.adapter.MianFragmentViewPager;
-import com.fengxun.funsun.view.base.ActivityStack;
 import com.fengxun.funsun.view.fragment.AroundCampusFragmnet;
 import com.fengxun.funsun.view.fragment.CampusFragment;
 import com.fengxun.funsun.view.fragment.LoginFragment;
-import com.fengxun.funsun.view.fragment.MeFragment;
+
+import com.fengxun.funsun.view.fragment.MeSttingFragment;
 import com.fengxun.funsun.view.fragment.NewsFragment;
 import com.fengxun.funsun.view.views.NoSorollViewpager;
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.HttpParams;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -50,8 +57,9 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     NoSorollViewpager mianNoViewpager;
     @BindView(R.id.rg_tab)
     RadioGroup rgTab;
-    private List<Fragment> fragments;
 
+    private List<Fragment> fragments;
+    private RadioButton button;
 
 
     @Override
@@ -65,20 +73,28 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     }
 
 
-
-
+    /**
+     *
+     */
     private void initView() {
         fragments = new ArrayList<>();
         fragments.add(new NewsFragment());
+        button = (RadioButton) findViewById(R.id.rb_me);
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN, false) ? new CampusFragment(SPUtils.getString(KEY.KEY_USERSCHOOLID),
+                SPUtils.getString(KEY.KEY_USERSCHOOL), false) : new AroundCampusFragmnet());
 
-        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment(SPUtils.getString(KEY.KEY_USERSCHOOLID),
-                SPUtils.getString(KEY.KEY_USERSCHOOL),false):new AroundCampusFragmnet());
-
-        LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"");
-        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeFragment(): new LoginFragment());
-        mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
+        LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN, false) + "");
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN, false) ? new MeSttingFragment() : new LoginFragment());
+        mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(), fragments));
         mianNoViewpager.setOffscreenPageLimit(2);
         rgTab.setOnCheckedChangeListener(this);
+
+
+
+
+
+
+
     }
 
 
@@ -101,22 +117,26 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
 
 
 
-
     /*
         用EventBus 通知MainActivity 重新添加一次Fragment
      */
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getEventBusRefresh(MainActivityEventBus bus){
+        LogUtils.e("登陆成功的touken："+SPUtils.getString(KEY.KEY_USERTOKEN));
         int mainActivityEventBus = bus.getMainActivityEventBus();
         fragments.clear();
         fragments.add(new NewsFragment());
         fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new CampusFragment(SPUtils.getString(KEY.KEY_USERSCHOOLID),
                 SPUtils.getString(KEY.KEY_USERSCHOOL),false):new AroundCampusFragmnet());
         LogUtils.d(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"");
-        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeFragment(): new LoginFragment());
+        fragments.add(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?new MeSttingFragment(): new LoginFragment());
         mianNoViewpager.setAdapter(new MianFragmentViewPager(getSupportFragmentManager(),fragments));
         mianNoViewpager.setCurrentItem(mainActivityEventBus, false);
+        button.setChecked(true);
     }
+
+
 
 
     @Override

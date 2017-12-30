@@ -20,6 +20,9 @@ import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
 
 /**
  * 程序员：韩永辉
@@ -62,8 +65,21 @@ public class FunSunAPP extends Application {
                 .addCommonHeaders(headers)
                 .addInterceptor(new LoggerInterceptor());
 
+        /*
+        6eb441cedc33fb689d928d54e645e2cb
+        6eb441cedc33fb689d928d54e645e2cb
+         */
 
-       // CacheMode.IF_NONE_CACHE_REQUEST;// 如果缓存不在 再请求网络
+
+        //设置LOG开关，默认为false
+        UMConfigure.setLogEnabled(true);
+        //初始化组件化基础库, 统计SDK/推送SDK/分享SDK都必须调用此初始化接口
+        UMConfigure.init(this, null, "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
+        //开启ShareSDK debug模式，方便定位错误，具体错误检查方式可以查看http://dev.umeng.com/social/android/quick-integration的报错必看，正式发布，请关闭该模式
+        Config.DEBUG = true;
+
+
+        // CacheMode.IF_NONE_CACHE_REQUEST;// 如果缓存不在 再请求网络
         SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
             @NonNull
             @Override
@@ -81,10 +97,18 @@ public class FunSunAPP extends Application {
             }
         });
 
+    }
+
+    {
+
+        PlatformConfig.setWeixin("wx57116b6d92b453ce", "4a83f517221a77a41a3387341805b974");
+
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+
+        PlatformConfig.setSinaWeibo("3096450733", "22c7b3c3da764525703d64fdf8e593c0", "http://sns.whalecloud.com");
 
 
     }
-
 
 
 }

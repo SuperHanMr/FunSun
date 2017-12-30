@@ -43,5 +43,13 @@ public class KEY {
 
     public static final String KEY_ROOTSTAG = "rootstag";
 
+    public static final String KEY_TOWINFO = "towcontentid";
+
+    public static final String KEY_TOWCOMMENT = "tow_comment";
+
+    public static final String FIRST_OPEN = "first_open";
+
+
+
 
 }

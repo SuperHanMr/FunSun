@@ -40,6 +40,7 @@ import okhttp3.Call;
  * 程序员：韩永辉
  * 创建日期：on 2017/12/24.
  * Holle Android
+ * 内容：二级兴趣溯源
  */
 
 public class TowInterRootsActvity extends BaseActivity implements NewItemListener {
@@ -66,6 +67,7 @@ public class TowInterRootsActvity extends BaseActivity implements NewItemListene
     protected int getBoolarColors() {
         return R.color.colorbWhite;
     }
+
 
 
     @Override

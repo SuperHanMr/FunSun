@@ -26,7 +26,7 @@
 
             <EditText
                 android:singleLine="true"
-                android:imeOptions="actionSend"
+                android:imeOptions="actionSearch"
                 android:id="@+id/ac_ed_search_school"
                 android:background="@color/colorbTransparence"
                 android:textSize="28px"

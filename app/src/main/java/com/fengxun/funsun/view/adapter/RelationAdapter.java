@@ -1,13 +1,19 @@
 package com.fengxun.funsun.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.QuotationBean;
+import com.fengxun.funsun.model.bean.RelationInfBean;
 import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.TimeUtils;
+import com.fengxun.funsun.view.activity.InformationParticularsActivity;
+import com.fengxun.funsun.view.activity.RelationCalorieActivity;
+import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.fengxun.funsun.view.base.BasePromtingAdapter;
 import com.fengxun.funsun.view.base.MultiBaseAdapter;
 import com.fengxun.funsun.view.base.PromtingViewholder;
@@ -41,7 +47,7 @@ public class RelationAdapter extends BasePromtingAdapter {
     public void onBindViewHolder(PromtingViewholder holder, int position) {
         super.onBindViewHolder(holder, position);
 
-        QuotationBean.DataBean.RetBean retBean = beanArrayList.get(position);
+        final QuotationBean.DataBean.RetBean retBean = beanArrayList.get(position);
         Picasso.with(context).load(retBean.getAvatar()).into(holder.getCircleImageView(R.id.item_relation_head));
         holder.setText(R.id.item_relation_tv_name,retBean.getNick());
 
@@ -60,6 +66,16 @@ public class RelationAdapter extends BasePromtingAdapter {
             holder.getView(R.id.item_relation_tv_comment).setVisibility(View.GONE);
             holder.setText(R.id.item_blacklist_tv_posted_user_name,retBean.getNick());
         }
+
+        holder.setOnClickListener(R.id.item_relation_content, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, InformationParticularsActivity.class);
+                intent.putExtra(BaseNewFragmnet.POSTINFO,retBean.getContent_id()+"");
+                context.startActivity(intent);
+            }
+        });
 
 
 

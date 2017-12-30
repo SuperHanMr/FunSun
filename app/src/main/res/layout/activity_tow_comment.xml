@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include layout="@layout/tooblar_item"/>
+    <include layout="@layout/view_line"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:padding="20px"
+        android:layout_weight="1000"
+        android:id="@+id/ac_tow_content_al"
+        android:orientation="vertical"
+        android:background="@color/colorbWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_marginTop="20px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/commtent_bg_left"
+        android:padding="30px">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ac_towcomment_head"
+            android:layout_width="85px"
+            android:layout_height="85px"
+            android:src="@drawable/pinglun" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/ac_tow_al"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ac_towcomment_head"
+            android:layout_marginLeft="15px"
+            android:layout_marginTop="15px"
+            android:layout_toRightOf="@+id/ac_towcomment_head"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/ac_tow_comment_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户姓名"
+                android:textColor="@color/colorbMessageText"
+                android:textSize="26px" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <ImageButton
+                    android:padding="10px"
+                    android:layout_marginRight="20px"
+                    android:id="@+id/ac_tow_comment_item_left_btn_zan"
+                    android:background="@drawable/zan_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginRight="20px"
+                    android:id="@+id/ac_tow_comment_item_left_number"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="23px"
+                    android:text="1"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:padding="10px"
+                    android:id="@+id/ac_tow_comment_item_left_btn_cai"
+                    android:background="@drawable/cai_n"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        <TextView
+            android:id="@+id/ac_tow_tv_bconmm_content"
+            android:layout_marginBottom="30px"
+            android:layout_marginTop="10px"
+            android:layout_below="@+id/ac_tow_al"
+            android:layout_alignLeft="@+id/ac_tow_al"
+            android:textColor="@color/colorbText"
+            android:text="pinglumnpinglumnpinglumn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ac_tow_tv_time"
+            android:layout_below="@+id/ac_tow_tv_bconmm_content"
+            android:layout_alignParentRight="true"
+            android:text="5分钟前"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ac_tow_comment_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/comment_layout"/>
+        <!--这个位置装表情-->
+        <com.zhy.autolayout.AutoFrameLayout
+            android:visibility="gone"
+            android:id="@+id/tow_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.zhy.autolayout.AutoFrameLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.CamPusStorietteBean;
@@ -53,12 +55,15 @@ public class StorietteRecyclerViewAdapter extends BasePromtingAdapter {
     private Activity activity;
     private final int itemWidth;
     private boolean isRoost;
+    private double rotion;
+    private RecyclerView recyclerView;
 
     public StorietteRecyclerViewAdapter(Activity activity,boolean isRoots) {
         super(activity);
         //计算item的宽度
         this.activity = activity;
         this.isRoost = isRoots;
+
         itemWidth = (DisplayUtils.getScreenWidth(activity)) / 2-20;
         beanList = new ArrayList<>();
     }
@@ -82,33 +87,55 @@ public class StorietteRecyclerViewAdapter extends BasePromtingAdapter {
         super.onBindViewHolder(holder, position);
         RoundedImageView roundedImageViewBg = holder.getRoundedImageViewBg(R.id.campus_storiette_bg);
         final CamPusStorietteBean.DataBean bean = beanList.get(position);
+        LogUtils.e("图片的比例："+(String) bean.getSize());
+        if (bean!=null){
+                if (bean.getSize()!=null){
+                    String  size = (String) bean.getSize(); // 宽高比例
+                    String[] split = size.split(":");
+                    int widhtHeight[] = new int[split.length];
 
-        String size = bean.getSize().trim(); // 宽高比例
-        String[] split = size.split(":");
-        int widhtHeight[] = new int[split.length];
-        for (int i = 0; i < split.length; i++) {
-            widhtHeight[i] =Integer.parseInt(split[i].substring(0, split[i].indexOf(".")));
-        }
+                    for (int i = 0; i < split.length; i++) {
+                        if (split[i].contains(".")){
+                            widhtHeight[i] =Integer.parseInt(split[i].substring(0, split[i].indexOf(".")));
+                        }else {
+                            widhtHeight[i] =Integer.parseInt(split[i]);
+                        }
+
+                    }
+                    rotion = widhtHeight[1]/(double)widhtHeight[0];
+                    if (rotion >1.36){
+                        rotion = 1.36;
+                    }else if (rotion <1.0){
+                        rotion = 1.0;
+                    }
+                }else {
+                    rotion = 1.0;
+                }
+                int height = (int) (itemWidth*rotion);
+                ViewGroup.LayoutParams layoutParams = roundedImageViewBg.getLayoutParams();
+                layoutParams.width = itemWidth;
+                layoutParams.height = height;
+                roundedImageViewBg.setLayoutParams(layoutParams);
+                Glide.with(activity).load(bean.getSchool_cover_img_url().get(0)).into(roundedImageViewBg);
+                AutoLinearLayout autoLinearLayout = holder.getAutoLinearLayout(R.id.campus_storiette_redu_ll);
+                ViewGroup.LayoutParams layoutParams1 = autoLinearLayout.getLayoutParams();
+                layoutParams1.height = height;
+                layoutParams1.width = itemWidth;
 
 
-        double rotion = widhtHeight[1]/(double)widhtHeight[0];
-        if (rotion>1.36){
-            rotion = 1.36;
-        }else if (rotion<1.0){
-            rotion = 1.0;
-        }
+//            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//                @Override
+//                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                        Picasso.with(context).resumeTag(tag);
+//                    }else {
+//                        Picasso.with(mContext).pauseTag(tag);
+//                    }
+//                }
+//            });
 
-        int height = (int) (itemWidth*rotion);
-        ViewGroup.LayoutParams layoutParams = roundedImageViewBg.getLayoutParams();
-        layoutParams.width = itemWidth;
-        layoutParams.height = height;
-        roundedImageViewBg.setLayoutParams(layoutParams);
-        Picasso.with(activity).load(bean.getSchool_cover_img_url().get(0)).into(roundedImageViewBg);
 
-        AutoLinearLayout autoLinearLayout = holder.getAutoLinearLayout(R.id.campus_storiette_redu_ll);
-        ViewGroup.LayoutParams layoutParams1 = autoLinearLayout.getLayoutParams();
-        layoutParams1.height = height;
-        layoutParams1.width = itemWidth;
+
 
         /*
         溯源
@@ -173,6 +200,8 @@ public class StorietteRecyclerViewAdapter extends BasePromtingAdapter {
                     listener.onRelationListener(bean.getComment_user_id()+"",bean.getContent_id()+"",2);
                 }
             });
+
+        }
 
 
     }

@@ -39,6 +39,7 @@ import okhttp3.Call;
  * 程序员：韩永辉
  * 创建日期：on 2017/12/24.
  * Holle Android
+ * 内容：兴趣溯源
  */
 
 public class InterestRootsActivity extends BaseActivity implements InterestRootsRecyclerViewAdapter.OncommentContentListener {
@@ -83,7 +84,6 @@ public class InterestRootsActivity extends BaseActivity implements InterestRoots
     public void initView() {
         super.initView();
         setBarLeftIcon(true);
-
 
         roostName = getIntent().getStringExtra(KEY.KEY_SCHOOLNAME);
         roostId = getIntent().getStringExtra(KEY.KEY_SCHOOLID);

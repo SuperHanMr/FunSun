@@ -10,9 +10,10 @@ import java.util.List;
  */
 
 public class CamPusEventBean implements Serializable {
+
     /**
      * code : 200
-     * data : [{"comment":"你想要的\u2026\u2026都在这里","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-8f6109804864764090f2610e8a684efb","comment_user_id":26487,"comment_user_nick":"清华大学小研在线","content_id":17337,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"特奖专访 | 王泽朝：一位敢diss导师的研究生","content_type":0,"hot_cnt":50,"publish_time":1.512631275E9,"publish_user":26487,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-8f6109804864764090f2610e8a684efb","publish_user_nick":"清华大学小研在线","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-8e378da3d2983a27783000cb35c90715.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-21c2f8a242591ab32050b0588fa11157.png?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-4b5d554016128eb23465f314b1999bf0.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"565:315","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"新鲜出炉的消息，小心烫手！","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-791e9429b5e95c89e84aa2d68c0beea4","comment_user_id":26493,"comment_user_nick":"清华大学学生会","content_id":17333,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"剧透！校歌赛三大全新亮点！","content_type":0,"hot_cnt":50,"publish_time":1.512631223E9,"publish_user":26493,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-791e9429b5e95c89e84aa2d68c0beea4","publish_user_nick":"清华大学学生会","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-9c39689206deb3634d3ea5f9e524a541.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-719c09a3e04e8c1034f826956b082d61.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-1238abc7a762f27d938be484c5d80a0b.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"640:427","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"新帖火钳刘明","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-8468763c244bac7b514cb886ff8aaffa","comment_user_id":26484,"comment_user_nick":"清华大学小研在身边","content_id":17331,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"通知 | 关于12月9日校园车停运的通知","content_type":0,"hot_cnt":50,"publish_time":1.512631158E9,"publish_user":26484,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-8468763c244bac7b514cb886ff8aaffa","publish_user_nick":"清华大学小研在身边","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-c45c0b0533d0a35275ab6731e2e5c899.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"550:413","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"新帖火钳刘明","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-7a658acf943efd337a422c864988bf2f","comment_user_id":50355,"comment_user_nick":"人文清华讲坛","content_id":17330,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"独家专访 | 魏祥：清华园成了我和妈妈的家","content_type":0,"hot_cnt":50,"publish_time":1.512631126E9,"publish_user":50355,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-7a658acf943efd337a422c864988bf2f","publish_user_nick":"人文清华讲坛","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-71df57a0a5cd94c467d6341af1a36447.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-0a51d0cb9d5cb42e45a6b6b37dede755.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-5262e5530d48a7c7091142ea19289af3.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"640:480","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"厉害了我的哥姐！","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-83bf237fef449c155f3fcd620fa36f86","comment_user_id":26518,"comment_user_nick":"清小华","content_id":17327,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"我在清华等你来 | 金策：从容淡定 \u201c金牌\u201d之风","content_type":0,"hot_cnt":50,"publish_time":1.512631009E9,"publish_user":26518,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-83bf237fef449c155f3fcd620fa36f86","publish_user_nick":"清小华","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-122a6032ee41dca75d2496c916fc9602.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-2c6ccefa8b6b9d16c20c38a24cb27727.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-65ed38583139e1ffc0fc1a19f6569af0.gif?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"1280:711","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"我不是矫情，我只是认真","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-c9f271429e37e4ec3fd3d7314ae54bd7","comment_user_id":26500,"comment_user_nick":"清华大学清新时报","content_id":17326,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"我的甜，你的辣，腻在一起闯天下","content_type":0,"hot_cnt":50,"publish_time":1.512630961E9,"publish_user":26500,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-c9f271429e37e4ec3fd3d7314ae54bd7","publish_user_nick":"清华大学清新时报","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-e194a92d0005eb63ae48e1b3cfe4f87b.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-67e663858fd4747d9034db59127eae78.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-b3d9fda2f3a4fe6c70a88e393a4b4b75.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"640:356","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"吃瓜群众快来围观！","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-bf7bef0b0b2188e3c49211484c192d10","comment_user_id":26492,"comment_user_nick":"清华大学美术学院","content_id":17324,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"清华美院染织专业学生探索手工蜡防染工艺的多样表达","content_type":0,"hot_cnt":50,"publish_time":1.512630911E9,"publish_user":26492,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-bf7bef0b0b2188e3c49211484c192d10","publish_user_nick":"清华大学美术学院","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-51d1b44cc3c6e15241f4cf16a8e88cf9.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-6b6a5cf9c34381e0e9e9fc2d74820e7b?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-cc1770b67378b607bf4a182c6cd9ba37?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"1280:710","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"点他点她就点它~","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-bf7bef0b0b2188e3c49211484c192d10","comment_user_id":26492,"comment_user_nick":"清华大学美术学院","content_id":17320,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"清华美院风景写生创作营写生作品","content_type":0,"hot_cnt":50,"publish_time":1.512630828E9,"publish_user":26492,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-bf7bef0b0b2188e3c49211484c192d10","publish_user_nick":"清华大学美术学院","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-69a7c00953f91b51cb7c42d3fdb94701.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-8594916229db5b1025882712d4b1750a?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-0013be014cd420e416483f898ab9ebfc?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"720:721","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"不为别的，只是想告诉你\u2026\u2026","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-89f6c020941f68c2a932ba02a86a1292","comment_user_id":26476,"comment_user_nick":"清华大学艺术博物馆","content_id":17318,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"清华艺博学术讲座| 马歇尔·雷斯《雕塑的起源》","content_type":0,"hot_cnt":50,"publish_time":1.51263075E9,"publish_user":26476,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-89f6c020941f68c2a932ba02a86a1292","publish_user_nick":"清华大学艺术博物馆","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-a0e911a426c94dabdbad4398514001fd?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-6793d16047f266f675e9fcf6023faa23?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-7240b384b1b72cbab8ea397aae710c50?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"1280:1678","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""},{"comment":"不为别的，只是想告诉你\u2026\u2026","comment_cnt":1,"comment_relation":"最热","comment_school":"清华大学","comment_user_avatar":"http://qiniu.funsun.cn/wx-/790627-df548ab8da5e59c78b0b2fceb129217d","comment_user_id":26486,"comment_user_nick":"清华大学藤影荷声","content_id":16925,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"清华思客丨李义天：追求美德的易与难","content_type":0,"hot_cnt":50,"publish_time":1.512543755E9,"publish_user":26486,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-df548ab8da5e59c78b0b2fceb129217d","publish_user_nick":"清华大学藤影荷声","root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":0,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-7bdadd5cc130b5a7e07957ba191c111f.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-93b4426ad46088fe75ceaa4669a9a95c.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-e82e93ea13fead5ef022ca68b14a1ec3.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"500:278","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":"","vedio_word_zh_cn":""}]
+     * data : [{"comment":"","comment_cnt":7,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":59368,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"颜宁为何从清华去普林斯顿？她终于说出原因","content_type":0,"hot_cnt":357,"publish_time":1.514501148E9,"publish_user":49619,"publish_user_avatar":"http://qiniu.funsun.cn/build-boy-avatar%20%2867%29.jpg","publish_user_nick":"丰讯清华","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/act_img-c922687c-856b-4f93-86d9-78884e695412?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"500:347","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58667,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"情书 | 谢幕（多图）","content_type":0,"hot_cnt":50,"publish_time":1.514487677E9,"publish_user":53160,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-d23de6ff216fb55324d15595689c39ee","publish_user_nick":"清华国标队","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-95922e935690edf1742ab270c8a6e57e.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"1280:853","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":59137,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"爱读夜预告|数学与结构主义&爱读夜回顾|克尔恺郭尔眼中的希伯来信仰英雄","content_type":0,"hot_cnt":50,"publish_time":1.514489409E9,"publish_user":53152,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-a461b108ed8afd2b94f883a7f4f6b1b6","publish_user_nick":"清华文苑","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-519ba4808bbba6e527e638e807da1877.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"454:253","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58537,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"工商管理（EMBA）总裁高级研修班","content_type":0,"hot_cnt":50,"publish_time":1.514487221E9,"publish_user":53137,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-960fc7ecdacd917fad3cf4da0b5cfaa5","publish_user_nick":"水木清华","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-19ab17a840dbd08e463e414fd3c410a2.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"720:400","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58882,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"青年教师专访 | 张芳：科研路与环境心","content_type":0,"hot_cnt":50,"publish_time":1.514488359E9,"publish_user":53141,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-1e955fb2ecebb8c9ba03c1b4b5842b7c","publish_user_nick":"清华青年科创","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-5f8d50476454e6f315e62fc7a10a55ff.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"151:151","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58497,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"物理系在二维材料快速表征方面取得进展","content_type":0,"hot_cnt":50,"publish_time":1.51448714E9,"publish_user":53126,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-d5436fed4eb45dc12ba83b919bfeddd5","publish_user_nick":"清华物理系","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-de1cd7c3f17f75115f6f13262bb401b3.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"898:500","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58538,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"林枫奖候选人郭心怡 | 把辅导员工作当成一项事业","content_type":0,"hot_cnt":50,"publish_time":1.514487224E9,"publish_user":53121,"publish_user_avatar":"http://qiniu.funsun.cn/build-girl-avatar%20%28136%29.jpg","publish_user_nick":"清华辅导员","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-7c24833ed108b23db82a80ad6f48108e.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"578:867","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58454,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"包邮免费送书：100本《何凯文考研英语必考词汇书》+《历年真题及答题技巧》电子版","content_type":0,"hot_cnt":50,"publish_time":1.51448702E9,"publish_user":53107,"publish_user_avatar":"http://qiniu.funsun.cn/build-girl-avatar%20%2835%29.jpg","publish_user_nick":"清华大学考研","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-9cd2db6f5d2cefee283559c0d864f22f.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"900:499","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58498,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"2017年清华大学国防定向生及飞行学员评优结果公示","content_type":0,"hot_cnt":50,"publish_time":1.514487142E9,"publish_user":53120,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-a9400a20595b1a82599fa2eaaea958ad","publish_user_nick":"清华国防","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-03ce6c9f9bf51aadcda0c2a4342fd7b7.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"900:500","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}},{"comment":"","comment_cnt":1,"comment_relation":"","comment_school":"","comment_user_avatar":"","comment_user_id":"","comment_user_nick":"","content_id":58883,"content_publish_user_school_id":"5501","content_publish_user_school_name":"清华大学","content_title":"\u201c东方之韵·造境\u201d\u2014\u2014茶境·第五届国际茶文化交流展","content_type":0,"hot_cnt":50,"publish_time":1.514488363E9,"publish_user":53142,"publish_user_avatar":"http://qiniu.funsun.cn/wx-/790627-122618b98fc9bf001be3be73cb42fd53","publish_user_nick":"清华美院陶瓷系","recommend":0,"root_tag":"清华大学","root_tag_country_img":"http://qiniu.funsun.cn/china.png","root_tag_id":5501,"root_tag_img":"http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png","school_content_type":2,"school_cover_img_url":["http://qiniu.funsun.cn/wx-/790627-8513d35711c23f52fe58d89ae9dc0ecf.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"],"school_id":5501,"second_root_tag":"","second_root_tag_id":"","size":"1280:711","source_type":0,"vedio_text":"","vedio_time":"","vedio_url":"","vedio_word":{"beginTime":[],"endTime":[],"text":[]},"vedio_word_zh_cn":{"beginTime":[],"endTime":[],"text":[]}}]
      * msg : 获取数据成功
      */
 
@@ -44,41 +45,42 @@ public class CamPusEventBean implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean implements Serializable {
+    public static class DataBean {
         /**
-         * comment : 你想要的……都在这里
-         * comment_cnt : 1
-         * comment_relation : 最热
-         * comment_school : 清华大学
-         * comment_user_avatar : http://qiniu.funsun.cn/wx-/790627-8f6109804864764090f2610e8a684efb
-         * comment_user_id : 26487
-         * comment_user_nick : 清华大学小研在线
-         * content_id : 17337
+         * comment :
+         * comment_cnt : 7
+         * comment_relation :
+         * comment_school :
+         * comment_user_avatar :
+         * comment_user_id :
+         * comment_user_nick :
+         * content_id : 59368
          * content_publish_user_school_id : 5501
          * content_publish_user_school_name : 清华大学
-         * content_title : 特奖专访 | 王泽朝：一位敢diss导师的研究生
+         * content_title : 颜宁为何从清华去普林斯顿？她终于说出原因
          * content_type : 0
-         * hot_cnt : 50
-         * publish_time : 1.512631275E9
-         * publish_user : 26487
-         * publish_user_avatar : http://qiniu.funsun.cn/wx-/790627-8f6109804864764090f2610e8a684efb
-         * publish_user_nick : 清华大学小研在线
+         * hot_cnt : 357
+         * publish_time : 1.514501148E9
+         * publish_user : 49619
+         * publish_user_avatar : http://qiniu.funsun.cn/build-boy-avatar%20%2867%29.jpg
+         * publish_user_nick : 丰讯清华
+         * recommend : 0
          * root_tag : 清华大学
          * root_tag_country_img : http://qiniu.funsun.cn/china.png
          * root_tag_id : 5501
          * root_tag_img : http://qiniu.funsun.cn/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6.png
-         * school_content_type : 0
-         * school_cover_img_url : ["http://qiniu.funsun.cn/wx-/790627-8e378da3d2983a27783000cb35c90715.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-21c2f8a242591ab32050b0588fa11157.png?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim","http://qiniu.funsun.cn/wx-/790627-4b5d554016128eb23465f314b1999bf0.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"]
+         * school_content_type : 2
+         * school_cover_img_url : ["http://qiniu.funsun.cn/act_img-c922687c-856b-4f93-86d9-78884e695412?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim"]
          * school_id : 5501
          * second_root_tag :
          * second_root_tag_id :
-         * size : 565:315
+         * size : 500:347
          * source_type : 0
          * vedio_text :
          * vedio_time :
          * vedio_url :
-         * vedio_word :
-         * vedio_word_zh_cn :
+         * vedio_word : {"beginTime":[],"endTime":[],"text":[]}
+         * vedio_word_zh_cn : {"beginTime":[],"endTime":[],"text":[]}
          */
 
         private String comment;
@@ -86,7 +88,7 @@ public class CamPusEventBean implements Serializable {
         private String comment_relation;
         private String comment_school;
         private String comment_user_avatar;
-        private int comment_user_id;
+        private String comment_user_id;
         private String comment_user_nick;
         private int content_id;
         private String content_publish_user_school_id;
@@ -98,6 +100,7 @@ public class CamPusEventBean implements Serializable {
         private int publish_user;
         private String publish_user_avatar;
         private String publish_user_nick;
+        private int recommend;
         private String root_tag;
         private String root_tag_country_img;
         private int root_tag_id;
@@ -111,8 +114,8 @@ public class CamPusEventBean implements Serializable {
         private String vedio_text;
         private String vedio_time;
         private String vedio_url;
-        private String vedio_word;
-        private String vedio_word_zh_cn;
+        private VedioWordBean vedio_word;
+        private VedioWordZhCnBean vedio_word_zh_cn;
         private List<String> school_cover_img_url;
 
         public String getComment() {
@@ -155,11 +158,11 @@ public class CamPusEventBean implements Serializable {
             this.comment_user_avatar = comment_user_avatar;
         }
 
-        public int getComment_user_id() {
+        public String getComment_user_id() {
             return comment_user_id;
         }
 
-        public void setComment_user_id(int comment_user_id) {
+        public void setComment_user_id(String comment_user_id) {
             this.comment_user_id = comment_user_id;
         }
 
@@ -249,6 +252,14 @@ public class CamPusEventBean implements Serializable {
 
         public void setPublish_user_nick(String publish_user_nick) {
             this.publish_user_nick = publish_user_nick;
+        }
+
+        public int getRecommend() {
+            return recommend;
+        }
+
+        public void setRecommend(int recommend) {
+            this.recommend = recommend;
         }
 
         public String getRoot_tag() {
@@ -355,19 +366,19 @@ public class CamPusEventBean implements Serializable {
             this.vedio_url = vedio_url;
         }
 
-        public String getVedio_word() {
+        public VedioWordBean getVedio_word() {
             return vedio_word;
         }
 
-        public void setVedio_word(String vedio_word) {
+        public void setVedio_word(VedioWordBean vedio_word) {
             this.vedio_word = vedio_word;
         }
 
-        public String getVedio_word_zh_cn() {
+        public VedioWordZhCnBean getVedio_word_zh_cn() {
             return vedio_word_zh_cn;
         }
 
-        public void setVedio_word_zh_cn(String vedio_word_zh_cn) {
+        public void setVedio_word_zh_cn(VedioWordZhCnBean vedio_word_zh_cn) {
             this.vedio_word_zh_cn = vedio_word_zh_cn;
         }
 
@@ -377,6 +388,67 @@ public class CamPusEventBean implements Serializable {
 
         public void setSchool_cover_img_url(List<String> school_cover_img_url) {
             this.school_cover_img_url = school_cover_img_url;
+        }
+
+        public static class VedioWordBean implements Serializable {
+            private List<?> beginTime;
+            private List<?> endTime;
+            private List<?> text;
+
+            public List<?> getBeginTime() {
+                return beginTime;
+            }
+
+            public void setBeginTime(List<?> beginTime) {
+                this.beginTime = beginTime;
+            }
+
+            public List<?> getEndTime() {
+                return endTime;
+            }
+
+            public void setEndTime(List<?> endTime) {
+                this.endTime = endTime;
+            }
+
+            public List<?> getText() {
+                return text;
+            }
+
+            public void setText(List<?> text) {
+                this.text = text;
+            }
+        }
+
+
+        public static class VedioWordZhCnBean implements Serializable {
+            private List<?> beginTime;
+            private List<?> endTime;
+            private List<?> text;
+
+            public List<?> getBeginTime() {
+                return beginTime;
+            }
+
+            public void setBeginTime(List<?> beginTime) {
+                this.beginTime = beginTime;
+            }
+
+            public List<?> getEndTime() {
+                return endTime;
+            }
+
+            public void setEndTime(List<?> endTime) {
+                this.endTime = endTime;
+            }
+
+            public List<?> getText() {
+                return text;
+            }
+
+            public void setText(List<?> text) {
+                this.text = text;
+            }
         }
     }
 }

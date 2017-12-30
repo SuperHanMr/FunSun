@@ -3,6 +3,7 @@ package com.fengxun.funsun.view.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -27,8 +28,20 @@ public class MianFragmentViewPager extends FragmentStatePagerAdapter {
         return fragments.get(position);
     }
 
+
     @Override
     public int getCount() {
         return fragments.size()==0?0:fragments.size();
+    }
+
+//    @Override
+//    public void destroyItem(ViewGroup container, int position, Object object) {
+////        super.destroyItem(container, position, object);
+//    }
+
+
+    public void setFragments(List<Fragment> fragments){
+        this.fragments = fragments;
+        notifyDataSetChanged();
     }
 }

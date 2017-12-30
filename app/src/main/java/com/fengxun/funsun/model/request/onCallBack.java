@@ -5,11 +5,15 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 
 
+import com.fengxun.funsun.model.eventbus.MainActivityEventBus;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.ToastUtil;
 import com.fengxun.funsun.view.activity.MainActivity;
 import com.fengxun.funsun.view.base.BaseActivity;
 import com.fengxun.funsun.view.base.BaseFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 
@@ -23,6 +27,8 @@ import okhttp3.Response;
 public abstract class onCallBack<T> extends JsonCallback<T>{
     private Activity activity = null;
     private Fragment fragment = null;
+
+    private boolean isLogdin;
 
     public Activity getActivity() {
         return activity;
@@ -71,54 +77,28 @@ public abstract class onCallBack<T> extends JsonCallback<T>{
     // 网络请求失败
     @Override
     public void onError(Call call, Response response, Exception e) {
-        super.onError(call, response, e);
-       if (response.code()==949){
-            ToastUtil.showNormalToast(activity,"登录失效");
+       super.onError(call, response, e);
+        if (response!=null){
+            switch (response.code()){
+                case 949:
+                    ToastUtil.showNormalToast(activity,"登录失效");
+                    SPUtils.clear();
+                    EventBus.getDefault().post(new MainActivityEventBus(2));
+                    break;
+            }
+
         }
 
-
-//        if (fragment!=null){
-//            //((BaseFragment)fragment).endNetworkData();
-//            fragment = null;
-//            return;
-//        }
-//        if (activity!=null){
-//            try{
-//                ((BaseActivity)activity).superHanLoginDigloger.dismiss();
-//                activity = null;
-//            }catch (Exception e1){
-//                ((MainActivity)activity).diaLogin(activity).dismiss();
-//                activity = null;
-//                LogUtils.e(e1.toString());
-//            }
-//        }
     }
 
     @Override
     public void onAfter(T t, Exception e) {
         super.onAfter(t, e);
-//        if (fragment!=null){
-//            //((BaseFragment)fragment).endNetworkData();
-//            fragment = null;
-//            return;
-//        }
-//
-//        if (activity!=null){
-//            try{
-//                ((BaseActivity)activity).superHanLoginDigloger.show();
-//                    activity = null;
-//                LogUtils.d("----->走了");
-//            }catch (Exception e1){
-//                ((MainActivity)activity).diaLogin(activity).show();
-//                activity = null;
-//                LogUtils.e(e1.toString());
-//            }
-//        }
+
     }
 
     @Override
     protected void onreSponse401() {
         super.onreSponse401();
-       ToastUtil.showNormalToast(activity,"登录失效");
     }
 }

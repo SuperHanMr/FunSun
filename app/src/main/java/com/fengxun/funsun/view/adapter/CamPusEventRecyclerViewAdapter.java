@@ -3,6 +3,7 @@ package com.fengxun.funsun.view.adapter;
 import android.content.Context;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.CamPusEventBean;
@@ -65,7 +66,7 @@ public class CamPusEventRecyclerViewAdapter extends MultiBaseAdapter<CamPusEvent
     private void processData(ViewHolder holder, final CamPusEventBean.DataBean data, boolean isVideo) {
 
         RoundedImageView roundedImageView = holder.getRoundedImageView(R.id.campus_event_iv_bg);
-        Picasso.with(mContext).load(data.getSchool_cover_img_url().get(0)).into(roundedImageView);
+        Glide.with(mContext).load(data.getSchool_cover_img_url().get(0)).into(roundedImageView);
         holder.setText(R.id.campus_event_tv_biaoti,data.getContent_title());
         holder.setText(R.id.campus_event_tv_num,String.valueOf(data.getHot_cnt()));
         holder.setText(R.id.campus_event_tv_school,data.getPublish_user_nick());

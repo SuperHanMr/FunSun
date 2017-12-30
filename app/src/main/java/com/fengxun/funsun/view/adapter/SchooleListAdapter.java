@@ -78,23 +78,20 @@ public class SchooleListAdapter extends BaseAdapter {
             schoolItem = (SchoolItem) convertView.getTag();
         }
 
-
         //设置数据 头像和Name
-
-
         Picasso.with(context).load(list.get(position).getTag_img()).into(schoolItem.mIcon);
         schoolItem.mName.setText(list.get(position).getTag_name());
-
-
         return convertView;
 
-
     }
+
 
     public void setList(List<SchoolBean.DataBean> list){
         this.list = list;
         notifyDataSetChanged();
     }
+
+
 
     class SchoolItem{
         protected CircleImageView mIcon;

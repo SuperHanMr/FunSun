@@ -61,9 +61,6 @@ public class SchoolListActivity extends BaseActivity {
         adapter = new SchooleListAdapter(this);
         acSchooleGridview.setAdapter(adapter);
 
-
-
-
     }
 
     private void NetworkSchoolList() {

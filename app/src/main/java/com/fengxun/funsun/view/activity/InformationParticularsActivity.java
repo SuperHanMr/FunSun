@@ -24,6 +24,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hanyonghui.mylibrary.BottomMenuFragment;
 import com.fengxun.funsun.R;
@@ -35,14 +36,19 @@ import com.fengxun.funsun.model.bean.InformationAimBean;
 import com.fengxun.funsun.model.bean.LikeBean;
 import com.fengxun.funsun.model.bean.MeetTheManBean;
 import com.fengxun.funsun.model.bean.RelationInfBean;
+import com.fengxun.funsun.model.bean.TowCommentBean;
+import com.fengxun.funsun.model.eventbus.TowCommentEventBus;
 import com.fengxun.funsun.model.listener.OnIikeListener;
+import com.fengxun.funsun.model.listener.OnTowCommentBeanListener;
 import com.fengxun.funsun.model.listener.SpaceItemDecoration;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.TimeUtils;
 import com.fengxun.funsun.utils.ToastUtil;
+import com.fengxun.funsun.utils.Util;
 import com.fengxun.funsun.view.adapter.CommentItemAdapter;
 import com.fengxun.funsun.view.adapter.InformationAimAdapter;
 import com.fengxun.funsun.view.base.BaseActivity;
@@ -54,10 +60,23 @@ import com.lzy.okgo.model.HttpParams;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.squareup.picasso.Picasso;
+
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
+
+import com.umeng.socialize.shareboard.SnsPlatform;
+import com.umeng.socialize.utils.Log;
+import com.umeng.socialize.utils.ShareBoardlistener;
 import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +97,7 @@ import okhttp3.Call;
  */
 
 public class InformationParticularsActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener, OnIikeListener, RadioGroup.OnCheckedChangeListener, TextView.OnEditorActionListener,
-        EmojiconGridFragment.OnEmojiconClickedListener, EmojiconsFragment.OnEmojiconBackspaceClickedListener {
+        EmojiconGridFragment.OnEmojiconClickedListener, EmojiconsFragment.OnEmojiconBackspaceClickedListener, OnTowCommentBeanListener, View.OnFocusChangeListener {
 
 
     @BindView(R.id.ac_information_tv_title)
@@ -213,7 +232,12 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
 
     private String player;
 
-
+    /*
+    分享
+     */
+    private ShareAction mShareAction;
+    private CustomShareListener mShareListener;
+    private UMImage imageurl;
 
 
     @Override
@@ -249,16 +273,18 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         commentIvRightRb.setChecked(true);
         commentRb.setOnCheckedChangeListener(this);
         commentEdContent.setOnEditorActionListener(this);
+        commentEdContent.setOnFocusChangeListener(this);
+
         relationRefreshLayout.setEnableAutoLoadmore(false);
         acInformationCommentRecyclerview.setHasFixedSize(true);
         acInformationCommentRecyclerview.setNestedScrollingEnabled(false);
+
 
 
         /*
         翻译
          */
 
-        tanslationChekbox.setVisibility(View.VISIBLE);
         tanslationChekbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -282,8 +308,6 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         setEmojiconFragment(false);
 
 
-
-
         /*
         瞄过列表
          */
@@ -291,7 +315,7 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         if (acInformationAimRecycler != null) {
             acInformationAimRecycler.setLayoutManager(manager);
-            adapter = new InformationAimAdapter(this);
+            adapter = new InformationAimAdapter(this,contentId);
             acInformationAimRecycler.setAdapter(adapter);
         }
 
@@ -307,6 +331,7 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
             acInformationCommentRecyclerview.setAdapter(commentItemAdapter);
             acInformationCommentRecyclerview.addItemDecoration(new SpaceItemDecoration(10));
             commentItemAdapter.setOnIikeListener(this);
+            commentItemAdapter.setCommentItem(this);
         }
         relationRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
@@ -329,8 +354,6 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
     第二个：瞄过
     第三个：评论列表 只有 二级评论
     第四个：相遇的人列表
-
-
      */
 
     private void NetworkData() {
@@ -339,7 +362,8 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
             return;
         }
 
-        NetworkReuset.getInstance().getInformationData(RequestUrl.INFORMATIONDATA, contentId, new onCallBack<AtextBean>(this) {
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.INFORMATIONDATA:RequestUrl.NOT_LOGIN_INFORMATIONDATA;
+        NetworkReuset.getInstance().getInformationData(url, contentId, new onCallBack<AtextBean>(this) {
             @Override
             public void onSucceed(AtextBean atextBean, Call call, String string) {
                 dataBean = atextBean.getData();
@@ -368,10 +392,14 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         /*
         获取相遇的人
          */
+
         NetworkReuset.getInstance().getMeetTheMan(String.valueOf(contentId), new onCallBack<MeetTheManBean>(this) {
             @Override
             public void onSucceed(MeetTheManBean meetTheManBean, Call call, String string) {
                 List<MeetTheManBean.DataBean> data1 = meetTheManBean.getData();
+                if (data1==null){
+                    return;
+                }
                 if (data1.size() != 0) {
                     MeetTheManBean.DataBean dataBean = data1.get(0);
                     String user_avatar = dataBean.getUser_avatar();
@@ -416,6 +444,13 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         根据判断 去显示对应的溯源类型
          */
 
+        if (data.getTranslate_content_v2()!= null
+                && "1".equals(data.getTranslate_content_v2())){
+            tanslationChekbox.setVisibility(View.VISIBLE);
+        }else {
+            tanslationChekbox.setVisibility(View.GONE);
+        }
+
         final Intent intent = new Intent();
         intent.putExtra(KEY.KEY_SCHOOLID, String.valueOf(data.getContent_root_tag_id()));
         intent.putExtra(KEY.KEY_SCHOOLNAME, data.getContent_root_tag());
@@ -444,15 +479,6 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
                 }
             });
         }
-
-
-
-
-
-
-
-
-
 
         acInformationTvTitle.setText(data.getContent_title());
         Picasso.with(this).load(data.getContent_publish_user_avatar()).into(acInformationIvHead);
@@ -525,13 +551,56 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
             commentIvCollect.setChecked(true);
         }
 
+          /*
+        分享菜单
+         */
+
+          /*
+          获取分享的地址 title 和网页封面
+           */
+
+        final AtextBean.DataBean.ShareDataBean share_data = data.getShare_data();
+        if (share_data!=null){
+            imageurl = new UMImage(this, share_data.getShare_img());
+            imageurl.setThumb(new UMImage(this, share_data.getShare_img()));
+            mShareListener = new CustomShareListener(this);
+            mShareAction = new ShareAction(this).setDisplayList(
+                    SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN_FAVORITE,
+                    SHARE_MEDIA.SINA)
+                    .setShareboardclickCallback(new ShareBoardlistener() {
+                        @Override
+                        public void onclick(SnsPlatform snsPlatform, SHARE_MEDIA share_media) {
+                            if (share_media==SHARE_MEDIA.SINA){
+
+                                new ShareAction(InformationParticularsActivity.this).withText(Util.wbDynamic(share_data.getShare_title(),share_data.getShare_url()))
+                                        .withMedia(imageurl)
+                                        .setPlatform(share_media)
+                                        .setCallback(mShareListener).share();
+
+                            }else {
+                                UMWeb web = new UMWeb(share_data.getShare_url());
+                                web.setTitle(share_data.getShare_title());
+                                web.setDescription(share_data.getShare_content());
+                                web.setThumb(new UMImage(InformationParticularsActivity.this, share_data.getShare_img()));
+                                new ShareAction(InformationParticularsActivity.this).withMedia(web)
+                                        .setPlatform(share_media)
+                                        .setCallback(mShareListener)
+                                        .share();
+                            }
+
+
+                        }
+                    });
+        }
+
+
+
     }
 
     /*
     点击事件
      */
-
-    @OnClick({R.id.tooblar_right_icon, R.id.ac_information_iv_head, R.id.comment_rl_meet})
+    @OnClick({R.id.tooblar_right_icon, R.id.ac_information_iv_head, R.id.comment_rl_meet,R.id.comment_iv_sharing})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tooblar_right_icon:
@@ -539,6 +608,11 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
                 /*
                 举报
                  */
+                if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                    new SuperHanDialog(this,"请先登录").show();
+                    break;
+                }
+
                 reportContnet();
                 break;
             case R.id.ac_information_iv_head:
@@ -558,12 +632,29 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
 
                 startActivity(new Intent(this, MeetActivity.class).putExtra("contentID", contentId));
                 break;
+
+            case R.id.comment_iv_sharing:
+                /*
+                分享
+                 */
+
+                if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                    new SuperHanDialog(this,"请先登录").show();
+                    break;
+                }
+
+                mShareAction.open();
+
+
+                break;
         }
     }
 
 
     // TODO 这个位置 需要网络请求 举报内容
     private void reportContnet() {
+
+
 
         String[] items = {"举报内容问题", "广告", "重复 旧闻", "低俗色情", "违法犯罪", "标题夸张", "与事实不符", "内容质量差", "疑似抄袭", "其他问题，我要吐槽"};
         final BottomMenuFragment bottomMenuFragment = new BottomMenuFragment();
@@ -572,7 +663,6 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         bottomMenuFragment.setListenerItem(new BottomMenuFragment.DialogListenerItem() {
             @Override
             public void listenerItem(String s) {
-
 
             }
         });
@@ -626,6 +716,10 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_SEND) {
+            if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                new SuperHanDialog(this,"请先登录").show();
+                return false;
+            }
             String content = commentEdContent.getText().toString().trim();
             LogUtils.e(KEY.TAG + content);
             sendCommentContent(content);
@@ -671,6 +765,7 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
                     bean.setHot_cnt(commentData.getHot_cnt());
                     bean.setLike_cnt(commentData.getLike_cnt());
                     bean.setComment_evaluation("");
+                    bean.setLatest_child_user_avatar("");
                     data.add(bean);
                     commentItemAdapter.setData(data);
                     commentEdContent.setText("");
@@ -685,8 +780,13 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
      */
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+            new SuperHanDialog(this,"请先登录").show();
+            acInformationCollect.setChecked(false);
+            commentIvCollect.setChecked(false);
+            return;
+        }
         HttpParams params = new HttpParams();
-
         if (!isChecked) {
             acInformationCollect.setChecked(false);
             commentIvCollect.setChecked(false);
@@ -708,7 +808,6 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
                 }
             });
         }
-
     }
 
     @Override
@@ -728,6 +827,10 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
     }
 
     private void commentLike(final List<ImageButton> buttons, String commentID, final String type, String commentUserId, final TextView tvNumber) {
+        if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+            new SuperHanDialog(this,"请先登录").show();
+            return;
+        }
         HttpParams params = new HttpParams();
         params.put("action", "evaluation");
         params.put("type", type);
@@ -773,11 +876,10 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
 
                     commentItemAdapter.setNewData(data);
                 } else {
-//
-//                    LogUtils.e("------加载更多的");
-//                    if (data.size()==0){
-//                        offset = 1;
-//                    }
+                    LogUtils.e("------加载更多的");
+                    if (data.size()==0){
+                        offset = 1;
+                    }
 
                     commentItemAdapter.setLoadMoreData(data);
                     relationRefreshLayout.finishLoadmore();
@@ -818,7 +920,6 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         EmojiconsFragment.backspace(commentEdContent);
     }
 
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -831,6 +932,51 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
                 "            embeds[i].src = '';" +
                 "        }" +
                 "   window.androidShare.jsMethod(srcs.join(',') )})()");
+    }
+
+
+
+
+    /*
+    点击item 进入二级评论页
+     */
+    @Override
+    public void onTowCommentBeanListenr(CommentInfoBean.DataBean commentBean) {
+        EventBus.getDefault().postSticky(new TowCommentEventBus(dataBean,commentBean));
+        LogUtils.e("----跳转前"+dataBean+","+commentBean);
+        Intent intent = new Intent(this,TowCommentActivity.class);
+        startActivity(intent);
+
+
+
+
+
+
+    }
+
+    /**
+     * @param userId 评论者ID 进入关系卡
+     */
+    @Override
+    public void onCommentRelationUserId(String userId) {
+        RelationInfBean bean = new RelationInfBean(1, userId, contentId);
+        Intent intent = new Intent(this, RelationCalorieActivity.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable(BaseNewFragmnet.RELATION, bean);
+        intent.putExtras(mBundle);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+            if (!SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)){
+                new SuperHanDialog(this,"请先登录").show();
+                commentEdContent.clearFocus();//失去焦点
+                return;
+            }
+        }
 
     }
 
@@ -849,6 +995,72 @@ public class InformationParticularsActivity extends BaseActivity implements Comp
         }
     }
 
+
+    private static class CustomShareListener implements UMShareListener {
+
+        private WeakReference<InformationParticularsActivity> mActivity;
+
+        private CustomShareListener(InformationParticularsActivity activity) {
+            mActivity = new WeakReference(activity);
+        }
+
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+
+        }
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+
+            if (platform.name().equals("WEIXIN_FAVORITE")) {
+                Toast.makeText(mActivity.get(), platform + " 收藏成功啦", Toast.LENGTH_SHORT).show();
+            } else {
+                if (platform != SHARE_MEDIA.MORE && platform != SHARE_MEDIA.SMS
+                        && platform != SHARE_MEDIA.EMAIL
+                        && platform != SHARE_MEDIA.FLICKR
+                        && platform != SHARE_MEDIA.FOURSQUARE
+                        && platform != SHARE_MEDIA.TUMBLR
+                        && platform != SHARE_MEDIA.POCKET
+                        && platform != SHARE_MEDIA.PINTEREST
+
+                        && platform != SHARE_MEDIA.INSTAGRAM
+                        && platform != SHARE_MEDIA.GOOGLEPLUS
+                        && platform != SHARE_MEDIA.YNOTE
+                        && platform != SHARE_MEDIA.EVERNOTE) {
+                    Toast.makeText(mActivity.get(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            if (platform != SHARE_MEDIA.MORE && platform != SHARE_MEDIA.SMS
+                    && platform != SHARE_MEDIA.EMAIL
+                    && platform != SHARE_MEDIA.FLICKR
+                    && platform != SHARE_MEDIA.FOURSQUARE
+                    && platform != SHARE_MEDIA.TUMBLR
+                    && platform != SHARE_MEDIA.POCKET
+                    && platform != SHARE_MEDIA.PINTEREST
+
+                    && platform != SHARE_MEDIA.INSTAGRAM
+                    && platform != SHARE_MEDIA.GOOGLEPLUS
+                    && platform != SHARE_MEDIA.YNOTE
+                    && platform != SHARE_MEDIA.EVERNOTE) {
+                Toast.makeText(mActivity.get(), platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+                if (t != null) {
+                    Log.d("throw", "throw:" + t.getMessage());
+                }
+            }
+
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+
+            Toast.makeText(mActivity.get(), platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
 

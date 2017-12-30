@@ -78,6 +78,7 @@
         android:layout_height="wrap_content">
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/item_relation_content"
             android:paddingBottom="30px"
             android:orientation="vertical"
             android:layout_marginTop="10px"

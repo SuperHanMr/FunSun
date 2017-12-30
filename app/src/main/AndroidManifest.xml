@@ -4,6 +4,7 @@
     package="com.fengxun.funsun">
 
 
+    /
 
 
     <!--用于进行网络定位-->
@@ -27,6 +28,10 @@
     <!--用于申请获取蓝牙信息进行室内定位-->
     <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
 
     <application
         tools:replace="label"
@@ -53,14 +58,14 @@
 
 
         <!--注册Activity-->
-        <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask"  >
+        <activity android:name=".view.activity.splash.SplashActivity"   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
+        <activity android:name=".view.activity.MainActivity" android:launchMode="singleTask"/>
         <activity android:name=".view.activity.LoginActivity"/>
         <activity android:name=".view.activity.RegistrationActivity"/>
         <activity android:name=".view.activity.ForgetPasswordActivity"/>
@@ -89,6 +94,9 @@
         <activity android:name=".view.activity.InterestRootsActivity"/>
         <activity android:name=".view.activity.TowInterRootsActvity"/>
         <activity android:name=".view.activity.CampusLittlestoryActivity"/>
+        <activity android:name=".view.activity.TowCommentActivity"/>
+        <activity android:name=".view.activity.splash.WelcomeGuideActivity"/>
+        <activity android:name=".view.activity.splash.SelectorInterest"/>
 
         <!--测试Activity-->
         <activity android:name=".view.activity.test.TestActivity1"/>
@@ -99,10 +107,73 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
 
-
         <!--注册服务-->
         <service android:name="com.amap.api.location.APSService"></service>
 
+
+        <!--================友盟分享======================-->
+
+        <!--注册SDK-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="	5a3c8e388f4a9d72fd00009c" >
+        </meta-data>
+
+        <!--分享微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+        <!--微博分享-->
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            >
+
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <!--QQ分享-->
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
     </application>
 
 </manifest>

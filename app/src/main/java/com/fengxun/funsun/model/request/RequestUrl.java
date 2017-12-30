@@ -16,6 +16,11 @@ public class RequestUrl {
     //  请求接口
     public static final String HTTP = "http://api.funsun.cn";
 
+
+    //兴趣
+    public static final String SELECTINITTAG = HTTP+"/select_init_tag/v1/";
+
+
     //  登录
     public static final String LOGIN = HTTP + "/auth/v1/login/";
 
@@ -34,8 +39,7 @@ public class RequestUrl {
     //  查询所有学校
     public static final String QUEYSCHOOL = HTTP + "/load_school/v2/?scope=only";
 
-    //  资讯
-    public static final String zixun = HTTP + "/content/v1/?content_type=global";
+
 
     //我的消息列表
     public static final String MESSAGELIST =HTTP+ "/user_info_message_list/v1/";
@@ -69,6 +73,7 @@ public class RequestUrl {
     // 头条资讯
     public static final String HEADLINES = HTTP + "/content/v1/";
 
+
     //帖子/视频详情信息
     public static final String CONTENTDATA = HTTP+"/content/v1/{content_id}/";
 
@@ -91,7 +96,7 @@ public class RequestUrl {
     public static final String MEETTHEMAN = HTTP+"/content_relation/v1/{content_id}/?limit=100&offset=1";
 
 
-    public static final String CAMPUSSTORIETTE = TEST+"/school_content/v2/{school_id}/small/";
+    public static final String CAMPUSSTORIETTE = HTTP+"/school_content/v2/{school_id}/small/";
 
 
     public static final String CAMPUSEVENTBUS = HTTP+"/school_content/v2/{school_id}/big/";
@@ -112,7 +117,6 @@ public class RequestUrl {
 
     public static final String INFORMATIONDATA = HTTP+"/content/v1/{content_id}/";
 
-
     public static final String POSTINFOAIM = HTTP+"/content_view/v1/{content_id}/";
 
 
@@ -122,11 +126,62 @@ public class RequestUrl {
     public static final String COMMENTLIKE = HTTP+"/comment_action/v1/{comment_id}/";
 
 
-    public static final String ROOTSINTEREST = "http://api.funsun.cn/not_login_content_source/v1/";
 
     public static final String TOWCAMPUSXIAOGUSHI = HTTP+"/school_content/v2/{school_id}/small/";
 
     public static final String schoolInterRoorts  = HTTP +"/school_content_source/v1/";
+
+
+    public static final String ROOTSINTEREST = "http://api.funsun.cn/content_source/v1/";
+
+
+    /*
+    二级品评论
+     */
+    public static final String TOWCOMMENT = HTTP+"/comment/v1/{comment_id}/comment/";
+
+
+    public static final String XIAOGUSHI = HTTP + "/school_content/v2/{school_id}/small/";
+
+
+    /*
+    ========================未登录接口=======================
+    1.头条列表模块
+    2.资讯明细
+    3.关系卡
+    4.溯源接口
+    5.未登录评论
+    6.相遇的人
+     */
+
+    //1.头条列表模块
+    public static final String NOT_LOGIN_HEADLINES = "http://api.funsun.cn/not_login_content/v1/";
+
+    //资讯明细
+    public static final String NOT_LOGIN_INFORMATIONDATA = "http://api.funsun.cn/not_login_content/v1/{content_id}/";
+
+
+    //关系卡
+    public static final String NOT_LOGIN_RELATION = HTTP+"/login_out_user_friend_info/v1/";
+
+    //获取相遇的人
+    public static final String NOT_LOGIN_MEET = HTTP+"/not_login_content_relation/v1/{content_id}/?limit=100&offset=1";
+
+    // 评论
+    public static final String NOT_LOGIN_COMMENT =HTTP+"/not_login_content_comment/v1/{content_id}/";
+
+    // 二级评论
+    public static final String NOT_LOGIN_TOWCOMMENT = HTTP+"/not_login_comment/v1/{comment_id}/comment/";
+
+
+    // 兴趣二级溯源
+    public static final String NOT_LOGIN_ROOTSINTEREST = "http://api.funsun.cn/not_login_content_source/v1/";
+
+
+    //帖子/视频详情信息
+    public static final String NOT_LOGIN_CONTENTDATA = HTTP+"/not_login_content/v1/{content_id}/";
+
+
 
 
 }

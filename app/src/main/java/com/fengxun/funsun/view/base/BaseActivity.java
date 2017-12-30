@@ -129,9 +129,12 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         tvTitle.setText(title);
     }
     public void setTvTitle(String title,int res){
+        tvTitle.getPaint().setFakeBoldText(true);
         tvTitle.setTextColor(res);
+
         tvTitle.setText(title);
     }
+
 
     public void initView() {
         superHanLoginDigloger = new SuperHanLoginDiglog(this);
@@ -150,6 +153,15 @@ public abstract class BaseActivity extends AutoLayoutActivity {
         barRightTv.setText(rightTv);
     }
 
+    /**
+     * @param rightTv 右边设置的文字
+     */
+    public void setBarRightTv(String rightTv,int res){
+        barRightTv.setText(rightTv);
+        barRightTv.getPaint().setFakeBoldText(true);
+        barRightTv.setTextColor(res);
+
+    }
     /**
      * @return 右边的ICON
      */

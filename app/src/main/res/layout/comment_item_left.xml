@@ -2,6 +2,7 @@
 <com.zhy.autolayout.AutoLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+
     xmlns:emojicon="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -50,6 +51,7 @@
     </com.zhy.autolayout.AutoLinearLayout>
 
         <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/comment_item_left_item"
             android:layout_marginLeft="75px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -66,7 +68,6 @@
                    android:src="@drawable/comment_triangle_left" />
 
                <com.zhy.autolayout.AutoLinearLayout
-
                    android:padding="20px"
                    android:orientation="vertical"
                    android:background="@drawable/commtent_bg_left"
@@ -78,16 +79,13 @@
                        emojicon:emojiconAlignment="baseline"
                        android:id="@+id/comment_iten_left_content"
                        android:textColor="@color/colorbText"
-                       android:maxWidth="600px"
+                       android:maxWidth="550px"
                        android:textSize="25px"
                        android:text="用户评论"
                        emojicon:emojiconSize="12sp"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        />
-
-
-
 
                    <TextView
                        android:id="@+id/comment_item_left_time"
@@ -97,11 +95,57 @@
                        android:layout_height="wrap_content"
                        android:text="五分钟前"
                        />
+                   <com.zhy.autolayout.AutoRelativeLayout
+                       android:padding="5px"
+                       android:id="@+id/tow_comment_al"
+                       android:layout_marginTop="10px"
+                       android:background="@drawable/shape_forget_code_border"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                       <com.zhy.autolayout.AutoLinearLayout
+                           android:id="@+id/tow_comment_item_left"
+                           android:orientation="horizontal"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content">
+
+                           <de.hdodenhof.circleimageview.CircleImageView
+                               android:layout_width="45px"
+                               android:id="@+id/tow_left_comment_head"
+                               android:src="@drawable/head_zhanwei"
+                               android:layout_height="45px" />
+
+                           <TextView
+                               android:textSize="20px"
+                               android:id="@+id/tow_left_comment_content"
+                               android:layout_marginLeft="10px"
+                               android:layout_gravity="center_vertical"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="555"
+                               />
+
+                       </com.zhy.autolayout.AutoLinearLayout>
+                       <io.github.rockerhieu.emojicon.EmojiconTextView
+                            android:layout_below="@+id/tow_comment_item_left"
+                           android:id="@+id/tow_comment_left_conmment"
+                           android:layout_marginTop="5px"
+                           android:textColor="@color/colorbMessageText"
+                           android:layout_marginLeft="5px"
+                           android:textSize="20px"
+                           android:maxWidth="550px"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           />
+                   </com.zhy.autolayout.AutoRelativeLayout>
+
                </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+
+
            </com.zhy.autolayout.AutoRelativeLayout>
-
-
-
 
 
 
@@ -136,6 +180,9 @@
                     />
 
             </com.zhy.autolayout.AutoLinearLayout>
+
+
+
 
 
         </com.zhy.autolayout.AutoRelativeLayout>

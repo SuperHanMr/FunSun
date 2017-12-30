@@ -89,7 +89,6 @@ public class StorietteFragment extends Fragment implements NewItemListener {
     }
 
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getTypeRefresh(CamPusEventBus bus){
         int type = bus.getType();

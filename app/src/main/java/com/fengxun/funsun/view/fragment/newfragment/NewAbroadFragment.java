@@ -21,6 +21,7 @@ import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.ACache;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.ToastUtil;
 import com.fengxun.funsun.view.activity.InformationParticularsActivity;
 import com.fengxun.funsun.view.activity.RelationCalorieActivity;
@@ -29,6 +30,7 @@ import com.fengxun.funsun.view.adapter.NewRecyclerViewAdapter;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.fengxun.funsun.view.views.EditTextDialog;
+import com.fengxun.funsun.view.views.RecyclerViewNoBugLinearLayoutManager;
 import com.fengxun.funsun.view.views.SuperHanDialog;
 import com.fengxun.funsun.view.views.refresh.ParallaxPtrFrameLayout;
 import com.google.gson.Gson;
@@ -67,13 +69,15 @@ public class NewAbroadFragment extends BaseNewFragmnet implements NewItemListene
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return super.onCreateView(inflater, container, savedInstanceState);
+
     }
 
     @Override
     protected void loadData() {
         LogUtils.e("/*====================自动刷新============*/");
-          baseNewfragment.autoRefresh();
+        baseNewfragment.autoRefresh();
     }
 
 
@@ -101,7 +105,7 @@ public class NewAbroadFragment extends BaseNewFragmnet implements NewItemListene
 
         this.baseNewfragment = baseNewfragment;
         adapter = new NewRecyclerViewAdapter(getContext(), list, true);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        RecyclerViewNoBugLinearLayoutManager manager = new RecyclerViewNoBugLinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         views.setLayoutManager(manager);
         views.addItemDecoration(new SpaceItemDecoration(10));
@@ -140,20 +144,19 @@ public class NewAbroadFragment extends BaseNewFragmnet implements NewItemListene
         LogUtils.e("请求网络");
         HttpParams params = new HttpParams();
         params.put("content_type", "global");
-        NetworkReuset.getInstance().getHomeNewReuset(RequestUrl.HEADLINES, params, new onCallBack<HeadlinesBean>(this) {
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.HEADLINES:RequestUrl.NOT_LOGIN_HEADLINES;
+        NetworkReuset.getInstance().getHomeNewReuset(url, params, new onCallBack<HeadlinesBean>(this) {
             @Override
             public void onSucceed(HeadlinesBean headlinesBean, Call call, String string) {
                 List<HeadlinesBean.DataBean> data = headlinesBean.getData();
 
-//                if (data.size() != 0) {
-//                    adapter.setData(data);
-//                    aCache.put("foreign", string);
-//                }
+                if (data.size()>5){
+                    aCache.put("global", string);
+                }
+
                 if (isRefresh){
                     adapter.setData(data);
-                    aCache.put("foreign", string);
                     baseNewfragment.finishRefresh();
-                    ToastUtil.massageToast(getContext(),data.size());
                 }else {
                     adapter.setLoadMoreData(data);
                     baseNewfragment.finishLoadmore();
@@ -178,8 +181,6 @@ public class NewAbroadFragment extends BaseNewFragmnet implements NewItemListene
 
 
 
-                //TODO 现在判断是死的 应该根据 状态吗判断失败原因 目前 只返回网络不好的错误
-                new SuperHanDialog(getContext(), "似乎和互联网断开链接~").show();
             }
         });
     }

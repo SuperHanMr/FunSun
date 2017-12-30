@@ -18,6 +18,7 @@ import com.fengxun.funsun.R;
 import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.CamPusEventBean;
 import com.fengxun.funsun.model.bean.CamPusStorietteBean;
+import com.fengxun.funsun.model.bean.CampusXiaoGuShiBean;
 import com.fengxun.funsun.model.bean.RelationInfBean;
 import com.fengxun.funsun.model.bean.VideoInfoBean;
 import com.fengxun.funsun.model.listener.NewItemListener;
@@ -25,6 +26,8 @@ import com.fengxun.funsun.model.listener.SpaceItemDecoration;
 import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
+import com.fengxun.funsun.utils.ACache;
+import com.fengxun.funsun.utils.LogUtils;
 import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.utils.SteBoolarUtil;
 import com.fengxun.funsun.utils.ToastUtil;
@@ -38,6 +41,7 @@ import com.fengxun.funsun.view.adapter.StorietteRecyclerViewAdapter;
 import com.fengxun.funsun.view.base.BaseFragment;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.fengxun.funsun.view.views.EditTextDialog;
+import com.fengxun.funsun.view.views.MYStaggeredGridLayoutManager;
 import com.fengxun.funsun.view.views.SlidingTabLayout;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -64,7 +68,7 @@ import okhttp3.Response;
  * 校园 大事件 小故事 这个页面作为学校溯源 需要复用
  **/
 
-public class CampusFragment extends BaseFragment implements NewItemListener {
+public class CampusFragment extends BaseFragment implements NewItemListener, ViewPager.OnPageChangeListener {
 
 
     @BindView(R.id.status_bar_fix)
@@ -96,7 +100,7 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
     private CamPusEventRecyclerViewAdapter adapter;
 
 
-    private List<CamPusStorietteBean> storietteList;
+    private List<CamPusStorietteBean.DataBean> storietteList;
     private StorietteRecyclerViewAdapter storietteAdapter;
     private EditTextDialog dialog;
 
@@ -107,6 +111,7 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
     private String schollId; // 学校ID
     private String schoolName; // 学校名字
     private boolean isRoots;
+    private ACache aCache;
 
 
     /*
@@ -124,6 +129,8 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
 
     @Override
     protected void initView() {
+
+        aCache = ACache.get(getContext());
         /*
         初始化这个页面的 时候 判断学校id和SP保存是否一样 是校内 还是跳转过来
          */
@@ -148,6 +155,8 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
         campusTvGuangxiaoyuan.getPaint().setFakeBoldText(true);
         String title[] = {"大事件", "小故事"};
 
+
+//
         /*
         大事件 RecyclerView
          */
@@ -168,7 +177,6 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
         /*
         小故事RecyclerView
          */
-
         storietteList = new ArrayList<>();
         final RecyclerView storietteRecyclerView = new RecyclerView(getContext());
         storietteRecyclerView.setLayoutManager(new
@@ -183,31 +191,43 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
         campusVp.setAdapter(adapetr);
         campusTab.setViewPager(campusVp);
 
+           /*
+//        读取缓存数据
+//         */
+
+
+        String toriette = aCache.getAsString("toriette");
+
+        String data = aCache.getAsString("eventbus");
+
+        if (data!=null){
+            Gson gson = new Gson();
+            CamPusEventBean camPusEventBean = gson.fromJson(data, CamPusEventBean.class);
+            List<CamPusEventBean.DataBean> data1 = camPusEventBean.getData();
+            list = data1;
+            adapter.setData(data1);
+        }
+
+
+
+
+
+        if (toriette!=null){
+            Gson gson = new Gson();
+            CamPusStorietteBean camPusStorietteBean = gson.fromJson(toriette, CamPusStorietteBean.class);
+            List<CamPusStorietteBean.DataBean> data1 = camPusStorietteBean.getData();
+            storietteList = data1;
+            storietteAdapter.setData(storietteList);
+        }
+
+
+
 
             /*
         ViewPager 设置监听
          */
-        campusVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        campusVp.setOnPageChangeListener(this);
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                CampusFragment.this.type = position;
-                if (isRefresh) {
-                    refreshLayout.autoRefresh();
-                    isRefresh = false;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-
-            }
-        });
 
 
         /*
@@ -224,7 +244,6 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
                 }
             }
         });
-
 
         /*
         智能上拉加载更多
@@ -243,14 +262,12 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
 
         });
 
-
     }
-
-
     /*
     这个页面 不需要每次都请求 数据
      */
     public void NetworkDatas(final boolean isRefresh) {
+        LogUtils.e("--------->请求校内大事件数据：当前状态："+SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+"当前toekn："+SPUtils.getString(KEY.KEY_USERTOKEN));
         HttpParams params = new HttpParams();
         params.put("offset", pager); // 请求页数
         params.put("order", 0); // 按时间 0 按热度 1
@@ -259,54 +276,50 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
             public void onSucceed(CamPusEventBean headlinesBean, Call call, String string) {
                 if (isRefresh) {
                     adapter.setData(headlinesBean.getData());
+                    aCache.put("eventbus",string);
                     refreshLayout.finishRefresh();
                 } else {
                     adapter.setLoadMoreData(headlinesBean.getData());
                     refreshLayout.finishLoadmore();
                 }
+                LogUtils.e("解析成功！！！！！！");
             }
 
-            @Override
-            public void onError(Call call, Response response, Exception e) {
-                super.onError(call, response, e);
+        });
 
+    }
+
+    private void NetwokStorietteData(final boolean isRefresh) {
+        HttpParams params = new HttpParams();
+        params.put("offset", storiettePager);
+        /*
+         这个位置
+         */
+        NetworkReuset.getInstance().GetReuset(RequestUrl.XIAOGUSHI.replace("{school_id}", String.valueOf(schollId)), new onCallBack<CamPusStorietteBean>(this) {
+            @Override
+            public void onSucceed(CamPusStorietteBean camPusStorietteBean, Call call, String string) {
+                List<CamPusStorietteBean.DataBean> data = camPusStorietteBean.getData();
+                if (isRefresh) {
+                    storietteAdapter.setData(data);
+                    aCache.put("toriette", string);
+                    refreshLayout.finishRefresh();
+                } else {
+                    storietteAdapter.setLoadData(data);
+                    refreshLayout.finishLoadmore();
+                }
             }
         });
 
     }
 
 
-    private void NetwokStorietteData(final boolean isRefresh) {
-        HttpParams params = new HttpParams();
-        params.put("offset", storiettePager);
 
-        /*
-         这个位置
-         */
 
-        String URL = RequestUrl.HTTP + "/school_content/v2/{school_id}/small/";
-        String replace = URL.replace("{school_id}", String.valueOf(schollId));
-        OkGo.get(replace)
-                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN, false) ? "X-Fo-Access-Token" : "X-User-Anonymous", SPUtils.getString(KEY.KEY_USERTOKEN))
-                .params(params)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(String s, Call call, Response response) {
-                        Gson gson = new Gson();
-                        String json = s.replace("\"vedio_word\": \"{}\"", "\"vedio_word\": null");
-                        CamPusStorietteBean camPusStorietteBean = gson.fromJson(json, CamPusStorietteBean.class);
-                        List<CamPusStorietteBean.DataBean> beanList = camPusStorietteBean.getData();
-                        if (isRefresh) {
-                            storietteAdapter.setData(beanList);
-                            refreshLayout.finishRefresh();
-                        } else {
-                            storietteAdapter.setLoadData(beanList);
-                            refreshLayout.finishLoadmore();
-                        }
-                    }
-                });
 
-    }
+
+
+
+
 
 
     @Override
@@ -382,5 +395,25 @@ public class CampusFragment extends BaseFragment implements NewItemListener {
     public void onViewClicked() {
         getActivity().startActivity(new Intent(getContext(), AroundCampusActivity.class));
 
+    }
+
+
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+                CampusFragment.this.type = position;
+                if (isRefresh) {
+                    refreshLayout.autoRefresh();
+                    isRefresh = false;
+                }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
     }
 }

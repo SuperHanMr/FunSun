@@ -31,4 +31,9 @@ public class Util {
         }
         return LayoutInflater.from(context).inflate(layoutId, null);
     }
+
+    public static String wbDynamic(String contentTitle,String contentURL){
+        String content = contentTitle+"  (来自@丰讯校园)\n"+contentURL;
+        return content;
+    }
 }

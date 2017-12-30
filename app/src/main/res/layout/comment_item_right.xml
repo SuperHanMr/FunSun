@@ -52,10 +52,11 @@
     </com.zhy.autolayout.AutoLinearLayout>
 
     <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/comment_item_right_item"
         android:layout_marginRight="70px"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/comment_item_right_ll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -67,8 +68,8 @@
             />
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/comment_item_right_text_ll"
             android:orientation="vertical"
+            android:id="@+id/comment_item_right_text_ll"
             android:layout_alignParentRight="true"
             android:background="@drawable/comment_bg_right"
             android:padding="20px"
@@ -78,17 +79,21 @@
 
 
             <io.github.rockerhieu.emojicon.EmojiconTextView
+                android:layout_gravity="right"
                 emojicon:emojiconAlignment="baseline"
                 android:id="@+id/comment_item_right_content"
                 android:textColor="@color/colorbText"
                 android:textSize="23px"
-                android:maxWidth="600px"
+                android:maxWidth="550px"
+                android:text="前分钟前分钟前！"
                 emojicon:emojiconSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
 
             <TextView
+                android:layout_alignRight="@+id/comment_item_right_content"
+                android:layout_below="@+id/comment_item_right_content"
                 android:id="@+id/comment_item_right_tiem"
                 android:layout_gravity="right"
                 android:layout_marginTop="15px"
@@ -97,7 +102,77 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:gravity="right"
+                android:orientation="vertical"
+                android:layout_alignRight="@+id/comment_item_right_content"
+                android:layout_below="@+id/comment_item_right_tiem"
+                android:id="@+id/tow_comment_al"
+                android:padding="5px"
+                android:layout_marginTop="10px"
+                android:background="@drawable/shape_forget_code_border"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_gravity="right"
+                    android:id="@+id/tow_comment_item_right"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="66666666666"
+                        android:textSize="20px"
+                        android:id="@+id/tow_right_comment_content"
+                        android:layout_marginRight="10px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="45px"
+                        android:id="@+id/tow_right_comment_head"
+                        android:src="@drawable/head_zhanwei"
+                        android:layout_height="45px" />
+
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+
+                <io.github.rockerhieu.emojicon.EmojiconTextView
+                    android:layout_gravity="right"
+                    android:id="@+id/tow_comment_right_conmment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="550px"
+                    android:layout_alignRight="@+id/tow_comment_item_right"
+                    android:layout_below="@+id/tow_comment_item_right"
+                    android:layout_marginLeft="5px"
+                    android:layout_marginRight="5px"
+                    android:layout_marginTop="5px"
+                    android:textColor="@color/colorbMessageText"
+                    android:textSize="20px" />
+
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+
         </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+
+
+
+
+
+
+
 
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_marginRight="15px"
@@ -109,13 +184,6 @@
 
 
 
-
-            <!--<CheckBox-->
-                <!--android:id="@+id/comment_item_right_checkbx_zan"-->
-                <!--android:button="@drawable/zan_selector"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--/>-->
 
 
             <ImageButton
@@ -134,13 +202,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-
-            <!--<CheckBox-->
-                <!--android:id="@+id/comment_item_right_checkbx_cai"-->
-                <!--android:button="@drawable/cai_selector"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--/>-->
 
             <ImageButton
                 android:id="@+id/comment_item_right_btn_cai"
@@ -164,3 +225,11 @@
 
 
 </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
+<!--
+
+
+
+-->

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/yindaoye3"
+        />
+
+
+    <Button
+        android:id="@+id/ac_welocmg_btn_enter"
+        android:textSize="45px"
+        android:textColor="@color/colorbBlack"
+        android:text="点击开始"
+        android:background="@drawable/shaper_enter_btn"
+        android:layout_marginBottom="180px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="350px"
+        android:layout_height="80px" />
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

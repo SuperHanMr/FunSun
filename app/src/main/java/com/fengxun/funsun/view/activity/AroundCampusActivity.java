@@ -32,7 +32,7 @@ public class AroundCampusActivity extends BaseActivity {
 
 
 
-    public void initView() {
+    public void initView(){
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         AroundCampusFragmnet fragmnet = new AroundCampusFragmnet();

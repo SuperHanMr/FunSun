@@ -50,6 +50,8 @@
 
         <!-- title标题 字体加粗-->
         <TextView
+            android:singleLine="true"
+            android:lines="1"
             android:paddingRight="30px"
             android:paddingLeft="30px"
             android:id="@+id/ac_information_tv_title"
@@ -75,6 +77,8 @@
                 android:layout_height="50px" />
 
             <TextView
+                android:singleLine="true"
+                android:lines="1"
                 android:id="@+id/ac_information_tv_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -144,15 +148,9 @@
             android:layout_height="8px"
             android:background="#f2f2f2" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/ac_information_aim_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="30px">
-        </android.support.v7.widget.RecyclerView>
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_marginBottom="30px"
+            android:layout_marginTop="30px"
             android:paddingRight="30px"
             android:paddingLeft="30px"
             android:orientation="horizontal"
@@ -188,6 +186,14 @@
                 />
 
         </com.zhy.autolayout.AutoLinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/ac_information_aim_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30px">
+        </android.support.v7.widget.RecyclerView>
+
 
 
         <View
@@ -263,9 +269,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RadioGroup>
-
-
-
             </com.zhy.autolayout.AutoRelativeLayout>
 
         </com.zhy.autolayout.AutoLinearLayout>

@@ -31,6 +31,9 @@
 
 
         <TextView
+            android:singleLine="true"
+            android:lines="1"
+            android:maxWidth="500px"
             android:id="@+id/tooblar_title_tv"
             android:layout_gravity="center"
             android:textColor="@color/colorbWhite"
@@ -63,7 +66,7 @@
             android:textSize="40px"
             android:textColor="@color/colorbWhite"
             android:id="@+id/tooblar_right_text"
-            android:layout_marginRight="22px"
+            android:layout_marginRight="30px"
             android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

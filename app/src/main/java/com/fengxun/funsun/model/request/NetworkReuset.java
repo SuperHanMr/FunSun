@@ -146,6 +146,7 @@ public class NetworkReuset {
     请求国内趣闻
      */
     public void getHomeNewReuset(String url,HttpParams params,onCallBack onCallBack){
+        LogUtils.d(SPUtils.getString("请求列表：-----"+KEY.KEY_USERTOKEN));
         OkGo.get(url)
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
                 .cacheMode(CacheMode.NO_CACHE)
@@ -210,7 +211,9 @@ public class NetworkReuset {
 
      */
     public void getVideoData(String contentId,onCallBack callBack){
-        String URL = RequestUrl.CONTENTDATA.replace("{content_id}",contentId);
+        LogUtils.e(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"登录了的token："+SPUtils.getString(KEY.KEY_USERTOKEN):"未录了的token："+SPUtils.getString(KEY.KEY_USERTOKEN));
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.CONTENTDATA:RequestUrl.NOT_LOGIN_CONTENTDATA;
+        String URL = url.replace("{content_id}",contentId);
         OkGo.get(URL)
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
                 .execute(callBack);
@@ -223,7 +226,8 @@ public class NetworkReuset {
     请求 评论
      */
     public void getCommentContent(String contentId,onCallBack onCallBack){
-        String URL = RequestUrl.GETCOMMENTCONTENT.replace("{content_id}",contentId);
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.GETCOMMENTDATA:RequestUrl.NOT_LOGIN_COMMENT;
+        String URL = url.replace("{content_id}",contentId);
         OkGo.get(URL)
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
                 .execute(onCallBack);
@@ -262,7 +266,8 @@ public class NetworkReuset {
      */
 
     public void getMeetTheMan (String contentId,onCallBack onCallBack){
-        OkGo.get(RequestUrl.MEETTHEMAN.replace("{content_id}",contentId))
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.MEETTHEMAN:RequestUrl.NOT_LOGIN_MEET;
+        OkGo.get(url.replace("{content_id}",contentId))
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
                 .execute(onCallBack);
 
@@ -283,6 +288,9 @@ public class NetworkReuset {
 
 
     public void getCamPusEventbus(String school_id,HttpParams params,onCallBack onCallBack){
+
+        LogUtils.e("token:"+SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)+","+SPUtils.getString(KEY.KEY_USERTOKEN));
+
         String URL = RequestUrl.CAMPUSEVENTBUS.replace("{school_id}",school_id);
         OkGo.get(URL)
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
@@ -364,14 +372,13 @@ public class NetworkReuset {
     获取评论
      */
     public void getCommentData(String contentID,HttpParams params,onCallBack onCallBack){
-        String URL = RequestUrl.GETCOMMENTDATA.replace("{content_id}",contentID);
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.GETCOMMENTDATA:RequestUrl.NOT_LOGIN_COMMENT;
+        String URL = url.replace("{content_id}",contentID);
         OkGo.get(URL)
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
                 .params(params)
                 .execute(onCallBack);
     }
-
-
 
     /*
     点赞或者踩
@@ -390,13 +397,12 @@ public class NetworkReuset {
      */
 
     public void getInteresRoost(HttpParams params,onCallBack onCallBack){
-        String URL = RequestUrl.ROOTSINTEREST;
+        String URL = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.ROOTSINTEREST:RequestUrl.NOT_LOGIN_ROOTSINTEREST;
         OkGo.get(URL)
                 .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
                 .params(params)
                 .execute(onCallBack);
     }
-
 
     public void getCamPusXiaoGuShi(HttpParams params,onCallBack onCallBack){
         String URl = RequestUrl.schoolInterRoorts;
@@ -406,6 +412,28 @@ public class NetworkReuset {
                 .execute(onCallBack);
 
     }
+
+    public void getTowCommentItem(String commentId,HttpParams params,onCallBack onCallBack){
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.TOWCOMMENT:RequestUrl.NOT_LOGIN_TOWCOMMENT;
+        String URL = url.replace("{comment_id}",commentId);
+        OkGo.get(URL)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+    }
+
+
+    public void postInterestRoots(HttpParams params,onCallBack onCallBack){
+
+        OkGo.post(RequestUrl.SELECTINITTAG)
+                .headers(SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?"X-Fo-Access-Token":"X-User-Anonymous",SPUtils.getString(KEY.KEY_USERTOKEN))
+                .params(params)
+                .execute(onCallBack);
+
+
+    }
+
 
 }
 

@@ -46,7 +46,46 @@ public class AtextBean implements Serializable {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "content_root_tag_id=" + content_root_tag_id +
+                    ", vedio_word='" + vedio_word + '\'' +
+                    ", content_publish_user_relation='" + content_publish_user_relation + '\'' +
+                    ", content_root_tag_img='" + content_root_tag_img + '\'' +
+                    ", content_id=" + content_id +
+                    ", school_cover_img_url='" + school_cover_img_url + '\'' +
+                    ", comment_cnt=" + comment_cnt +
+                    ", content_publish_user_school_id='" + content_publish_user_school_id + '\'' +
+                    ", content_root_cnt=" + content_root_cnt +
+                    ", content='" + content + '\'' +
+                    ", translate_content='" + translate_content + '\'' +
+                    ", is_collection=" + is_collection +
+                    ", content_title='" + content_title + '\'' +
+                    ", content_vedio_url='" + content_vedio_url + '\'' +
+                    ", content_cover_img_url='" + content_cover_img_url + '\'' +
+                    ", content_root_tag='" + content_root_tag + '\'' +
+                    ", translate_content_v2='" + translate_content_v2 + '\'' +
+                    ", vedio_info=" + vedio_info +
+                    ", content_publish_user_avatar='" + content_publish_user_avatar + '\'' +
+                    ", content_type=" + content_type +
+                    ", share_data=" + share_data +
+                    ", view_cnt=" + view_cnt +
+                    ", source_type=" + source_type +
+                    ", is_collect=" + is_collect +
+                    ", second_root_tag_id=" + second_root_tag_id +
+                    ", content_publish_user_school_name='" + content_publish_user_school_name + '\'' +
+                    ", content_collection_url=" + content_collection_url +
+                    ", content_publish_user_nick='" + content_publish_user_nick + '\'' +
+                    ", content_publish_user_id=" + content_publish_user_id +
+                    ", vedio_word_zh_cn=" + vedio_word_zh_cn +
+                    ", content_publish_time=" + content_publish_time +
+                    ", html='" + html + '\'' +
+                    ", second_root_tag='" + second_root_tag + '\'' +
+                    '}';
+        }
+
         /**
          * content_root_tag_id : 5010
          * vedio_word :
@@ -381,7 +420,7 @@ public class AtextBean implements Serializable {
             this.second_root_tag = second_root_tag;
         }
 
-        public static class VedioInfoBean {
+        public static class VedioInfoBean implements Serializable {
             /**
              * vedio_word : {"beginTime":[],"endTime":[],"text":[]}
              * publish_time : 1.513616452E9
@@ -476,7 +515,7 @@ public class AtextBean implements Serializable {
                 this.school_cover_img_url = school_cover_img_url;
             }
 
-            public static class VedioWordBean {
+            public static class VedioWordBean implements Serializable {
                 private List<?> beginTime;
                 private List<?> endTime;
                 private List<?> text;
@@ -507,7 +546,8 @@ public class AtextBean implements Serializable {
             }
         }
 
-        public static class ShareDataBean {
+        public static class ShareDataBean implements Serializable {
+
             /**
              * share_img : http://qiniu.funsun.cn/wx-/790627-8856d2f6d48e0fe9aa0bc8412f0e5b0b.jpeg?imageMogr2/auto-orient/thumbnail/500x500%3E/blur/1x0/quality/75%7Cimageslim
              * share_title : 就是好听！欧美歌曲：So Much More Than This
@@ -551,9 +591,19 @@ public class AtextBean implements Serializable {
             public void setShare_url(String share_url) {
                 this.share_url = share_url;
             }
+
+            @Override
+            public String toString() {
+                return "ShareDataBean{" +
+                        "share_img='" + share_img + '\'' +
+                        ", share_title='" + share_title + '\'' +
+                        ", share_content='" + share_content + '\'' +
+                        ", share_url='" + share_url + '\'' +
+                        '}';
+            }
         }
 
-        public static class VedioWordZhCnBean {
+        public static class VedioWordZhCnBean implements Serializable {
             private List<?> beginTime;
             private List<?> endTime;
             private List<?> text;

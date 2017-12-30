@@ -15,7 +15,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.fengxun.funsun.R;
+import com.fengxun.funsun.model.KEY;
 import com.fengxun.funsun.model.bean.QuotationBean;
 import com.fengxun.funsun.model.bean.RelationInfBean;
 import com.fengxun.funsun.model.bean.RelationInfoBean;
@@ -23,6 +25,7 @@ import com.fengxun.funsun.model.request.NetworkReuset;
 import com.fengxun.funsun.model.request.RequestUrl;
 import com.fengxun.funsun.model.request.onCallBack;
 import com.fengxun.funsun.utils.LogUtils;
+import com.fengxun.funsun.utils.SPUtils;
 import com.fengxun.funsun.view.adapter.RelationAdapter;
 import com.fengxun.funsun.view.base.BaseNewFragmnet;
 import com.fengxun.funsun.view.views.BlurTransformation;
@@ -46,6 +49,7 @@ import okhttp3.Call;
  * 程序员：韩永辉
  * 创建日期：on 2017/12/11.
  * Holle Android
+ * 内容：关系卡
  */
 
 public class RelationCalorieActivity extends AppCompatActivity {
@@ -79,6 +83,7 @@ public class RelationCalorieActivity extends AppCompatActivity {
     private RelationAdapter adapter;
     private int pager = 1;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,13 +93,11 @@ public class RelationCalorieActivity extends AppCompatActivity {
         intView();
         NetworkData();
         NetworkQuotations(true);
-
     }
 
 
     private void intView() {
         bean = (RelationInfBean) getIntent().getSerializableExtra(BaseNewFragmnet.RELATION);
-
         LogUtils.e(bean.toString());
         list = new ArrayList<>();
         if (relationRecyclerview != null) {
@@ -131,12 +134,12 @@ public class RelationCalorieActivity extends AppCompatActivity {
     一个请求个人信息 一个请求 语录
      */
     private void NetworkData() {
-
         HttpParams params = new HttpParams();
         params.put("friend_id", bean.userId);
         params.put("source", 2);
         params.put("content_id", bean.contentId);
-        NetworkReuset.getInstance().getRelationCard(RequestUrl.RELATIONCIDE, params, new onCallBack<RelationInfoBean>(this) {
+        String url = SPUtils.getBoolean(KEY.KEY_ISLOGIN,false)?RequestUrl.RELATIONCIDE:RequestUrl.NOT_LOGIN_RELATION;
+        NetworkReuset.getInstance().getRelationCard(url, params, new onCallBack<RelationInfoBean>(this) {
             @Override
             public void onSucceed(RelationInfoBean relationInfoBean, Call call, String string) {
                 processInfo(relationInfoBean);
@@ -145,13 +148,11 @@ public class RelationCalorieActivity extends AppCompatActivity {
     }
 
 
-
       /*
     关系卡的用户语录
      */
 
     private void NetworkQuotations(final boolean isRefesh) {
-
         // TODO 这个地方需要 上拉刷新的逻辑判断
         HttpParams params = new HttpParams();
         params.put("user_id", bean.userId);
@@ -166,9 +167,10 @@ public class RelationCalorieActivity extends AppCompatActivity {
                     adapter.setLoadData(retBeanList);
                     relationRefreshLayout.finishLoadmore();
                 }
-
             }
         });
+
+
 
     }
 
@@ -177,12 +179,21 @@ public class RelationCalorieActivity extends AppCompatActivity {
     关系卡的用户信息
      */
     private void processInfo(RelationInfoBean relationInfoBean) {
+
+
         Picasso.with(this).load(relationInfoBean.getData().getAvatar()).transform(new BlurTransformation(this)).into(ivZoom);
         Picasso.with(this).load(relationInfoBean.getData().getAvatar()).into(relationIvHead);
         relationTvName.setText(relationInfoBean.getData().getNick());
         relationTvXingqu.setText(relationInfoBean.getData().getMeet_count() == 0 ? "无" : String.valueOf(relationInfoBean.getData().getMeet_count()));
-        relationTvXiangyv.setText(String.valueOf(relationInfoBean.getData().getLevel()));
+
         relationSchoolName.setText(relationInfoBean.getData().getSchool_name());
+        if (relationInfoBean.getData().getLevel()==null){
+            relationTvXiangyv.setText("0");
+        }else {
+            relationTvXiangyv.setText(relationInfoBean.getData().getLevel()+"");
+        }
+
+
     }
 
 

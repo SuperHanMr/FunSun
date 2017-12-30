@@ -41,9 +41,9 @@ public class NewFragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         return titles[position];
     }
 
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        //如果注释这行，那么不管怎么切换，page都不会被销毁
 //        super.destroyItem(container, position, object);
     }
 
